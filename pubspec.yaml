@@ -71,10 +71,12 @@ dependencies:
   gap: ^3.0.1
   timezone:
   flutter_slidable:
-  syncfusion_flutter_calendar:
+  syncfusion_flutter_calendar:  
   settings_ui:
   flutter_launcher_icons: ^0.13.1
   palette_generator: ^0.3.3+3
+  easy_search_bar: ^2.5.0
+ 
   
 
 dev_dependencies:

@@ -77,7 +77,7 @@ class _UserfromNotificationState extends State<UserfromNotification> {
         }
       });
     });
-    // fetchData();
+
   }
 
   Future<void> _onRefresh() async {
@@ -87,14 +87,9 @@ class _UserfromNotificationState extends State<UserfromNotification> {
   }
 
   Future<void> logout() async {
-    // Delete sensitive data from secure storage
+
     await storage.deleteAll();
 
-    // Clear data associated with the private screen (if applicable)
-    // Example: clear private screen-related variables or state
-    // ...
-
-    // Navigate to the login screen
     Get.offNamed('login');
   }
 
@@ -222,13 +217,7 @@ class _UserfromNotificationState extends State<UserfromNotification> {
             imagePath:
                 'https://4kwallpapers.com/images/walls/thumbs_2t/2167.jpg',
             onClicked: () async {
-              // _onImageTap();
-              // String? newData = await uploader.pickAndUploadFile(
-              //   dynamicPath: 'traveller', // Replace with your dynamic path
-              //   id: '${user?.id}', // Replace with your id
-              //   object: 'api/users', // Replace with your object
-              //   field: 'picture', // Replace with your field
-              // ); // Call your async operation when the button is clicked
+          
                 Get.to(ImageViewScreen(
                     "${baseUrls}/assets/uploads/traveller/${ user?.picture}",
                   ));
@@ -243,221 +232,14 @@ class _UserfromNotificationState extends State<UserfromNotification> {
                Get.to(ImageViewScreen(
                     "${baseUrls}/assets/uploads/traveller/${ user?.picture}",
                   ));
-                // if (newData != null) {
-                //   // You can use newData here
-                //   print("Received data from FileUploadScreen: $newData");
-                //   setState(() {
-                //     _onRefresh();
-                //   });
-                // } else {
-                //   // Handle the case where newData is null
-                //   print("No data received from FileUploadScreen");
-                // }
+             
               },
             ),
-            // GestureDetector(
-            //   onTap: ()
-            //   async {
-            //     String? newData = await uploader.pickAndUploadFile(
-            //       dynamicPath:
-            //           'traveller', // Replace with your dynamic path
-            //       id: '$userId', // Replace with your id
-            //       object: 'api/users', // Replace with your object
-            //       field: 'picture', // Replace with your field
-            //     ); //
-            //     if (newData != null) {
-            //       // You can use newData here
-            //       print("Received data from FileUploadScreen: $newData");
-            //       setState(() {
-            //         _onRefresh();
-            //       });
-            //     } else {
-            //       // Handle the case where newData is null
-            //       print("No data received from FileUploadScreen");
-            //     }
-            //   },
-            //   // child: buildEditIcon(Colors.blue),
-            // )
+         
           ]);
   }
 
-  // Widget _buildHeader() {
-  //   Future<void> _updateProfilePicture() async {
-  //     final picker = ImagePicker();
-  //     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
-  //     if (pickedFile != null) {
-  //       final String? userId =
-  //           await storage.read(key: "id"); // Replace with the actual user ID
-  //       final String? baseUrl = await storage.read(key: "baseurl");
-  //       final String apiUrl = '$baseUrls/api/users/$userId';
-  //       //final String apiUrl = '$baseUrl/api/users/$userId/update-profile-picture';
-  //       final String? token = await storage.read(key: "access_token");
-
-  //       // Ensure that baseUrls is not null and has a valid format
-  //       if (baseUrl == null) {
-  //         print('Base URL is null');
-  //         return;
-  //       }
-
-  //       var request = http.MultipartRequest('PATCH', Uri.parse(apiUrl))
-  //         ..headers['Authorization'] = 'Bearer $token'
-  //         ..files.add(await http.MultipartFile.fromPath(
-  //             'profilePicture', pickedFile.path));
-
-  //       try {
-  //         final response = await request.send();
-  //         if (response.statusCode == 200) {
-  //           // Update the user's profile picture on success
-  //           setState(() {
-  //             selectedUser?.picture = pickedFile.path;
-  //           });
-  //         } else {
-  //           print('Failed to update profile picture');
-  //         }
-  //       } catch (error) {
-  //         print('Error occurred while updating profile picture: $error');
-  //       }
-  //     }
-  //   }
-
-  //   return Stack(
-  //     children: <Widget>[
-  //       Stack(
-  //         clipBehavior: Clip.none,
-  //         alignment: Alignment.center,
-  //         children: [
-  //           Ink(
-  //             height: Get.height * 0.30,
-  //             width: Get.width * 1.7,
-  //             decoration: BoxDecoration(
-  //               color: Colors.blue, // Set the background color
-  //               borderRadius: BorderRadius.circular(10.0), // Set border radius
-  //               boxShadow: [
-  //                 BoxShadow(
-  //                   color: Colors.black.withOpacity(0.2), // Set shadow color
-  //                   blurRadius: 5.0, // Set shadow blur radius
-  //                 ),
-  //               ],
-  //             ),
-  //             child: selectedUser?.picture == null
-  //                 ? Image.network(
-  //                     'https://img.freepik.com/free-vector/travel-time-typography-design_1308-99359.jpg?size=626&ext=jpg&ga=GA1.2.732483231.1691056791&semt=ais',
-  //                     fit: BoxFit.fitWidth,
-  //                   )
-  //                 : Image.network(
-  //                     '$baseUrls/assets/uploads/traveller/${selectedUser?.picture}',
-  //                     fit: BoxFit.cover,
-  //                   ),
-  //           ),
-  //           Ink(
-  //             height: 200,
-  //             decoration: const BoxDecoration(
-  //               color: Colors.black38,
-  //             ),
-  //           ),
-  //           Positioned(
-  //             bottom: 20.0,
-  //             right: 20.0,
-  //             child: InkWell(
-  //               onTap: () async {
-  //                 String? newData = await uploader.pickAndUploadFile(
-  //                   dynamicPath: 'traveller', // Replace with your dynamic path
-  //                   id: '${selectedUser?.id}', // Replace with your id
-  //                   object: 'api/users', // Replace with your object
-  //                   field: 'picture', // Replace with your field
-  //                 );
-
-  //                 if (newData != null) {
-  //                   // You can use newData here
-  //                   print("Received data from FileUploadScreen: $newData");
-  //                   setState(() {
-  //                     _onRefresh();
-  //                   });
-  //                 } else {
-  //                   // Handle the case where newData is null
-  //                   print("No data received from FileUploadScreen");
-  //                 }
-  //               },
-  //               child: const Icon(
-  //                 Icons.edit,
-  //                 color: Color.fromARGB(146, 7, 7, 7),
-  //                 size: 30.0,
-  //               ),
-  //             ),
-  //           ),
-  //           Ink(
-  //             height: 200,
-  //             decoration: const BoxDecoration(
-  //               color: Colors.black38,
-  //             ),
-  //           ),
-  //           Positioned(
-  //             top: 30,
-  //             bottom: 10.0,
-  //             left: 110,
-  //             child: Align(
-  //               alignment: Alignment.center,
-  //               child: Stack(clipBehavior: Clip.none, children: [
-  //                 Container(
-  //                   padding: const EdgeInsets.all(
-  //                       6.0), // Adjust the padding values as needed
-  //                   decoration: const BoxDecoration(
-  //                     shape: BoxShape.circle,
-  //                     color: Color.fromARGB(197, 255, 255, 255),
-  //                   ),
-  //                   child: selectedUser?.picture == null
-  //                       ? CircleAvatar(
-  //                           radius: 80,
-  //                           backgroundImage: Image.network(
-  //                             'https://img.freepik.com/free-vector/travel-time-typography-design_1308-99359.jpg?size=626&ext=jpg&ga=GA1.2.732483231.1691056791&semt=ais',
-  //                             fit: BoxFit.cover,
-  //                           ).image,
-  //                         )
-  //                       : CircleAvatar(
-  //                           radius: 80,
-  //                           backgroundImage: Image.network(
-  //                             '$baseUrls/assets/uploads/traveller/${selectedUser?.picture}',
-  //                             fit: BoxFit.cover,
-  //                           ).image,
-  //                         ),
-  //                 ),
-  //                 Positioned(
-  //                   bottom: 40.0,
-  //                   right: 150.0,
-  //                   left: 130,
-  //                   child: InkWell(
-  //                     onTap: () async {
-  //                       String? newData = await uploader.pickAndUploadFile(
-  //                         dynamicPath:
-  //                             'traveller', // Replace with your dynamic path
-  //                         id: '${selectedUser?.id}', // Replace with your id
-  //                         object: 'api/users', // Replace with your object
-  //                         field: 'picture', // Replace with your field
-  //                       );
-
-  //                       if (newData != null) {
-  //                         // You can use newData here
-  //                         print(
-  //                             "Received data from FileUploadScreen: $newData");
-  //                         setState(() {
-  //                           _onRefresh();
-  //                         });
-  //                       } else {
-  //                         // Handle the case where newData is null
-  //                         print("No data received from FileUploadScreen");
-  //                       }
-  //                     },
-  //                   ),
-  //                 ),
-  //               ]),
-  //             ),
-  //           ),
-  //         ],
-  //       )
-  //     ],
-  //   );
-  // }
 
   Widget _buildMainInfo(BuildContext context, double width) {
     return Container(

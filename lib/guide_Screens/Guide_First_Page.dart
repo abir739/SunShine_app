@@ -215,8 +215,7 @@ class _PlaningSecreenState extends State<PlaningSecreen> {
     final selectedg =
         selectedPlanningProvider.selectedTouristGroup ?? selectedTouristGroup;
 
-    if 
-    (isLoading) {
+    if (isLoading) {
       return Scaffold(
         body: Container(
           child: Center(
@@ -225,7 +224,7 @@ class _PlaningSecreenState extends State<PlaningSecreen> {
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   // Show a loading indicator or any other widget while waiting
-                  return LoadingScreen(loadingText:"Loading...." ,cursor: "😊",);
+                  return LoadingScreen(loadingText: "Loading...");
                 } else {
                   // After the delay, show the "Submit" button
                   return Center(
@@ -331,8 +330,7 @@ class _PlaningSecreenState extends State<PlaningSecreen> {
             ],
           ),
         );
-      } 
-      else {
+      } else {
         return Scaffold(
           body: Stack(
             children: [

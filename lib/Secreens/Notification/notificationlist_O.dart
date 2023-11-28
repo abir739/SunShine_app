@@ -220,7 +220,7 @@ class _NotificationListState extends State<NotificationList> {
 
     return Scaffold(
       bottomSheet: Visibility(
-        visible: closeTopContainer,
+        // visible: closeTopContainer,
         child: GFBottomSheet(
           controller: _controller,
           maxContentHeight: 100,
