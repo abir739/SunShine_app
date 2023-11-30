@@ -424,41 +424,41 @@ class ActivityCard extends StatelessWidget {
                                     IconButton(
                                       icon: Icon(Icons.location_on, size: 50),
                                       onPressed: () async {
-                                        if (activity.activityTemplate != null &&
-                                            activity.activityTemplate
-                                                    ?.coordinates !=
-                                                null) {
-                                          final coordinates = activity
-                                              .activityTemplate?.coordinates!;
-                                          final binaryCoordinates =
-                                              jsonEncode(coordinates);
-                                          final parsedCoordinates =
-                                              parseCoordinates(
-                                                  binaryCoordinates);
-                                          double latitude =
-                                              parsedCoordinates[0];
-                                          double longitude =
-                                              parsedCoordinates[1];
-                                          final placeQuery =
-                                              '$latitude $longitude';
-                                          final c = Colors.blue;
+                                        // if (activity.activityTemplate != null &&
+                                        //     activity.activityTemplate
+                                        //             ?.coordinates !=
+                                        //         null) {
+                                        //   final coordinates = activity
+                                        //       .activityTemplate?.coordinates!;
+                                        //   final binaryCoordinates =
+                                        //       jsonEncode(coordinates);
+                                        //   final parsedCoordinates =
+                                        //       parseCoordinates(
+                                        //           binaryCoordinates);
+                                        //   double latitude =
+                                        //       parsedCoordinates[0];
+                                        //   double longitude =
+                                        //       parsedCoordinates[1];
+                                        //   final placeQuery =
+                                        //       '$latitude $longitude';
+                                        //   final c = Colors.blue;
 
-                                          openMapApp(
-                                            latitude!,
-                                            longitude!,
-                                            placeQuery: placeQuery,
-                                            trackLocation: true,
-                                            color: c,
-                                            markerImage: const AssetImage(
-                                                'assets/Male.png'),
-                                            map_action: true,
-                                          );
+                                        //   openMapApp(
+                                        //     latitude!,
+                                        //     longitude!,
+                                        //     placeQuery: placeQuery,
+                                        //     trackLocation: true,
+                                        //     color: c,
+                                        //     markerImage: const AssetImage(
+                                        //         'assets/Male.png'),
+                                        //     map_action: true,
+                                        //   );
 
-                                          print(
-                                              "binaryCoordinates $binaryCoordinates");
-                                          print("latitude $latitude");
-                                          print("longitude $longitude");
-                                        }
+                                        //   print(
+                                        //       "binaryCoordinates $binaryCoordinates");
+                                        //   print("latitude $latitude");
+                                        //   print("longitude $longitude");
+                                        // }
                                       },
                                     ),
                                     SizedBox(

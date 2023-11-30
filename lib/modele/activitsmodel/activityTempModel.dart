@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:zenify_app/modele/activitsmodel/activitiesCategoryModel.dart';
-
 part 'activityTempModel.g.dart';
 
 @JsonSerializable()

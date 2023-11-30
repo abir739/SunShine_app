@@ -68,7 +68,7 @@ Map<String, dynamic> _$ActivityTemplateToJson(ActivityTemplate instance) =>
       'countryId': instance.countryId,
       'stateId': instance.stateId,
       'cityId': instance.cityId,
-      'coordinates': instance.coordinates,
+     
       'creatorUserId': instance.creatorUserId,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updaterUserId': instance.updaterUserId,

@@ -29,7 +29,7 @@ import 'package:zenify_app/modele/transportmodel/transportModel.dart';
 
 
 
-import '../../../modele/activitsmodel/activityTempModel.dart';
+
 
 import '../../modele/Event/Event.dart';
 import '../../modele/activitsmodel/httpActivitesTempid.dart';

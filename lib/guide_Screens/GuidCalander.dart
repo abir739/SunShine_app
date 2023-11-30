@@ -12,7 +12,7 @@ import 'package:get/get.dart';
 import 'package:zenify_app/Secreens/CustomCalendarDataSource.dart';
 import 'package:zenify_app/Secreens/widgetCard/cardClass.dart';
 import 'package:zenify_app/Settings/AppSettings.dart';
-import 'package:zenify_app/guide_Screens/ItemDetailsScreen.dart';
+
 import 'package:zenify_app/modele/Event/Event.dart';
 import 'package:zenify_app/modele/HttpTravellerssHandel.dart';
 import 'package:zenify_app/modele/activitsmodel/activitesmodel.dart';
@@ -1944,11 +1944,11 @@ class _GuidCalanderSecreenState extends State<GuidCalanderSecreen> {
   }
 
   void showItemDetailsScreen(BuildContext context, dynamic item) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => ItemDetailsScreen(item: item),
-      ),
-    );
+    // Navigator.of(context).push(
+    //   MaterialPageRoute(
+    //     builder: (context) => ItemDetailsScreen(item: item),
+    //   ),
+    // );
   }
 
   void handleEventSave(Transport updatedEvent) {

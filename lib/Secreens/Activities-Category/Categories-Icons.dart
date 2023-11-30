@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:math';
 import 'package:http/http.dart' as http;
+import 'package:zenify_app/Secreens/Activities-Category/Activity-Template-List.dart';
 import 'package:zenify_app/login/Login.dart';
 import 'package:zenify_app/modele/activitsmodel/activitiesCategoryModel.dart';
 import 'package:zenify_app/services/constent.dart';
@@ -24,6 +25,15 @@ class _ActivityCategoryPageState extends State<ActivityCategoryPage> {
     activityCategories = [];
     filteredCategories = [];
     fetchActivityCategories();
+  }
+
+  void navigateToActivityTemplatePage(ActivitiesCategoryModel category) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ActivityTemplatePage(category: category),
+      ),
+    );
   }
 
   Future<void> fetchActivityCategories() async {
@@ -58,7 +68,7 @@ class _ActivityCategoryPageState extends State<ActivityCategoryPage> {
     }
   }
 
-   void filterCategories(String query) {
+  void filterCategories(String query) {
     setState(() {
       filteredCategories = activityCategories
           .where((category) =>
@@ -123,12 +133,17 @@ class _ActivityCategoryPageState extends State<ActivityCategoryPage> {
                               width: MediaQuery.of(context).size.width / 4,
                               child: Column(
                                 children: [
-                                  CircleAvatar(
-                                    backgroundColor: const Color.fromARGB(
-                                        255, 235, 235, 202),
-                                    radius: 40,
-                                    backgroundImage: NetworkImage(
-                                      "${baseUrls}${category.icon}",
+                                  GestureDetector(
+                                    onTap: () {
+                                      navigateToActivityTemplatePage(category);
+                                    },
+                                    child: CircleAvatar(
+                                      backgroundColor: const Color.fromARGB(
+                                          255, 235, 235, 202),
+                                      radius: 40,
+                                      backgroundImage: NetworkImage(
+                                        "${baseUrls}${category.icon}",
+                                      ),
                                     ),
                                   ),
                                   SizedBox(height: 8),
