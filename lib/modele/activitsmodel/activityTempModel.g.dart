@@ -12,11 +12,11 @@ ActivityTemplate _$ActivityTemplateFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       images:
           (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      activitiesCategoryModelmplate: json['activitiesCategoryModelmplate'] ==
-              null
-          ? null
-          : ActivitiesCategoryModel.fromJson(
-              json['activitiesCategoryModelmplate'] as Map<String, dynamic>),
+      // activitiesCategoryModelmplate: json['activitiesCategoryModelmplate'] ==
+      //         null
+      //     ? null
+      //     : ActivitiesCategoryModel.fromJson(
+      //         json['activitiesCategoryModelmplate'] as Map<String, dynamic>),
       durationHours: json['durationHours'] as int?,
       shortDescription: json['shortDescription'] as String?,
       picture: json['picture'] as String?,
@@ -29,6 +29,7 @@ ActivityTemplate _$ActivityTemplateFromJson(Map<String, dynamic> json) =>
       currency: json['currency'] as String?,
       hotelPickupOffered: json['hotelPickupOffered'] as bool?,
       countryId: json['countryId'] as String?,
+
       stateId: json['stateId'] as String?,
       video: json['video'] as String?,
       cityId: json['cityId'] as String?,
@@ -46,6 +47,14 @@ ActivityTemplate _$ActivityTemplateFromJson(Map<String, dynamic> json) =>
           : DateTime.parse(json['deletedAt'] as String),
       primaryColor: json['primaryColor'] as String?,
       secondaryColor: json['secondaryColor'] as String?,
+      activitiesCategoryModelmplate:
+          json['activitiesCategoryModelmplate'] == null
+              ? null
+              : ActivitiesCategoryModel.fromJson(
+                  json['activityTemplate'] as Map<String, dynamic>),
+      country: json['country'] == null
+          ? null
+          : Country.fromJson(json['country'] as Map<String, dynamic>),
       logo: json['logo'] as String?,
     );
 
@@ -66,9 +75,9 @@ Map<String, dynamic> _$ActivityTemplateToJson(ActivityTemplate instance) =>
       'currency': instance.currency,
       'hotelPickupOffered': instance.hotelPickupOffered,
       'countryId': instance.countryId,
+      'country': instance.country,
       'stateId': instance.stateId,
       'cityId': instance.cityId,
-     
       'creatorUserId': instance.creatorUserId,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updaterUserId': instance.updaterUserId,

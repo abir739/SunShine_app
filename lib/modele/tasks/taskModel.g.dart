@@ -16,6 +16,7 @@ Tasks _$TasksFromJson(Map<String, dynamic> json) => Tasks(
       description: json['description'] as String?,
       creatorUserId: json['creatorUserId'] as String?,
       createdAt: json['createdAt'] as String?,
+      
     );
 
 Map<String, dynamic> _$TasksToJson(Tasks instance) => <String, dynamic>{

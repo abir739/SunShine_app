@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zenify_app/Secreens/Activities-Category/ActivityDetailPage.dart';
 import 'package:zenify_app/login/Login.dart';
 import 'package:zenify_app/modele/activitsmodel/activitiesCategoryModel.dart';
 import 'package:zenify_app/modele/activitsmodel/activityTempModel.dart';
@@ -146,7 +147,6 @@ class _ActivityTemplatePageState extends State<ActivityTemplatePage> {
                           ),
                         ],
                       ),
-                      // Add sorting dropdown or buttons here
                     ],
                   ),
                 ),
@@ -155,83 +155,95 @@ class _ActivityTemplatePageState extends State<ActivityTemplatePage> {
                     itemCount: activityTemplates.length,
                     itemBuilder: (context, index) {
                       final template = activityTemplates[index];
-                      return Container(
-                        width: 341,
-                        height: 135,
-                        margin:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                        child: Stack(
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  width: 141,
-                                  height: 134,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(14),
-                                      bottomLeft: Radius.circular(14),
-                                    ),
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: NetworkImage(
-                                        "${baseUrls}${template.picture}",
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 8),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        template.name ?? '',
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      SizedBox(height: 4),
-                                      Text(
-                                        'Country: ${template.countryId ?? ''}',
-                                        style: TextStyle(fontSize: 14),
-                                      ),
-                                      SizedBox(height: 4),
-                                      Text(
-                                        'Price: \$${template.adultPrice ?? ''}',
-                                        style: TextStyle(fontSize: 14),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ActivityDetailPage(
+                                activityTemplate: template,
+                              ),
                             ),
-                            Positioned(
-                              width: 71,
-                              height: 25,
-                              top: 105,
-                              left: 265,
-                              child: Container(
-                                padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFFF725E),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Book',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 18),
+                          );
+                        },
+                        child: Container(
+                          width: 341,
+                          height: 135,
+                          margin:
+                              EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                          child: Stack(
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 141,
+                                    height: 134,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(14),
+                                        bottomLeft: Radius.circular(14),
+                                      ),
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: NetworkImage(
+                                          "${baseUrls}${template.picture}",
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(width: 8),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          template.name ?? '',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        SizedBox(height: 4),
+                                        Text(
+                                          'Country: ${template.country?.name ?? ''}',
+                                          style: TextStyle(fontSize: 14),
+                                        ),
+                                        SizedBox(height: 4),
+                                        Text(
+                                          'Price: \$${template.adultPrice ?? ''}',
+                                          style: TextStyle(fontSize: 14),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Positioned(
+                                width: 71,
+                                height: 25,
+                                top: 105,
+                                left: 265,
+                                child: Container(
+                                  padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFFF725E),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Book',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 18),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       );
                     },

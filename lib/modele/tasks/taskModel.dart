@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:zenify_app/modele/agance.dart';
 
 part 'taskModel.g.dart';
 
@@ -11,6 +12,7 @@ class Tasks {
   String? description;
   String? creatorUserId;
   String? createdAt;
+  Agency? agency;
 
   Tasks({
     this.id,
@@ -20,6 +22,7 @@ class Tasks {
     this.description,
     this.creatorUserId,
     this.createdAt,
+    this.agency,
   });
 
   factory Tasks.fromJson(Map<String, dynamic> json) => _$TasksFromJson(json);

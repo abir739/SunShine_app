@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:zenify_app/modele/activitsmodel/activitiesCategoryModel.dart';
+import 'package:zenify_app/modele/country/countryModel.dart';
 part 'activityTempModel.g.dart';
 
 @JsonSerializable()
@@ -35,6 +36,7 @@ class ActivityTemplate {
   String? secondaryColor;
   ActivitiesCategoryModel? activitiesCategoryModelmplate;
   String? logo;
+  Country? country;
   ActivityTemplate(
       {this.id,
       this.name,
@@ -52,6 +54,7 @@ class ActivityTemplate {
       this.currency,
       this.hotelPickupOffered,
       this.countryId,
+      this.country,
       this.stateId,
       this.video,
       this.cityId,
