@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'package:zenify_app/modele/activitsmodel/activitesmodel.dart';
 import 'package:zenify_app/modele/tasks/taskModel.dart';
-import 'package:zenify_app/modele/touristGroup.dart';
 import 'package:zenify_app/modele/transportmodel/transportModel.dart';
 import 'package:zenify_app/services/ServiceWedget/NotificationUserImages.dart';
 import 'package:zenify_app/services/constent.dart';

@@ -71,7 +71,7 @@ class _BottomNavBarDemoState extends State<BottomNavBarDemo> {
         controller: _pageController,
         onPageChanged: _onPageChanged,
         children: <Widget>[
-          //  EventCalendar(guideId: widget.guid!.id),
+           //EventCalendar(guideId: widget.guid!.id),
           ActivityCategoryPage(),
           NotificationScreen(groupsid: travellergroupId, guid: widget.guid),
           TravellersListScreen(guideId: widget.guid!.id),

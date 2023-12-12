@@ -149,36 +149,7 @@ class _EventViewState extends State<EventView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 207, 207, 219),
-        title: Row(
-          children: [
-            SvgPicture.asset(
-              'assets/Frame.svg',
-              fit: BoxFit.cover,
-              height: 36.0,
-            ),
-            const SizedBox(width: 65),
-            ShaderMask(
-              shaderCallback: (Rect bounds) {
-                return const LinearGradient(
-                  colors: [
-                    Color(0xFF3A3557),
-                    Color(0xFFCBA36E),
-                    Color(0xFFEB5F52),
-                  ],
-                ).createShader(bounds);
-              },
-              child: const Text(
-                'Transport',
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Colors
-                      .white, // You can adjust the font size and color here
-                ),
-              ),
-            ),
-          ],
-        ),
+        title: Text('Transport Details'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -186,21 +157,41 @@ class _EventViewState extends State<EventView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 14),
-              const Text(
-                'Transport Details',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
               const SizedBox(height: 26),
               Text(
-                'Description: 🚌 From ${widget.transport.from ?? 'N/A'} to ${widget.transport.to ?? 'N/A'}',
+                'Description: 🚌',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFFFF725E),
+                ),
+              ),
+              SizedBox(height: 5),
+              Text(
+                ' ${widget.transport.from ?? 'N/A'} to ${widget.transport.to ?? 'N/A'}',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 6, 6, 6),
+                ),
               ), // Update with your field
               const SizedBox(height: 14),
               Text(
-                'Date: ${widget.transport.date != null ? formatDateTimeInTimeZone(widget.transport.date!).toString() : 'N/A'}', // Update with your field
+                'Date:',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFFFF725E),
+                ),
+              ),
+              SizedBox(height: 5),
+              Text(
+                ' ${widget.transport.date != null ? formatDateTimeInTimeZone(widget.transport.date!).toString() : 'N/A'}',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  color: Color.fromARGB(255, 6, 6, 6),
+                ),
               ),
               const SizedBox(height: 14),
               TextFormField(
