@@ -11,7 +11,13 @@ class TaskView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Task Details'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const SizedBox(width: 60.0),
+            Text('Task Details'),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(

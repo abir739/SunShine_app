@@ -52,10 +52,6 @@ class _MainProfileState extends State<MainProfile> {
     // Delete sensitive data from secure storage
     await storage.deleteAll();
 
-    // Clear data associated with the private screen (if applicable)
-    // Example: clear private screen-related variables or state
-    // ...
-
     // Navigate to the login screen
     Get.offNamed('login');
   }
@@ -289,67 +285,67 @@ class _MainProfileState extends State<MainProfile> {
                 color: Colors.black38,
               ),
             ),
-            Positioned(
-              top: 30,
-              bottom: 10.0,
-              left: 110,
-              child: Align(
-                alignment: Alignment.center,
-                child: Stack(clipBehavior: Clip.none, children: [
-                  Container(
-                    padding: const EdgeInsets.all(
-                        6.0), // Adjust the padding values as needed
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Color.fromARGB(197, 255, 255, 255),
-                    ),
-                    child: selectedUser?.picture == null
-                        ? CircleAvatar(
-                            radius: 80,
-                            backgroundImage: Image.network(
-                              'https://img.freepik.com/free-vector/travel-time-typography-design_1308-99359.jpg?size=626&ext=jpg&ga=GA1.2.732483231.1691056791&semt=ais',
-                              fit: BoxFit.cover,
-                            ).image,
-                          )
-                        : CircleAvatar(
-                            radius: 80,
-                            backgroundImage: Image.network(
-                              '$baseUrls/assets/uploads/traveller/${selectedUser?.picture}',
-                              fit: BoxFit.cover,
-                            ).image,
-                          ),
-                  ),
-                  Positioned(
-                    bottom: 40.0,
-                    right: 150.0,
-                    left: 130,
-                    child: InkWell(
-                      onTap: () async {
-                        String? newData = await uploader.pickAndUploadFile(
-                          dynamicPath:
-                              'traveller', // Replace with your dynamic path
-                          id: '${selectedUser?.id}', // Replace with your id
-                          object: 'api/users', // Replace with your object
-                          field: 'picture', // Replace with your field
-                        );
+            // Positioned(
+            //   top: 30,
+            //   bottom: 10.0,
+            //   left: 110,
+            //   child: Align(
+            //     alignment: Alignment.center,
+            //     child: Stack(clipBehavior: Clip.none, children: [
+            //       Container(
+            //         padding: const EdgeInsets.all(
+            //             6.0), // Adjust the padding values as needed
+            //         decoration: const BoxDecoration(
+            //           shape: BoxShape.circle,
+            //           color: Color.fromARGB(197, 255, 255, 255),
+            //         ),
+            //         child: selectedUser?.picture == null
+            //             ? CircleAvatar(
+            //                 radius: 80,
+            //                 backgroundImage: Image.network(
+            //                   'https://img.freepik.com/free-vector/travel-time-typography-design_1308-99359.jpg?size=626&ext=jpg&ga=GA1.2.732483231.1691056791&semt=ais',
+            //                   fit: BoxFit.cover,
+            //                 ).image,
+            //               )
+            //             : CircleAvatar(
+            //                 radius: 80,
+            //                 backgroundImage: Image.network(
+            //                   '$baseUrls/assets/uploads/traveller/${selectedUser?.picture}',
+            //                   fit: BoxFit.cover,
+            //                 ).image,
+            //               ),
+            //       ),
+            //       Positioned(
+            //         bottom: 40.0,
+            //         right: 150.0,
+            //         left: 130,
+            //         child: InkWell(
+            //           onTap: () async {
+            //             String? newData = await uploader.pickAndUploadFile(
+            //               dynamicPath:
+            //                   'traveller', // Replace with your dynamic path
+            //               id: '${selectedUser?.id}', // Replace with your id
+            //               object: 'api/users', // Replace with your object
+            //               field: 'picture', // Replace with your field
+            //             );
 
-                        if (newData != null) {
-                          // You can use newData here
-                          print(
-                              "Received data from FileUploadScreen: $newData");
-                          setState(() {
-                            _onRefresh();
-                          });
-                        } else {
-                          // Handle the case where newData is null
-                          print("No data received from FileUploadScreen");
-                        }
-                      },
-                    ),
-                  ),
-                ]),
-              ),
-            ),
+            //             if (newData != null) {
+            //               // You can use newData here
+            //               print(
+            //                   "Received data from FileUploadScreen: $newData");
+            //               setState(() {
+            //                 _onRefresh();
+            //               });
+            //             } else {
+            //               // Handle the case where newData is null
+            //               print("No data received from FileUploadScreen");
+            //             }
+            //           },
+            //         ),
+            //       ),
+            //     ]),
+            //   ),
+            // ),
           ],
         )
       ],

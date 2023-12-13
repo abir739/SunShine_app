@@ -12,7 +12,13 @@ class ActivityView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Activity Details'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const SizedBox(width: 60.0),
+            Text('Activity Details'),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(

@@ -76,6 +76,7 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   palette_generator: ^0.3.3+3
   easy_search_bar: ^2.5.0
+  flutter_bloc: ^8.1.3
  
   
 

@@ -8,7 +8,7 @@ import 'package:zenify_app/services/constent.dart';
 
 import 'package:zenify_app/modele/traveller/TravellerModel.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_svg/svg.dart';
+
 
 class TravelersListScreen extends StatefulWidget {
   final String? selectedtouristGroupId;
@@ -71,34 +71,11 @@ class _TravelersListScreenState extends State<TravelersListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 207, 207, 219),
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SvgPicture.asset(
-              'assets/Frame.svg',
-              fit: BoxFit.cover,
-              height: 36.0,
-            ),
-            const SizedBox(width: 40),
-            ShaderMask(
-              shaderCallback: (Rect bounds) {
-                return const LinearGradient(
-                  colors: [
-                    Color(0xFF3A3557),
-                    Color(0xFFCBA36E),
-                    Color(0xFFEB5F52),
-                  ],
-                ).createShader(bounds);
-              },
-              child: const Text(
-                'Travelers List',
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Colors
-                      .white, // You can adjust the font size and color here
-                ),
-              ),
-            ),
+            const SizedBox(width: 60.0),
+            Text('Travelers List'),
           ],
         ),
       ),

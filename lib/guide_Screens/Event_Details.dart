@@ -149,7 +149,13 @@ class _EventViewState extends State<EventView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Transport Details'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const SizedBox(width: 60.0),
+            Text('Transport Details'),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:getwidget/components/bottom_sheet/gf_bottom_sheet.dart';
 import 'package:intl/intl.dart';
@@ -25,7 +26,6 @@ import 'package:zenify_app/modele/httpTasks.dart';
 import 'package:zenify_app/modele/tasks/taskModel.dart';
 import 'package:zenify_app/modele/transportmodel/ApiResponse.dart';
 import 'package:zenify_app/modele/traveller/TravellerModel.dart';
-import 'package:zenify_app/routes/ScrollControllerProvider.dart';
 import 'package:zenify_app/routes/SettingsProvider.dart';
 import 'package:zenify_app/services/GuideProvider.dart';
 import 'package:zenify_app/services/constent.dart';
@@ -36,6 +36,15 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../modele/transportmodel/transportModel.dart';
+
+enum FilterType {
+  All, // Show all appointments
+  Task, // Show only tasks
+  Transfer, // Show only transfers
+  Activity, // Show only activities
+}
+
+FilterType selectedFilter = FilterType.All;
 
 class GuidCalanderSecreen extends StatefulWidget {
   @override
@@ -643,6 +652,58 @@ class _GuidCalanderSecreenState extends State<GuidCalanderSecreen> {
     }
   }
 
+  void _showFilterOptions(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            _buildFilterBadge('All', FilterType.All),
+            _buildFilterBadge('Transfers', FilterType.Transfer),
+            _buildFilterBadge('Tasks', FilterType.Task),
+            _buildFilterBadge('Activities', FilterType.Activity),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildFilterBadge(String title, FilterType filter) {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            selectedFilter = filter; // Set the selected filter
+          });
+          Navigator.of(context).pop(); // Close the filter options
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            color: selectedFilter == filter
+                ? const Color(0xFFEB5F52)
+                : Colors.grey,
+            // Set the badge background color based on selection
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 6),
+            child: Text(
+              title,
+              style: TextStyle(
+                color: selectedFilter == filter ? Colors.white : Colors.black,
+                // Set the badge text color based on selection
+                fontSize: 16,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -671,214 +732,248 @@ class _GuidCalanderSecreenState extends State<GuidCalanderSecreen> {
       );
     }
     return Scaffold(
-      body: Column(
-        children: [
-          Visibility(
-            visible: !hideitem,
-            child: FittedBox(
-              child: Container(
-                height: Get.height * 0.364,
-                width: 500,
-                child: RefreshIndicator(
-                  onRefresh: _refrech,
-                  child: ListView(
-                    controller: controllerCalander,
-                    shrinkWrap: true,
-                    children: [
-                      SfCalendar(
-                        onSelectionChanged: selectionChanged,
-                        todayHighlightColor: const Color(0xFFEB5F52),
-                        todayTextStyle: const TextStyle(
-                            fontStyle: FontStyle.normal,
-                            fontSize: 27,
-                            fontWeight: FontWeight.w900,
-                            color: Color.fromARGB(255, 238, 234, 238)),
-                        monthCellBuilder:
-                            (BuildContext context, MonthCellDetails details) {
-                          return Container(
-                            decoration: BoxDecoration(
-                              color: details.date.month == DateTime.now().month
-                                  ? const Color.fromARGB(255, 245, 242, 242)
-                                  : const Color.fromARGB(255, 179, 228, 236),
-                              border: Border.all(
-                                  color:
-                                      const Color.fromARGB(255, 207, 207, 219),
-                                  width: 0.5),
-                            ),
-                            alignment: Alignment.center,
-                            child: Column(
-                              children: [
-                                Text(
-                                  details.date.day.toString(),
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: details.visibleDates
-                                            .contains(details.date)
-                                        ? Colors.black87
-                                        : const Color.fromARGB(
-                                            255, 158, 158, 158),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            // Add the filter icon button here
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      _showFilterOptions(context);
+                    },
+                    child: SvgPicture.asset(
+                      'assets/images/filtre.svg',
+                      fit: BoxFit.cover,
+                      height: 24.0,
+                    ),
+                  ),
+                  SizedBox(width: 288.0), // Add space between icons
+                  Icon(
+                    Icons.add_box, // Your existing icons
+                    size: 26.0,
+                    color: const Color(0xFFEB5F52),
+                  ),
+                ],
+              ),
+            ),
+            Visibility(
+              visible: !hideitem,
+              child: FittedBox(
+                child: Container(
+                  height: Get.height * 0.364,
+                  width: 500,
+                  child: RefreshIndicator(
+                    onRefresh: _refrech,
+                    child: ListView(
+                      controller: controllerCalander,
+                      shrinkWrap: true,
+                      children: [
+                        SfCalendar(
+                          onSelectionChanged: selectionChanged,
+                          todayHighlightColor: const Color(0xFFEB5F52),
+                          todayTextStyle: const TextStyle(
+                              fontStyle: FontStyle.normal,
+                              fontSize: 27,
+                              fontWeight: FontWeight.w900,
+                              color: Color.fromARGB(255, 238, 234, 238)),
+                          monthCellBuilder:
+                              (BuildContext context, MonthCellDetails details) {
+                            return Container(
+                              decoration: BoxDecoration(
+                                color: details.date.month ==
+                                        DateTime.now().month
+                                    ? const Color.fromARGB(255, 245, 242, 242)
+                                    : const Color.fromARGB(255, 179, 228, 236),
+                                border: Border.all(
+                                    color: const Color.fromARGB(
+                                        255, 207, 207, 219),
+                                    width: 0.5),
+                              ),
+                              alignment: Alignment.center,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    details.date.day.toString(),
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: details.visibleDates
+                                              .contains(details.date)
+                                          ? Colors.black87
+                                          : const Color.fromARGB(
+                                              255, 158, 158, 158),
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  height: 3,
-                                ),
-                                Text(
-                                  details.appointments.length.toString(),
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: details.visibleDates
-                                            .contains(details.date)
-                                        ? const Color.fromARGB(255, 87, 6, 134)
-                                        : const Color.fromARGB(255, 87, 6, 134),
+                                  const SizedBox(
+                                    height: 3,
                                   ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                        headerHeight: 35,
-                        controller: _controller,
-                        view: CalendarView.month,
-                        scheduleViewMonthHeaderBuilder: (BuildContext context,
-                            ScheduleViewMonthHeaderDetails details) {
-                          return SizedBox(
-                            height: 20,
-                            child: Chip(
-                              label: Center(
-                                child: Text(
-                                  'Custom Header',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
+                                  Text(
+                                    details.appointments.length.toString(),
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: details.visibleDates
+                                              .contains(details.date)
+                                          ? const Color.fromARGB(
+                                              255, 87, 6, 134)
+                                          : const Color.fromARGB(
+                                              255, 87, 6, 134),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                          headerHeight: 35,
+                          controller: _controller,
+                          view: CalendarView.month,
+                          scheduleViewMonthHeaderBuilder: (BuildContext context,
+                              ScheduleViewMonthHeaderDetails details) {
+                            return SizedBox(
+                              height: 20,
+                              child: Chip(
+                                label: Center(
+                                  child: Text(
+                                    'Custom Header',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          );
-                        },
-                        viewNavigationMode: ViewNavigationMode.snap,
-                        scheduleViewSettings: ScheduleViewSettings(
-                            hideEmptyScheduleWeek:
-                                settingsProvider.hideEmptyScheduleWeek),
-                        onTap: (CalendarTapDetails details) {
-                          calendarTapped(context, details);
-                        },
-                        showDatePickerButton: true,
-                        resourceViewSettings: ResourceViewSettings(
-                            visibleResourceCount: 4,
-                            showAvatar: true,
-                            displayNameTextStyle: TextStyle(
-                                fontStyle: FontStyle.italic,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400)),
-                        initialDisplayDate: DateTime.parse(dateString),
-                        dataSource: calendarDataSource,
-                        monthViewSettings: MonthViewSettings(
-                            navigationDirection:
-                                MonthNavigationDirection.vertical,
-                            showAgenda: false,
-                            appointmentDisplayMode:
-                                MonthAppointmentDisplayMode.indicator,
-                            numberOfWeeksInView: 3,
-                            monthCellStyle: MonthCellStyle(
-                              todayBackgroundColor: Colors.red,
-                              textStyle: TextStyle(
-                                fontStyle: FontStyle.normal,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            agendaStyle: AgendaStyle(
-                              backgroundColor: settingsProvider.isDarkMode
-                                  ? MyThemes.lightTheme.splashColor
-                                      .withOpacity(0.9)
-                                  : MyThemes.darkTheme.splashColor
-                                      .withBlue(200),
-                              appointmentTextStyle: TextStyle(
-                                  fontSize: 20,
+                            );
+                          },
+                          viewNavigationMode: ViewNavigationMode.snap,
+                          scheduleViewSettings: ScheduleViewSettings(
+                              hideEmptyScheduleWeek:
+                                  settingsProvider.hideEmptyScheduleWeek),
+                          onTap: (CalendarTapDetails details) {
+                            calendarTapped(context, details);
+                          },
+                          showDatePickerButton: true,
+                          resourceViewSettings: ResourceViewSettings(
+                              visibleResourceCount: 4,
+                              showAvatar: true,
+                              displayNameTextStyle: TextStyle(
                                   fontStyle: FontStyle.italic,
-                                  color: Color.fromARGB(239, 236, 235, 234)),
-                              dateTextStyle: TextStyle(
-                                fontStyle: FontStyle.italic,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w900,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400)),
+                          initialDisplayDate: DateTime.parse(dateString),
+                          dataSource: calendarDataSource,
+                          monthViewSettings: MonthViewSettings(
+                              navigationDirection:
+                                  MonthNavigationDirection.vertical,
+                              showAgenda: false,
+                              appointmentDisplayMode:
+                                  MonthAppointmentDisplayMode.indicator,
+                              numberOfWeeksInView: 3,
+                              monthCellStyle: MonthCellStyle(
+                                todayBackgroundColor: Colors.red,
+                                textStyle: TextStyle(
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
-                              dayTextStyle: TextStyle(
-                                fontStyle: FontStyle.normal,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            )),
-                      ),
-                    ],
+                              agendaStyle: AgendaStyle(
+                                backgroundColor: settingsProvider.isDarkMode
+                                    ? MyThemes.lightTheme.splashColor
+                                        .withOpacity(0.9)
+                                    : MyThemes.darkTheme.splashColor
+                                        .withBlue(200),
+                                appointmentTextStyle: TextStyle(
+                                    fontSize: 20,
+                                    fontStyle: FontStyle.italic,
+                                    color: Color.fromARGB(239, 236, 235, 234)),
+                                dateTextStyle: TextStyle(
+                                  fontStyle: FontStyle.italic,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                                dayTextStyle: TextStyle(
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              )),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          Visibility(
-            child: Column(
-              children: [
-                SafeArea(
-                  child: FittedBox(
-                    child: Container(
-                      height: hideitem ? Get.height * 1.62 : Get.height * 1,
-                      width: Get.width * 2,
-                      child: SafeArea(
-                        child: ListView.separated(
-                          shrinkWrap: true,
-                          controller: controller,
-                          itemCount: _appointmentDetails.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            double scale = 1.0;
-                            if (topContainer > 0.5) {
-                              scale = index - topContainer;
+            Visibility(
+              visible: true,
+              child: Column(
+                children: [
+                  SafeArea(
+                    child: FittedBox(
+                      child: Container(
+                        height: hideitem ? Get.height * 1.62 : Get.height * 1,
+                        width: Get.width * 2,
+                        child: SafeArea(
+                          child: ListView.separated(
+                            shrinkWrap: true,
+                            controller: controller,
+                            itemCount: _appointmentDetails.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              double scale = 1.0;
+                              if (topContainer > 0.5) {
+                                scale = index - topContainer;
 
-                              if (scale < 0) {
-                                scale = 0;
-                              } else if (scale > 1) {
-                                scale = 1;
+                                if (scale < 0) {
+                                  scale = 0;
+                                } else if (scale > 1) {
+                                  scale = 1;
+                                }
                               }
-                            }
-                            final appointment = _appointmentDetails[index];
+                              final appointment = _appointmentDetails[index];
 
-                            final appointmentObject =
-                                getAppointmentObject(appointment.id as String?);
+                              final appointmentObject = getAppointmentObject(
+                                  appointment.id as String?);
 
-                            if (appointmentObject is Activity) {
-                              card =
-                                  ActivityCard(appointmentObject as Activity);
-                            } else if (appointmentObject is Transport) {
-                              card = TransferCard(
-                                  appointmentObject as Transport,
-                                  travelersData);
-                            } else if (appointmentObject is Tasks) {
-                              card = TaskCard(appointmentObject as Tasks);
-                            }
+                              if (appointmentObject is Activity) {
+                                card =
+                                    ActivityCard(appointmentObject as Activity);
+                              } else if (appointmentObject is Transport) {
+                                card = TransferCard(
+                                    appointmentObject as Transport,
+                                    travelersData);
+                              } else if (appointmentObject is Tasks) {
+                                card = TaskCard(appointmentObject as Tasks);
+                              }
 
-                            return Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: InkWell(
+                              return Padding(
+                                padding: const EdgeInsets.only(top: 5.0),
+                                child: InkWell(
                                   onTap: () {
-                                    calendarTappedInkwell(context,
-                                        appointmentObject); // Call your calendarTapped function with the 'details' parameter
+                                    calendarTappedInkwell(
+                                        context, appointmentObject);
                                   },
-                                  child: card),
-                            );
-                          },
-                          separatorBuilder: (BuildContext context, int index) =>
-                              const SizedBox(
-                            height: 2,
+                                  child: card,
+                                ),
+                              );
+                            },
+                            separatorBuilder:
+                                (BuildContext context, int index) =>
+                                    const SizedBox(
+                              height: 2,
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

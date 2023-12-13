@@ -5,12 +5,10 @@ import 'package:zenify_app/Secreens/Activities-Category/Categories-Icons.dart';
 // import 'package:zenify_app/Secreens/Notification/notificationlist_Guide.dart';
 import 'package:zenify_app/Secreens/Notification/notificationlist_O.dart';
 import 'package:zenify_app/Secreens/Profile/User_Profil.dart';
-import 'package:zenify_app/guide_Screens/Events.dart';
+
 import 'package:zenify_app/guide_Screens/GuidCalander.dart';
 import 'package:zenify_app/guide_Screens/travellers_list_screen.dart';
 import 'package:zenify_app/modele/TouristGuide.dart';
-import 'package:zenify_app/routes/ScrollControllerProvider.dart';
-// import 'package:zenify_app/guide_Screens/GuidCalander.dart';
 
 class BottomNavBarDemo extends StatefulWidget {
   TouristGuide? guid;
@@ -54,24 +52,40 @@ class _BottomNavBarDemoState extends State<BottomNavBarDemo> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(width: 100.0),
             Text(
               _pageTitles[_currentIndex],
               style: const TextStyle(color: Colors.black, fontSize: 22),
             ),
           ],
         ),
-        elevation: 0, // Remove appbar shadow
+        elevation: 0,
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.notifications,
+              size: 26,
+            ), // Use the notification icon
+            onPressed: () {
+              // Navigate to the notification page when the icon is pressed
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NotificationScreen(
+                      groupsid: travellergroupId, guid: widget.guid),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: PageView(
         controller: _pageController,
         onPageChanged: _onPageChanged,
         children: <Widget>[
-           //EventCalendar(guideId: widget.guid!.id),
+          //EventCalendar(guideId: widget.guid!.id),
           ActivityCategoryPage(),
           NotificationScreen(groupsid: travellergroupId, guid: widget.guid),
           TravellersListScreen(guideId: widget.guid!.id),

@@ -11,36 +11,12 @@ class TravelerProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double widthC = MediaQuery.of(context).size.width * 100;
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 254, 253, 254),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 207, 207, 219),
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SvgPicture.asset(
-              'assets/Frame.svg',
-              fit: BoxFit.cover,
-              height: 36.0,
-            ),
-            const SizedBox(width: 40),
-            ShaderMask(
-              shaderCallback: (Rect bounds) {
-                return const LinearGradient(
-                  colors: [
-                    Color(0xFF3A3557),
-                    Color(0xFFCBA36E),
-                    Color(0xFFEB5F52),
-                  ],
-                ).createShader(bounds);
-              },
-              child: const Text(
-                'Traveller Profil',
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Colors
-                      .white, // You can adjust the font size and color here
-                ),
-              ),
-            ),
+            const SizedBox(width: 60.0),
+            Text('Traveler Profil'),
           ],
         ),
       ),
