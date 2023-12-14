@@ -1,14 +1,21 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 import 'package:zenify_app/Secreens/Activities-Category/Categories-Icons.dart';
-// import 'package:zenify_app/Secreens/Notification/notificationlist_Guide.dart';
 import 'package:zenify_app/Secreens/Notification/notificationlist_O.dart';
 import 'package:zenify_app/Secreens/Profile/User_Profil.dart';
-
 import 'package:zenify_app/guide_Screens/GuidCalander.dart';
 import 'package:zenify_app/guide_Screens/travellers_list_screen.dart';
 import 'package:zenify_app/modele/TouristGuide.dart';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:get/get.dart';
+
+
+
+
+
 
 class BottomNavBarDemo extends StatefulWidget {
   TouristGuide? guid;
@@ -20,6 +27,9 @@ class BottomNavBarDemo extends StatefulWidget {
 }
 
 class _BottomNavBarDemoState extends State<BottomNavBarDemo> {
+
+   final Connectivity _connectivity = Connectivity();
+   StreamSubscription? streamSubscription;
   String? travellergroupId = "";
   int _currentIndex = 0;
   final PageController _pageController = PageController();
@@ -35,6 +45,38 @@ class _BottomNavBarDemoState extends State<BottomNavBarDemo> {
   void dispose() {
     _pageController.dispose();
     super.dispose();
+  }
+
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+       streamSubscription =
+        _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
+ 
+  }
+void _updateConnectionStatus(ConnectivityResult connectivityResult) {
+    if (connectivityResult == ConnectivityResult.none) {
+      Get.rawSnackbar(
+          messageText: const Text('PLEASE CONNECT TO THE INTERNET',
+              style: TextStyle(color: Colors.white, fontSize: 14)),
+          isDismissible: false,
+          duration: const Duration(minutes: 2),
+          backgroundColor: Color.fromARGB(255, 94, 83, 83)!,
+          icon: const Icon(
+            Icons.wifi_off,
+            color: Colors.white,
+            size: 35,
+          ),
+          margin: EdgeInsets.zero,
+          snackStyle: SnackStyle.GROUNDED);
+    } else {
+      if (Get.isSnackbarOpen) {
+        
+      }
+     
+       streamSubscription!.cancel();
+    }
   }
 
   void _onPageChanged(int index) {
@@ -67,7 +109,7 @@ class _BottomNavBarDemoState extends State<BottomNavBarDemo> {
             icon: Icon(
               Icons.notifications,
               size: 26,
-            ), // Use the notification icon
+            ), 
             onPressed: () {
               // Navigate to the notification page when the icon is pressed
               Navigator.push(
@@ -122,40 +164,6 @@ class _BottomNavBarDemoState extends State<BottomNavBarDemo> {
         ],
       ),
     );
-    // }
-    //   return Scaffold(
-    //     appBar: AppBar(
-    //       backgroundColor: Colors.white,
-    //       // centerTitle: true,
-    //       title: Row(
-    //         mainAxisAlignment: MainAxisAlignment.start,
-    //         // crossAxisAlignment: CrossAxisAlignment.center,
-    //         children: [
-    //           // const Icon(
-    //           //   Icons.arrow_back,
-    //           //   color: Color(0xFFEB5F52),
-    //           // ),
-    //           const SizedBox(width: 100.0),
-    //           Text(
-    //             _pageTitles[_currentIndex],
-    //             style: const TextStyle(color: Colors.black, fontSize: 22),
-    //           ),
-    //         ],
-    //       ),
-    //       elevation: 0, // Remove appbar shadow
-    //     ),
-    //     body: PageView(
-    //       controller: _pageController,
-    //       onPageChanged: _onPageChanged,
-    //       children: <Widget>[
-    //         // TaskListPage(guideId: widget.guid!.id),
-    //         EventCalendar(guideId: widget.guid!.id),
-    //         NotificationScreen(groupsid: travellergroupId, guid: widget.guid),
-    //         TravellersListScreen(guideId: widget.guid!.id),
-    //         const MainProfile(),
-    //         GuidCalanderSecreen(),
-    //       ],
-    //     ),
-    //  );
+    
   }
 }
