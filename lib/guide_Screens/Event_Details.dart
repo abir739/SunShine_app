@@ -8,8 +8,6 @@ import 'package:multi_select_flutter/util/multi_select_item.dart';
 import 'package:multi_select_flutter/util/multi_select_list_type.dart';
 import 'package:zenify_app/login/Login.dart';
 import 'package:zenify_app/services/constent.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:zenify_app/modele/TouristGuide.dart';
 import 'package:zenify_app/modele/touristGroup.dart';
 import 'package:zenify_app/modele/transportmodel/transportModel.dart';
@@ -253,18 +251,18 @@ class _EventViewState extends State<EventView> {
                       decoration: const InputDecoration(
                           labelText: 'Notification Title'),
                     ),
-                    const SizedBox(height: 14),
-                    TextFormField(
-                      controller: _typeController,
-                      decoration:
-                          const InputDecoration(labelText: 'Notification Type'),
-                    ),
-                    const SizedBox(height: 14),
-                    TextFormField(
-                      controller: _typeController,
-                      decoration: const InputDecoration(
-                          labelText: 'Notification Screen'),
-                    ),
+                    // const SizedBox(height: 14),
+                    // TextFormField(
+                    //   controller: _typeController,
+                    //   decoration:
+                    //       const InputDecoration(labelText: 'Notification Type'),
+                    // ),
+                    // const SizedBox(height: 14),
+                    // TextFormField(
+                    //   controller: _typeController,
+                    //   decoration: const InputDecoration(
+                    //       labelText: 'Notification Screen'),
+                    // ),
                   ],
                 ),
               ),

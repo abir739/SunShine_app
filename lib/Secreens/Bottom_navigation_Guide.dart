@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:zenify_app/Secreens/Activities-Category/Categories-Icons.dart';
@@ -8,14 +7,8 @@ import 'package:zenify_app/Secreens/Profile/User_Profil.dart';
 import 'package:zenify_app/guide_Screens/GuidCalander.dart';
 import 'package:zenify_app/guide_Screens/travellers_list_screen.dart';
 import 'package:zenify_app/modele/TouristGuide.dart';
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
-
-
-
-
-
 
 class BottomNavBarDemo extends StatefulWidget {
   TouristGuide? guid;

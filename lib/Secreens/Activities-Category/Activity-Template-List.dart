@@ -50,7 +50,10 @@ class _ActivityTemplatePageState extends State<ActivityTemplatePage> {
       final Map<String, dynamic> data = jsonDecode(response.body);
       final List<dynamic> results = data["results"];
       activityTemplates = results
-          .map((groupData) => ActivityTemplate.fromJson(groupData))
+          .map((groupData) => ActivityTemplate.fromJson({
+                ...groupData,
+                'isFavorite': false, // Initialize isFavorite to false
+              }))
           .toList();
 
       // Update the data source
@@ -222,23 +225,28 @@ class _ActivityTemplatePageState extends State<ActivityTemplatePage> {
                                   ),
                                 ],
                               ),
+                              // With this heart icon
                               Positioned(
-                                width: 71,
-                                height: 25,
-                                top: 105,
-                                left: 265,
-                                child: Container(
-                                  padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFFF725E),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'Book',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 18),
-                                    ),
+                                width: 30,
+                                height: 30,
+                                top: 90,
+                                left: 300,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      // Toggle the favorite status
+                                      template.isFavorite =
+                                          !template.isFavorite;
+                                    });
+                                  },
+                                  child: Icon(
+                                    template.isFavorite
+                                        ? Icons.favorite
+                                        : Icons.favorite_border,
+                                    color: template.isFavorite
+                                        ? Colors.red
+                                        : Colors.grey,
+                                    size: 30,
                                   ),
                                 ),
                               ),

@@ -16,17 +16,16 @@ class LoadingScreen extends StatelessWidget {
             AnimatedTextKit(
               animatedTexts: [
                 TypewriterAnimatedText(
-                  '${loadingText ?? 'laoding..'}',
-                  // cursor: '${cursor?? '*'}',
+                  '${loadingText ?? 'loading..'}',
                   textStyle: const TextStyle(
                     fontSize: 32.0,
                     fontWeight: FontWeight.normal,
                   ),
-                  speed: const Duration(milliseconds: 100),
+                  speed: const Duration(milliseconds: 50), // Adjust this value
                 ),
               ],
               totalRepeatCount: 2,
-              pause: const Duration(milliseconds: 300),
+              pause: const Duration(milliseconds: 1000),
               displayFullTextOnTap: true,
               stopPauseOnTap: true,
             ),
@@ -35,9 +34,8 @@ class LoadingScreen extends StatelessWidget {
               width: 80,
               height: 80,
               child: CircularProgressIndicator(
-                strokeWidth: 10,
-                backgroundColor: Colors.white
-                ,
+                strokeWidth: 5,
+                backgroundColor: Colors.white,
                 valueColor: new AlwaysStoppedAnimation<Color>(
                     Color.fromARGB(207, 123, 193, 243)),
               ),

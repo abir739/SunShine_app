@@ -724,7 +724,7 @@ class _GuidCalanderSecreenState extends State<GuidCalanderSecreen> {
 
     if (taskslist!.isEmpty == true &&
         activityList!.isEmpty == true &&
-        transferList!.isEmpty == true) {
+        transferList.isEmpty == true) {
       return LoadingScreen(
         loadingText: "Loading...",
       );

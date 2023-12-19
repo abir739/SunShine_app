@@ -37,6 +37,7 @@ class ActivityTemplate {
   ActivitiesCategoryModel? activitiesCategoryModelmplate;
   String? logo;
   Country? country;
+  bool isFavorite; // New property
   ActivityTemplate(
       {this.id,
       this.name,
@@ -66,8 +67,10 @@ class ActivityTemplate {
       this.deletedAt,
       this.primaryColor,
       this.secondaryColor,
-      this.logo});
+      this.logo,
+      this.isFavorite = false});
   factory ActivityTemplate.fromJson(Map<String, dynamic> json) =>
       _$ActivityTemplateFromJson(json);
   Map<String, dynamic> toJson() => _$ActivityTemplateToJson(this);
+  
 }

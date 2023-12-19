@@ -28,6 +28,7 @@ ActivityTemplate _$ActivityTemplateFromJson(Map<String, dynamic> json) =>
       childPrice: (json['childPrice'] as num?)?.toDouble(),
       currency: json['currency'] as String?,
       hotelPickupOffered: json['hotelPickupOffered'] as bool?,
+
       countryId: json['countryId'] as String?,
 
       stateId: json['stateId'] as String?,

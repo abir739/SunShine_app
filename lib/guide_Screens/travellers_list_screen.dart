@@ -79,7 +79,7 @@ class _TravellersListScreenState extends State<TravellersListScreen> {
                   ), 
                   SizedBox(width: 10), 
                   Text(
-                    "Your Group",
+                    "Your Groups",
                     style: TextStyle(
                       fontSize: 24, 
                       fontWeight: FontWeight.bold,

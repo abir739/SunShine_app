@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'dart:convert';
 import 'dart:math';
 import 'package:http/http.dart' as http;
@@ -112,6 +113,52 @@ class _ActivityCategoryPageState extends State<ActivityCategoryPage> {
                         ),
                       ),
                     ),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    // Icon for favorite
+                    IconButton(
+                      icon: Icon(
+                        Icons.favorite_border,
+                        size: 33,
+                        color: Color(0xFFFF725E),
+                      ),
+                      onPressed: () {
+                        // Add your favorite icon onPressed logic here
+                      },
+                    ),
+                    // Icon for bookmark
+                    IconButton(
+                      icon: Icon(
+                        Icons.bookmark_border,
+                        size: 33,
+                        color: Color(0xFFFF725E),
+                      ),
+                      onPressed: () {
+                        // Add your bookmark icon onPressed logic here
+                      },
+                    ),
+                    // Icon for events
+                    IconButton(
+                      icon: SvgPicture.asset(
+                        'assets/party.svg', // Replace with the path to your SVG file
+                        height: 40,
+                        width: 45,
+                      ),
+                      onPressed: () {
+                        // Add your events icon onPressed logic here
+                      },
+                    ),
+                  ],
+                ),
+                Text(
+                  'Categories',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 1, 1, 1),
                   ),
                 ),
                 Expanded(

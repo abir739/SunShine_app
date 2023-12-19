@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zenify_app/guide_Screens/GroupsList.dart';
 import 'package:zenify_app/modele/activitsmodel/activityTempModel.dart';
 import 'package:zenify_app/services/constent.dart';
 
@@ -80,6 +81,8 @@ class ActivityDetailPage extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   buildImageList(activityTemplate.images),
+
+                  SizedBox(height: 55),
                   // Bookmark Icon
                   Row(
                     children: [
@@ -107,8 +110,13 @@ class ActivityDetailPage extends StatelessWidget {
                         ),
                         child: ElevatedButton(
                           onPressed: () {
-                            // Implement book now functionality here
-                            // You can navigate to a new screen, show a dialog, or perform any other action
+                            // Navigate to TravellersListScreen
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => GroupsList(),
+                              ),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor:

@@ -90,51 +90,51 @@ class ActivityView extends StatelessWidget {
 
                   SizedBox(height: 70),
                   // Bookmark Icon
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.bookmark_border,
-                            size: 35,
-                            color: Color(0xFFFF725E),
-                          ),
-                          onPressed: () {
-                            // Implement bookmark functionality here
-                          },
-                        ),
-                      ),
-                      SizedBox(width: 20),
-                      // "Book Now" Button
-                      Container(
-                        width: 212,
-                        height: 43,
-                        margin: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            // Implement book now functionality here
-                            // You can navigate to a new screen, show a dialog, or perform any other action
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                Color(0xFFFF725E), // You can change the color
-                          ),
-                          child: Text(
-                            'Book Now',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   children: [
+                  //     Padding(
+                  //       padding: const EdgeInsets.all(10.0),
+                  //       child: IconButton(
+                  //         icon: Icon(
+                  //           Icons.bookmark_border,
+                  //           size: 35,
+                  //           color: Color(0xFFFF725E),
+                  //         ),
+                  //         onPressed: () {
+                  //           // Implement bookmark functionality here
+                  //         },
+                  //       ),
+                  //     ),
+                  //     SizedBox(width: 20),
+                  //     // "Book Now" Button
+                  //     Container(
+                  //       width: 212,
+                  //       height: 43,
+                  //       margin: EdgeInsets.all(5),
+                  //       decoration: BoxDecoration(
+                  //         borderRadius: BorderRadius.circular(14),
+                  //       ),
+                  //       child: ElevatedButton(
+                  //         onPressed: () {
+                  //           // Implement book now functionality here
+                  //           // You can navigate to a new screen, show a dialog, or perform any other action
+                  //         },
+                  //         style: ElevatedButton.styleFrom(
+                  //           backgroundColor:
+                  //               Color(0xFFFF725E), // You can change the color
+                  //         ),
+                  //         child: Text(
+                  //           'Book Now',
+                  //           style: TextStyle(
+                  //             fontSize: 18,
+                  //             fontWeight: FontWeight.bold,
+                  //             color: Colors.white,
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),

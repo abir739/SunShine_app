@@ -37,7 +37,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => TravelerProvider()),
         ChangeNotifierProvider(create: (_) => ScrollControllerProvider()),
         ChangeNotifierProvider(create: (_) => guidProvider()),
-            ChangeNotifierProvider(create: (_) => SettingsProvider()),
+        ChangeNotifierProvider(create: (_) => SettingsProvider()),
         ChangeNotifierProvider(create: (_) => AppSettingsLoader()),
         // ChangeNotifierProvider(create: (_) => SettingsProvider()),
       ],
@@ -69,7 +69,7 @@ class MyApp extends StatelessWidget {
             ),
         'SplashScreen': (context) => SplashScreen(), // Add this route
         'planning': (context) => const PlaningSecreen(),
-        'CalanderGuide': (context) =>  GuidCalanderSecreen(),
+        'CalanderGuide': (context) => GuidCalanderSecreen(),
         'notification': (context) {
           final args =
               Get.arguments; // Get the arguments passed when navigating
@@ -153,11 +153,11 @@ class SplashScreen extends StatelessWidget {
     String? role = await _getRole();
     print("$role Role");
     if ((tokenIsValid && (role == "Administrator" || role == "TouristGuide"))) {
-      return 'login';
-    } else if  (role == "Traveller" && tokenIsValid) {
+      return 'register';
+    } else if (role == "Traveller" && tokenIsValid) {
       return 'Traveller';
     } else {
-      return 'login';
+      return 'register';
     }
   }
 
