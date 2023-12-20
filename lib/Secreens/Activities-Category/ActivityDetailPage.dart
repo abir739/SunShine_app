@@ -1,12 +1,60 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:zenify_app/guide_Screens/GroupsList.dart';
+import 'package:zenify_app/login/Login.dart';
+import 'package:zenify_app/modele/Media-files.dart';
 import 'package:zenify_app/modele/activitsmodel/activityTempModel.dart';
 import 'package:zenify_app/services/constent.dart';
+import 'package:http/http.dart' as http;
 
-class ActivityDetailPage extends StatelessWidget {
+import 'package:photo_view/photo_view.dart';
+import 'package:photo_view/photo_view_gallery.dart';
+
+class ActivityDetailPage extends StatefulWidget {
   final ActivityTemplate activityTemplate;
 
   ActivityDetailPage({required this.activityTemplate});
+
+  @override
+  _ActivityDetailPageState createState() => _ActivityDetailPageState();
+}
+
+class _ActivityDetailPageState extends State<ActivityDetailPage> {
+  List<Media> media = []; // Assuming Media is the type of your media files
+
+  @override
+  void initState() {
+    super.initState();
+    // Fetch media files when the widget is initialized
+    fetchMediafiles();
+  }
+
+  Future<void> fetchMediafiles() async {
+    String? token = await storage.read(key: "access_token");
+    String formatter(String url) {
+      return baseUrls + url;
+    }
+
+    String url = formatter("/api/media-files");
+
+    final response = await http.get(
+      Uri.parse(url),
+      headers: {
+        "Authorization": "Bearer $token",
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = jsonDecode(response.body);
+      final List<dynamic> results = data["results"];
+      setState(() {
+        media = results.map((groupData) => Media.fromJson(groupData)).toList();
+      });
+    } else {
+      print('Failed to load media files');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +75,7 @@ class ActivityDetailPage extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(
-                    "${baseUrls}${activityTemplate.picture}",
+                    "${baseUrls}${widget.activityTemplate.picture}",
                   ),
                 ),
               ),
@@ -44,7 +92,7 @@ class ActivityDetailPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    activityTemplate.name ?? '',
+                    widget.activityTemplate.name ?? '',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -53,7 +101,7 @@ class ActivityDetailPage extends StatelessWidget {
                   ),
                   SizedBox(height: 5),
                   Text(
-                    'Country: ${activityTemplate.country?.name ?? ''}',
+                    'Country: ${widget.activityTemplate.country?.name ?? ''}',
                     style: TextStyle(fontSize: 18),
                   ),
                   SizedBox(height: 21),
@@ -67,7 +115,7 @@ class ActivityDetailPage extends StatelessWidget {
                   ),
                   SizedBox(height: 12),
                   Text(
-                    activityTemplate.shortDescription ?? '',
+                    widget.activityTemplate.shortDescription ?? '',
                     style: TextStyle(fontSize: 18),
                   ),
                   SizedBox(height: 21),
@@ -80,7 +128,7 @@ class ActivityDetailPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 10),
-                  buildImageList(activityTemplate.images),
+                  buildImageList(widget.activityTemplate.id ?? ""),
 
                   SizedBox(height: 55),
                   // Bookmark Icon
@@ -143,8 +191,13 @@ class ActivityDetailPage extends StatelessWidget {
     );
   }
 
-  Widget buildImageList(List<String>? images) {
-    if (images == null || images.isEmpty) {
+  Widget buildImageList(String objectPrimaryKey) {
+    List<String> images = media
+        .where((m) => m.objectPrimaryKey == objectPrimaryKey)
+        .map((m) => m.file ?? "")
+        .toList();
+
+    if (images.isEmpty) {
       return Text('No images available.');
     }
 
@@ -154,23 +207,51 @@ class ActivityDetailPage extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: images.length,
         itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              elevation: 3,
-              child: Container(
-                width: 120,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage("${baseUrls}${images[index]}"),
+          return GestureDetector(
+            onTap: () {
+              openImageGallery(index);
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                elevation: 3,
+                child: Container(
+                  width: 120,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage("${baseUrls}${images[index]}"),
+                    ),
                   ),
                 ),
               ),
             ),
           );
         },
+      ),
+    );
+  }
+
+  void openImageGallery(int initialIndex) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PhotoViewGallery(
+          pageController: PageController(initialPage: initialIndex),
+          scrollPhysics: BouncingScrollPhysics(),
+          backgroundDecoration: BoxDecoration(
+            color: Colors.black,
+          ),
+          pageOptions: media
+              .where((m) => m.objectPrimaryKey == widget.activityTemplate.id)
+              .map((m) => PhotoViewGalleryPageOptions(
+                    imageProvider: NetworkImage("${baseUrls}${m.file}"),
+                    minScale: PhotoViewComputedScale.contained,
+                    maxScale: PhotoViewComputedScale.covered * 2,
+                  ))
+              .toList(),
+        ),
       ),
     );
   }
