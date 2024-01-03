@@ -43,7 +43,6 @@ class _ImageViewScreenState extends State<ImageViewScreen> {
           backgroundDecoration: BoxDecoration(
             color: backgroundColor,
           ),  scaleStateCycle: (currentScaleState) {
-          // Implement your custom logic for cycling through scale states
           if (currentScaleState == PhotoViewScaleState.originalSize) {
             return PhotoViewScaleState.covering;
           } else if (currentScaleState == PhotoViewScaleState.covering) {

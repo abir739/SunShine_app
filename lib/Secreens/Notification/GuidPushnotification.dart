@@ -1,9 +1,7 @@
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
@@ -14,7 +12,6 @@ import 'package:zenify_app/routes/SettingsProvider.dart';
 import 'package:zenify_app/services/GuideProvider.dart';
 import 'package:zenify_app/services/constent.dart';
 import 'package:zenify_app/theme.dart';
-
 import '../../modele/TouristGuide.dart';
 import '../../modele/activitsmodel/httpActivites.dart';
 import '../../modele/activitsmodel/httpToristGroup.dart';
@@ -65,7 +62,6 @@ class _PushNotificationGuideScreenState extends State<PushNotificationGuideScree
     }
   }
 
-  // ignore: non_constant_identifier_names
   List<String> Tags = [];
 
   Set<TouristGroup> selectedGroup = {};
@@ -91,7 +87,6 @@ class _PushNotificationGuideScreenState extends State<PushNotificationGuideScree
     });
     _initializeTravelerData();
     print("$guidid{widget.guid}");
-    // _loadData();
   }
 
   Future<void> _initializeTravelerData() async {
@@ -105,25 +100,12 @@ class _PushNotificationGuideScreenState extends State<PushNotificationGuideScree
         print("$guidid{widget.guid}");
       });
     } catch (error) {
-      // Handle the error as needed
+    
       print("Error initializing traveler data: $error");
     }
 
-    // Other initialization code if needed
     _loadDatagroup();
   }
-  // void _loadData() async {
-  //   setState(() {
-  //     touristGuides = []; // initialize the list to an empty list
-  //   });
-  //   final data = await httpHandler.fetchData("/api/tourist-guides");
-
-  //   setState(() {
-  //     touristGuides = data.cast<TouristGuide>();
-  //     selectedTouristGuide = data.first;
-  //   });
-  //   _loadDatagroup(); // Call _loadDatagroup after loading data
-  // }
 
   final httpHandlertorist = HTTPHandlerhttpGroup();
   String backendUrl = "";
@@ -131,8 +113,8 @@ class _PushNotificationGuideScreenState extends State<PushNotificationGuideScree
   void _loadDatagroup() async {
     setState(() {
       touristGroup = [];
-      group = []; // initialize the list to an empty list
-      multiSelectItems = []; // initialize the list to an empty list
+      group = []; 
+      multiSelectItems = []; 
     });
     final data = await httpHandlertorist
         .fetchData("/api/tourist-groups?filters[touristGuideId]=$guidid");
@@ -159,7 +141,7 @@ class _PushNotificationGuideScreenState extends State<PushNotificationGuideScree
       }
     }
 
-    return selectedTagsMap; // Always return the map
+    return selectedTagsMap; 
   }
 
   Future<void> sendNotification() async {
@@ -194,7 +176,6 @@ class _PushNotificationGuideScreenState extends State<PushNotificationGuideScree
         // Notification sent successfully
         print('Selected Tags Map: $selectedTagsMap');
         print('Notification sent successfully!');
-        //  Navigator.of(context).pop();
           showDialog(
               context: context,
               builder: (BuildContext context) {
@@ -238,38 +219,6 @@ class _PushNotificationGuideScreenState extends State<PushNotificationGuideScree
     final settingsProvider = Provider.of<SettingsProvider>(context);
     islite = settingsProvider.isDarkMode;bool areItemsSelected = selectedGroup.isNotEmpty;
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: const Color.fromARGB(255, 207, 207, 219),
-      //   title: Row(
-      //     children: [
-      //       SvgPicture.asset(
-      //         'assets/Frame.svg',
-      //         fit: BoxFit.cover,
-      //         height: 36.0,
-      //       ),
-      //       const SizedBox(width: 30),
-      //       ShaderMask(
-      //         shaderCallback: (Rect bounds) {
-      //           return const LinearGradient(
-      //             colors: [
-      //               Color(0xFF3A3557),
-      //               Color(0xFFCBA36E),
-      //               Color(0xFFEB5F52),
-      //             ],
-      //           ).createShader(bounds);
-      //         },
-      //         child: const Text(
-      //           'Push notification',
-      //           style: TextStyle(
-      //             fontSize: 24,
-      //             color: Colors
-      //                 .white, // You can adjust the font size and color here
-      //           ),
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -320,81 +269,15 @@ class _PushNotificationGuideScreenState extends State<PushNotificationGuideScree
                         chipDisplay: MultiSelectChipDisplay<TouristGroup>(),
                       )
                     : SizedBox()),
-            // Container(
-            //     decoration: const BoxDecoration(
-            //       borderRadius: BorderRadius.all(Radius.circular(10)),
-            //       color: Color.fromARGB(47, 181, 89, 3),
-            //     ),
-            //     alignment: Alignment.center,
-            //     padding: const EdgeInsets.all(2.0),
-            //     margin: const EdgeInsets.only(left: 20, right: 20),
-            //     child: touristGuides!.isEmpty
-            //         ? ElevatedButton(
-            //             onPressed: () {
-            //               // Handle button press, navigate to desired screen or perform any action
-            //               // Get.to(AddTouristGuideScreen());
-            //             },
-            //             child: const Text(
-            //                 'you are not effect to any tourist guid'),
-            //           )
-            //         : SizedBox(
-            //             width: 880, // Set the desired width
-            //             height: 50, // Set the desired height
-            //             child: Row(
-            //               children: [
-            //                 DropdownButton<TouristGuide>(
-            //                   borderRadius:
-            //                       const BorderRadius.all(Radius.circular(20)),
-            //                   dropdownColor:
-            //                       const Color.fromARGB(255, 229, 224, 224),
-            //                   iconEnabledColor:
-            //                       const Color.fromARGB(160, 245, 241, 241),
-            //                   iconDisabledColor:
-            //                       const Color.fromARGB(255, 158, 158, 158),
-            //                   value: selectedTouristGuide,
-            //                   items: touristGuides!.map((touristGuide) {
-            //                     return DropdownMenuItem<TouristGuide>(
-            //                       value: touristGuide,
-            //                       child: Row(
-            //                         children: [
-            //                           const Icon(
-            //                             Icons.person,
-            //                             size:
-            //                                 20, // Set the desired size of the icon
-            //                           ),
-            //                           const SizedBox(
-            //                               width:
-            //                                   8), // Add some spacing between the icon and text
-            //                           Text(
-            //                             touristGuide.name ?? 'h',
-            //                             style: const TextStyle(
-            //                                 fontSize: 16,
-            //                                 color:
-            //                                     Color.fromARGB(255, 103, 1, 1)),
-            //                           ),
-            //                         ],
-            //                       ),
-            //                     );
-            //                   }).toList(),
-            //                   onChanged: (TouristGuide? newValue) {
-            //                     selectedTouristGuide = newValue!;
-
-            //                     _loadDatagroup();
-            //                   },
-            //                 ),
-            //               ],
-            //             ),
-            //           )),
             const SizedBox(height: 32),
-            // TextFields for title, message, picture URL, and link URL
             TextField(
   controller: _titleController,
-  style: TextStyle(), // Set text style
+  style: TextStyle(), 
   decoration: InputDecoration(
     filled: true,
-    labelText: "Title", // Use labelText instead of hintText
+    labelText: "Title",
   
-    floatingLabelBehavior: FloatingLabelBehavior.auto, // Move the label to the top
+    floatingLabelBehavior: FloatingLabelBehavior.auto, 
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
     ),
@@ -403,56 +286,17 @@ class _PushNotificationGuideScreenState extends State<PushNotificationGuideScree
 ,
             const SizedBox(height: 32),
             TextField(
-              controller: _messageController, // Add this line
+              controller: _messageController, 
               decoration: InputDecoration(
     filled: true,
-    labelText: "message", // Use labelText instead of hintText
+    labelText: "message", 
   
-    floatingLabelBehavior: FloatingLabelBehavior.auto, // Move the label to the top
+    floatingLabelBehavior: FloatingLabelBehavior.auto, 
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
     ),
   ),
             ),
-  //           const SizedBox(height: 32),
-  //           TextField(
-  //             controller: _bigPictureController,
-  //              decoration: InputDecoration(
-  //   filled: true,
-  //   labelText: "URL", // Use labelText instead of hintText
-  
-  //   floatingLabelBehavior: FloatingLabelBehavior.auto, // Move the label to the top
-  //   border: OutlineInputBorder(
-  //     borderRadius: BorderRadius.circular(10),
-  //   ),
-  // ),
-  //             keyboardType: TextInputType.url,
-  //             textInputAction: TextInputAction.done,
-  //             inputFormatters: [
-  //               FilteringTextInputFormatter.deny(RegExp(
-  //                   r'[^\s]+')), // Allow only spaces and characters from the URL
-  //             ],
-  //           ),
-  //           const SizedBox(height: 32),
-  //           TextField(
-  //             controller: _linkUrlController,
-  //              decoration: InputDecoration(
-  //   filled: true,
-  //   labelText: "image_link", // Use labelText instead of hintText
-  
-  //   floatingLabelBehavior: FloatingLabelBehavior.auto, // Move the label to the top
-  //   border: OutlineInputBorder(
-  //     borderRadius: BorderRadius.circular(10),
-  //   ),
-  // ),
-  //             keyboardType: TextInputType.url,
-  //             textInputAction: TextInputAction.done,
-  //             inputFormatters: [
-  //               FilteringTextInputFormatter.deny(RegExp(
-  //                   r'[^\s]+')), // Allow only spaces and characters from the URL
-  //             ],
-  //           ),
-           
             const SizedBox(height: 60),
         
    Visibility(
@@ -477,17 +321,9 @@ class _PushNotificationGuideScreenState extends State<PushNotificationGuideScree
     ),
   ),
 )
-  
-            // ElevatedButton(
-            //   onPressed: () {
-            //     sendNotification();
-            //   },
-            //   child: Text('Send Notification'),
-            // ),
           ],
         ),
       ),
-      // bottomNavigationBar: AppBottomNavigationBar(),
     );
   }
 }
