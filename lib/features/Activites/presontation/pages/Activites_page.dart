@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zenify_app/Secreens/Notification/LoadingWidget.dart';
-import 'package:zenify_app/features/Activites/presontation/bloc/Activites/activites_bloc.dart';
-import 'package:zenify_app/features/Activites/presontation/widgets/ActivitesList.dart';
-import 'package:zenify_app/features/notification/presontation/bloc/NotificationsBlocs/notifications_bloc.dart';
-import 'package:zenify_app/features/notification/presontation/widgets/ListNotification.dart';
-import 'package:zenify_app/features/notification/presontation/widgets/LodingNotificationWidgets.dart';
-import 'package:zenify_app/features/notification/presontation/widgets/MessageDisplay.dart';
+import 'package:SunShine/Secreens/Notification/LoadingWidget.dart';
+import 'package:SunShine/features/Activites/presontation/bloc/Activites/activites_bloc.dart';
+import 'package:SunShine/features/Activites/presontation/widgets/ActivitesList.dart';
+import 'package:SunShine/features/notification/presontation/bloc/NotificationsBlocs/notifications_bloc.dart';
+import 'package:SunShine/features/notification/presontation/widgets/ListNotification.dart';
+import 'package:SunShine/features/notification/presontation/widgets/LodingNotificationWidgets.dart';
+import 'package:SunShine/features/notification/presontation/widgets/MessageDisplay.dart';
 
 class ActivitesPage extends StatelessWidget {
   const ActivitesPage({super.key});

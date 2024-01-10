@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:http/http.dart' as http;
-import 'package:zenify_app/guide_Screens/TravelerProfileScreen.dart';
-import 'package:zenify_app/login/Login.dart';
-import 'package:zenify_app/services/constent.dart';
+import 'package:SunShine/guide_Screens/TravelerProfileScreen.dart';
+import 'package:SunShine/login/Login.dart';
+import 'package:SunShine/services/constent.dart';
 
-import 'package:zenify_app/modele/traveller/TravellerModel.dart';
+import 'package:SunShine/modele/traveller/TravellerModel.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TravelersListScreen extends StatefulWidget {
@@ -74,7 +74,7 @@ class _TravelersListScreenState extends State<TravelersListScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const SizedBox(width: 60.0),
-            Text('Travelers List'),
+            Text('Liste des voyageurs'),
           ],
         ),
       ),

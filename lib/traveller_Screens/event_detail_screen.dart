@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:zenify_app/modele/transportmodel/transportModel.dart';
-import 'package:zenify_app/services/constent.dart';
-
-
-
+import 'package:SunShine/modele/transportmodel/transportModel.dart';
+import 'package:SunShine/services/constent.dart';
 
 class EventDetailScreen extends StatelessWidget {
   final Transport event;
@@ -98,7 +95,6 @@ class EventDetailScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 8),
-                   
                     Text(
                       '${event.date != null ? formatDateTimeInTimeZone(event.date!).toString() : 'N/A'}', // Update with your field
                     ),

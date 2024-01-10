@@ -7,12 +7,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:zenify_app/NetworkHandler.dart';
-import 'package:zenify_app/guide_Screens/Guide_First_Page.dart';
-import 'package:zenify_app/login/TravellerLoginPage_test.dart';
-import 'package:zenify_app/modele/TouristGuide.dart';
-import 'package:zenify_app/services/constent.dart';
-import 'package:zenify_app/traveller_Screens/Traveller-First-Screen.dart';
+import 'package:SunShine/NetworkHandler.dart';
+import 'package:SunShine/guide_Screens/Guide_First_Page.dart';
+import 'package:SunShine/login/TravellerLoginPage_test.dart';
+import 'package:SunShine/modele/TouristGuide.dart';
+import 'package:SunShine/services/constent.dart';
+import 'package:SunShine/traveller_Screens/Traveller-First-Screen.dart';
 
 class MyLogin extends StatefulWidget {
   const MyLogin({Key? key}) : super(key: key);
@@ -75,9 +75,9 @@ class _MyLoginState extends State<MyLogin> {
 
   void _handleLogin() async {
     if (formKey.currentState!.validate()) {
-         setState(() {
-            circular = true;
-          });
+      setState(() {
+        circular = true;
+      });
       Map<String, String> data = {
         "username": emailController.text,
         "password": passwordController.text,
@@ -89,7 +89,7 @@ class _MyLoginState extends State<MyLogin> {
         print(response.body);
 
         if (response.statusCode == 200 || response.statusCode == 201) {
-           setState(() {
+          setState(() {
             circular = false;
           });
           Map<String, dynamic> output =
@@ -129,20 +129,17 @@ class _MyLoginState extends State<MyLogin> {
             circular = false;
           });
         }
-      } catch (error) { 
-       
-           setState(() {
-            circular = false;
-          });
-           Get.snackbar('Warning', " Check Your connaction...",
+      } catch (error) {
+        setState(() {
+          circular = false;
+        });
+        Get.snackbar('Warning', " Check Your connaction...",
             backgroundGradient: const LinearGradient(
               colors: [Color(0xff979090), Color(0x31858489)],
             ),
             colorText: Colors.white,
             backgroundColor: const Color.fromARGB(255, 185, 4, 4));
         print('Network request failed: $error');
-      
-            
       }
     }
   }
@@ -266,14 +263,14 @@ class _MyLoginState extends State<MyLogin> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // Logo of the app
-                        SvgPicture.asset(
-                          'assets/images/Group_Logo.svg',
+                        Image.asset(
+                          "assets/sunshineLogo.png",
                           // Replace with your logo image path
-                          height: 100.0,
-                          width: 100.0,
+                          height: 150.0,
+                          width: 200.0,
                         ),
-                        const SizedBox(height: 60.0),
+                        const SizedBox(height: 40.0),
+
                         // Email and Password fields
                         TextFormField(
                           style: const TextStyle(color: Colors.black),
@@ -401,29 +398,32 @@ class _MyLoginState extends State<MyLogin> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           // key: formKey,
                           children: [
-                           circular?CircularProgressIndicator(): ElevatedButton(
-                              onPressed: _handleLogin,
-                              style: ElevatedButton.styleFrom(
-                                primary: const Color(
-                                    0xFFEB5F52), // Custom button color
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
-                              ),
-                              child: Container(
-                                width: double.infinity,
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 15.0),
-                                alignment: Alignment.center,
-                                child: const Text(
-                                  'Login',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18.0,
+                            circular
+                                ? CircularProgressIndicator()
+                                : ElevatedButton(
+                                    onPressed: _handleLogin,
+                                    style: ElevatedButton.styleFrom(
+                                      primary: const Color(
+                                          0xFFEB5F52), // Custom button color
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(30.0),
+                                      ),
+                                    ),
+                                    child: Container(
+                                      width: double.infinity,
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 15.0),
+                                      alignment: Alignment.center,
+                                      child: const Text(
+                                        'Login',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18.0,
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                            ),
                             const SizedBox(height: 20.0),
                             // Divider with "OR" text
                             const Row(

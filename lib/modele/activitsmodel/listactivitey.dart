@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:zenify_app/modele/activitsmodel/activitesmodel.dart';
+import 'package:SunShine/modele/activitsmodel/activitesmodel.dart';
 
 part 'listactivitey.g.dart';
 

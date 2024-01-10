@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:palette_generator/palette_generator.dart';
-import 'package:zenify_app/services/widget/profile_widget.dart';
-
+import 'package:SunShine/services/widget/profile_widget.dart';
 
 class ImageWithDynamicBackgroundColor extends StatefulWidget {
   final String imageUrl;
   final bool isCirculair;
 
-  ImageWithDynamicBackgroundColor({required this.imageUrl,required this.isCirculair});
+  ImageWithDynamicBackgroundColor(
+      {required this.imageUrl, required this.isCirculair});
 
   @override
   _ImageWithDynamicBackgroundColorState createState() =>
@@ -37,17 +37,18 @@ class _ImageWithDynamicBackgroundColorState
 
   @override
   Widget build(BuildContext context) {
-    return
-    widget.isCirculair? Container(
-      padding: EdgeInsets.all(4.0), // Adjust the padding values as needed
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: backgroundColor,
-      ),
-      child: ProfileWidget(
-        imagePath: widget.imageUrl,
-        onClicked: () {},
-      ),
-    ):Image.network(widget.imageUrl);
+    return widget.isCirculair
+        ? Container(
+            padding: EdgeInsets.all(4.0), // Adjust the padding values as needed
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: backgroundColor,
+            ),
+            child: ProfileWidget(
+              imagePath: widget.imageUrl,
+              onClicked: () {},
+            ),
+          )
+        : Image.network(widget.imageUrl);
   }
 }

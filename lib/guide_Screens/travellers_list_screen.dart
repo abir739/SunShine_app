@@ -1,17 +1,19 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:zenify_app/guide_Screens/travelers_list_screen.dart';
-import 'package:zenify_app/login/Login.dart';
-import 'package:zenify_app/services/constent.dart';
+import 'package:provider/provider.dart';
+import 'package:SunShine/guide_Screens/travelers_list_screen.dart';
+import 'package:SunShine/login/Login.dart';
+import 'package:SunShine/services/GuideProvider.dart';
+import 'package:SunShine/services/constent.dart';
 import 'dart:convert';
-import 'package:zenify_app/modele/touristGroup.dart';
+import 'package:SunShine/modele/touristGroup.dart';
 import 'package:flutter_svg/svg.dart';
 
 class TravellersListScreen extends StatefulWidget {
-  final String? guideId;
-
-  const TravellersListScreen({super.key, required this.guideId});
+  const TravellersListScreen({
+    super.key,
+  });
 
   @override
   // ignore: library_private_types_in_public_api
@@ -21,16 +23,32 @@ class TravellersListScreen extends StatefulWidget {
 class _TravellersListScreenState extends State<TravellersListScreen> {
   List<TouristGroup> _touristGroups = [];
   final List<Color> backgroundColors = [
-    const Color(0xFF3A355733),
-    const Color(0xFFEB5F52),
-    const Color.fromARGB(255, 255, 197, 192),
     const Color.fromARGB(57, 155, 162, 155),
   ];
-
+  String? guideid;
   @override
   void initState() {
     super.initState();
-    fetchData();
+    _initializeGuideData();
+  }
+
+  Future<void> _initializeGuideData() async {
+    final travelerProvider = Provider.of<guidProvider>(context, listen: false);
+
+    try {
+      final result = await travelerProvider.loadDataGuid();
+      print("result");
+      setState(() {
+        guideid = result;
+      });
+    } catch (error) {
+      // Handle the error as needed
+      print("Error initializing traveler data: $error");
+    }
+
+    try {
+      fetchData();
+    } catch (e) {}
   }
 
   Future<void> fetchData() async {
@@ -39,8 +57,7 @@ class _TravellersListScreenState extends State<TravellersListScreen> {
       return baseUrls + url;
     }
 
-    String url =
-        formatter("/api/tourist-groups/touristGuideId/${widget.guideId}");
+    String url = formatter("/api/tourist-groups/touristGuideId/${guideid}");
 
     final response = await http.get(
       Uri.parse(url),
@@ -76,12 +93,12 @@ class _TravellersListScreenState extends State<TravellersListScreen> {
                     'assets/images/Users_3.svg',
                     fit: BoxFit.cover,
                     height: 33.0,
-                  ), 
-                  SizedBox(width: 10), 
+                  ),
+                  SizedBox(width: 10),
                   Text(
-                    "Your Groups",
+                    "Mes groupes",
                     style: TextStyle(
-                      fontSize: 24, 
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -96,30 +113,29 @@ class _TravellersListScreenState extends State<TravellersListScreen> {
 
                   // Generate a random index to select a background color
                   final randomColor = backgroundColors[Random().nextInt(
-                      backgroundColors.length)]; // Adjust the index based on the number of colors you have
+                      backgroundColors
+                          .length)]; // Adjust the index based on the number of colors you have
 
                   return Container(
-                    width: 335, 
-                    height: 86, 
+                    width: 335,
+                    height: 86,
                     margin: const EdgeInsets.only(top: 16, left: 16, right: 16),
                     decoration: BoxDecoration(
-                      color:
-                          randomColor, 
-                      borderRadius:
-                          BorderRadius.circular(10), 
+                      color: randomColor,
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     child: ListTile(
                       title: Text(
                         group.name ?? "N/A",
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 8, 8, 8), 
+                          color: Color.fromARGB(255, 8, 8, 8),
                         ),
                       ),
                       subtitle: Text(
-                        "Arrival Date: ${group.arrivalDate}",
+                        "Date d'arrivée: ${group.arrivalDate}",
                         style: const TextStyle(
-                          color: Color.fromARGB(255, 8, 8, 8), 
+                          color: Color.fromARGB(255, 8, 8, 8),
                         ),
                       ),
                       onTap: () {

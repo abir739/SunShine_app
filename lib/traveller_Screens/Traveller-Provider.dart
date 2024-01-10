@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zenify_app/modele/traveller/TravellerModel.dart';
+import 'package:SunShine/modele/traveller/TravellerModel.dart';
 
 class TravellerProvider extends ChangeNotifier {
   Traveller? _traveller;

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
-import 'package:zenify_app/login/Login.dart';
-import 'package:zenify_app/services/constent.dart';
+import 'package:SunShine/login/Login.dart';
+import 'package:SunShine/services/constent.dart';
 import 'dart:convert';
 import 'package:flutter_svg/svg.dart';
-import 'package:zenify_app/modele/TouristGuide.dart';
-import 'package:zenify_app/modele/activitsmodel/usersmodel.dart';
-import 'package:zenify_app/modele/touristGroup.dart';
-import 'package:zenify_app/modele/traveller/TravellerModel.dart';
+import 'package:SunShine/modele/TouristGuide.dart';
+import 'package:SunShine/modele/activitsmodel/usersmodel.dart';
+import 'package:SunShine/modele/touristGroup.dart';
+import 'package:SunShine/modele/traveller/TravellerModel.dart';
 
 class TouristGuideProfilePage extends StatefulWidget {
   Traveller? traveller;

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zenify_app/guide_Screens/Book_Travelers.dart';
-import 'package:zenify_app/login/Login.dart';
-import 'package:zenify_app/modele/touristGroup.dart';
+import 'package:SunShine/guide_Screens/Book_Travelers.dart';
+import 'package:SunShine/login/Login.dart';
+import 'package:SunShine/modele/touristGroup.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:zenify_app/services/constent.dart';
+import 'package:SunShine/services/constent.dart';
 
 class GroupsList extends StatefulWidget {
   const GroupsList({Key? key}) : super(key: key);
@@ -118,7 +118,7 @@ class _GroupsListState extends State<GroupsList> {
                       ),
                       SizedBox(width: 10),
                       Text(
-                        "All Groups",
+                        "Tous les groupes",
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -131,7 +131,7 @@ class _GroupsListState extends State<GroupsList> {
                     controller: _searchController,
                     onChanged: _filterGroups,
                     decoration: InputDecoration(
-                      hintText: 'Search groups',
+                      hintText: 'Rechercher des groupes',
                       prefixIcon: Icon(Icons.search),
                     ),
                   ),
@@ -168,7 +168,7 @@ class _GroupsListState extends State<GroupsList> {
                               children: [
                                 SizedBox(height: 8), // Add some space here
                                 Text(
-                                  "Arrival Date: ${group.arrivalDate}",
+                                  "Date d'arrivée: ${group.arrivalDate}",
                                   style: const TextStyle(
                                     color: Color.fromARGB(255, 8, 8, 8),
                                   ),

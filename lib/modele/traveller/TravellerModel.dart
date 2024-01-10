@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:zenify_app/modele/creatorUser.dart';
-import 'package:zenify_app/modele/touristGroup.dart';
+import 'package:SunShine/modele/creatorUser.dart';
+import 'package:SunShine/modele/touristGroup.dart';
 
 import '../activitsmodel/usersmodel.dart';
 

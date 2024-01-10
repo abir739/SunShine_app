@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-import 'package:zenify_app/services/constent.dart';
-import 'package:zenify_app/modele/Event/Event.dart';
+import 'package:SunShine/services/constent.dart';
+import 'package:SunShine/modele/Event/Event.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
-import 'package:zenify_app/Secreens/CustomCalendarDataSource.dart';
+import 'package:SunShine/Secreens/CustomCalendarDataSource.dart';
 
-import 'package:zenify_app/modele/accommodationsModel/accommodationModel.dart';
-import 'package:zenify_app/modele/transportmodel/transportModel.dart';
-import 'package:zenify_app/modele/traveller/TravellerModel.dart';
+import 'package:SunShine/modele/accommodationsModel/accommodationModel.dart';
+import 'package:SunShine/modele/transportmodel/transportModel.dart';
+import 'package:SunShine/modele/traveller/TravellerModel.dart';
 
-import 'package:zenify_app/traveller_Screens/event_detail_screen.dart';
+import 'package:SunShine/traveller_Screens/event_detail_screen.dart';
 
 class TravellerCalendarPage extends StatefulWidget {
   String? group;

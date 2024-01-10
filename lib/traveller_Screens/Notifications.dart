@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-import 'package:zenify_app/Secreens/Notification/NotificationCountNotifierProvider.dart';
+import 'package:SunShine/Secreens/Notification/NotificationCountNotifierProvider.dart';
 
-import 'package:zenify_app/Secreens/Notification/transferdetailsfromnotification.dart';
-import 'package:zenify_app/Secreens/TravelerProvider.dart';
-import 'package:zenify_app/modele/traveller/TravellerModel.dart';
-import 'package:zenify_app/services/ServiceWedget/ImageWithDynamicBackgrounListusers%20copy.dart';
+import 'package:SunShine/Secreens/Notification/transferdetailsfromnotification.dart';
+import 'package:SunShine/Secreens/TravelerProvider.dart';
+import 'package:SunShine/modele/traveller/TravellerModel.dart';
+import 'package:SunShine/services/ServiceWedget/ImageWithDynamicBackgrounListusers%20copy.dart';
 
-
-import 'package:zenify_app/services/constent.dart';
+import 'package:SunShine/services/constent.dart';
 import '../../modele/HttpPushNotification.dart';
 import '../../modele/activitsmodel/httpActivites.dart';
 import '../../modele/activitsmodel/pushnotificationmodel.dart';
@@ -44,8 +43,8 @@ class _NotificationListState extends State<NotificationList> {
   final httpHandler = HTTPHandlerPushNotification();
   final count = HTTPHandlerCount();
   int limit = 12;
-    ScrollController controller = ScrollController();
-      bool closeTopContainer = false;
+  ScrollController controller = ScrollController();
+  bool closeTopContainer = false;
   double topContainer = 0;
   late List<DateTime> _currentViewVisibleDates;
   String? travellergroupId = "";
@@ -56,13 +55,13 @@ class _NotificationListState extends State<NotificationList> {
     super.initState();
     // _initializeTravelerData();
     _initializeTravelerDataDetalis();
-      controller.addListener(() {
+    controller.addListener(() {
       double value = controller.offset / 119;
 
       setState(() {
         topContainer = value;
         closeTopContainer = controller.offset > 200;
-     
+
         // Timer(Duration(microseconds: 1), () {
         //   // This function will be executed after 1 second
 
@@ -75,7 +74,6 @@ class _NotificationListState extends State<NotificationList> {
         // });
       });
     });
-  
   }
 
   // Future<void> _initializeTravelerData() async {
@@ -137,122 +135,125 @@ class _NotificationListState extends State<NotificationList> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-     closeTopContainer?      SizedBox():   SizedBox(
-          height: 20,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              badges.Badge(
-                badgeAnimation: badges.BadgeAnimation.rotation(),
-                position: badges.BadgePosition.topStart(top: 1.5, start: 1),
-                badgeContent: FutureBuilder<int>(
-                  future: count.fetchInlineCount(
-                    "/api/push-notificationsMobile?filters[tagsGroups]=${travellergroupId}",
-                  ),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      // Display a loading indicator while fetching the inline count
-                      return SizedBox();
-                      // IconButton(
-                      //   color: Color.fromARGB(255, 8, 8, 8),
-                      //   iconSize: 20,
-                      //   icon: const FaIcon(FontAwesomeIcons.bell),
-                      //   onPressed: () async {
-                      //     await count
-                      //         .fetchInlineCount(
-                      //             "/api/push-notificationsMobile?filters[tagsGroups]")
-                      //         .then((result) {
-                      //       setState(() {
-                      //         // inlineCount = result;
-                      //       });
-                      //       print('Inline Count: $result'); // Print the result
-                      //     }).catchError((error) {
-                      //       print('Error: $error'); // Handle errors if any
-                      //     });
-                      //     // Get.toNamed('notificationScreen', arguments: {
-                      //     //   'touristGroupId': traveller.touristGroupId
-                      //     // });
-                      //     // });
-                      //   },
-                      //   // color: Color.fromARGB(219, 39, 38, 40),
-                      // );
-                    }
-                    if (snapshot.hasError) {
-                      // Handle the error if the inline count couldn't be fetched
-                      return Text(
-                        '0',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+        closeTopContainer
+            ? SizedBox()
+            : SizedBox(
+                height: 20,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    badges.Badge(
+                      badgeAnimation: badges.BadgeAnimation.rotation(),
+                      position:
+                          badges.BadgePosition.topStart(top: 1.5, start: 1),
+                      badgeContent: FutureBuilder<int>(
+                        future: count.fetchInlineCount(
+                          "/api/push-notificationsMobile?filters[tagsGroups]=${travellergroupId}",
                         ),
-                      );
-                    }
-                    final apiCount = snapshot.data ?? 0;
-
-                    // Use the apiCount value here
-
-                    // Return your widget, e.g., combine it with the Consumer widget
-                    return Consumer<NotificationCountNotifier>(
-                      builder: (context, notifier, child) {
-                        // Display the notification count using Text widget
-                        final combinedCount = apiCount + notifier.count;
-                        // Save the combined count to SharedPreferences
-
-                        // prefs.setInt('notificationCount', combinedCount);
-                        if (combinedCount > (apiCount + notifier.count)) {
-                          final resulta = combinedCount;
-                          setState(() {});
-                          return Text(
-                            '${notifier.count.abs()}',
-                            style: TextStyle(
-                                fontSize: 30,
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            // Display a loading indicator while fetching the inline count
+                            return SizedBox();
+                            // IconButton(
+                            //   color: Color.fromARGB(255, 8, 8, 8),
+                            //   iconSize: 20,
+                            //   icon: const FaIcon(FontAwesomeIcons.bell),
+                            //   onPressed: () async {
+                            //     await count
+                            //         .fetchInlineCount(
+                            //             "/api/push-notificationsMobile?filters[tagsGroups]")
+                            //         .then((result) {
+                            //       setState(() {
+                            //         // inlineCount = result;
+                            //       });
+                            //       print('Inline Count: $result'); // Print the result
+                            //     }).catchError((error) {
+                            //       print('Error: $error'); // Handle errors if any
+                            //     });
+                            //     // Get.toNamed('notificationScreen', arguments: {
+                            //     //   'touristGroupId': traveller.touristGroupId
+                            //     // });
+                            //     // });
+                            //   },
+                            //   // color: Color.fromARGB(219, 39, 38, 40),
+                            // );
+                          }
+                          if (snapshot.hasError) {
+                            // Handle the error if the inline count couldn't be fetched
+                            return Text(
+                              '0',
+                              style: TextStyle(
+                                fontSize: 18,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          );
-                        } else {
-                          final reset = combinedCount - apiCount;
+                              ),
+                            );
+                          }
+                          final apiCount = snapshot.data ?? 0;
 
-                          return Text(
-                            '${reset.abs()}',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
+                          // Use the apiCount value here
+
+                          // Return your widget, e.g., combine it with the Consumer widget
+                          return Consumer<NotificationCountNotifier>(
+                            builder: (context, notifier, child) {
+                              // Display the notification count using Text widget
+                              final combinedCount = apiCount + notifier.count;
+                              // Save the combined count to SharedPreferences
+
+                              // prefs.setInt('notificationCount', combinedCount);
+                              if (combinedCount > (apiCount + notifier.count)) {
+                                final resulta = combinedCount;
+                                setState(() {});
+                                return Text(
+                                  '${notifier.count.abs()}',
+                                  style: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                );
+                              } else {
+                                final reset = combinedCount - apiCount;
+
+                                return Text(
+                                  '${reset.abs()}',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                );
+                              }
+                            },
                           );
-                        }
-                      },
-                    );
-                  },
-                ),
-                child: IconButton(
-                  color: Color.fromARGB(178, 105, 103, 103),
-                  iconSize: 20,
-                  icon: const FaIcon(FontAwesomeIcons.bell),
-                  onPressed: () async {
-                    await count
-                        .fetchInlineCount(
-                            "/api/push-notificationsMobile?filters[tagsGroups]=${travellergroupId}")
-                        .then((result) {
-                      setState(() {
-                        // inlineCount = result;
-                      });
-                      print('Inline Count: $result'); // Print the result
-                    }).catchError((error) {
-                      print('Error: $error'); // Handle errors if any
-                    });
-                    // Get.toNamed('notificationScreen', arguments: {
-                    //   'touristGroupId': traveller.touristGroupId
-                    // });
-                    // });
-                  },
-                  // color: Color.fromARGB(219, 39, 38, 40),
+                        },
+                      ),
+                      child: IconButton(
+                        color: Color.fromARGB(178, 105, 103, 103),
+                        iconSize: 20,
+                        icon: const FaIcon(FontAwesomeIcons.bell),
+                        onPressed: () async {
+                          await count
+                              .fetchInlineCount(
+                                  "/api/push-notificationsMobile?filters[tagsGroups]=${travellergroupId}")
+                              .then((result) {
+                            setState(() {
+                              // inlineCount = result;
+                            });
+                            print('Inline Count: $result'); // Print the result
+                          }).catchError((error) {
+                            print('Error: $error'); // Handle errors if any
+                          });
+                          // Get.toNamed('notificationScreen', arguments: {
+                          //   'touristGroupId': traveller.touristGroupId
+                          // });
+                          // });
+                        },
+                        // color: Color.fromARGB(219, 39, 38, 40),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
-        )
-   , 
         Expanded(
           child: RefreshIndicator(
             color: Color.fromARGB(255, 238, 227, 227),
@@ -277,7 +278,7 @@ class _NotificationListState extends State<NotificationList> {
                   final dateFormat = DateFormat('MMMM d, yyyy');
                   final timeFormat = DateFormat('hh:mm a');
                   // Display the list of notifications
-                  final notificationsList = ListView.separated(  
+                  final notificationsList = ListView.separated(
                     itemCount: snapshot.data!.length +
                         1, // Add 1 for "See Fewer Notifications"
                     itemBuilder: (context, index) {
@@ -383,12 +384,14 @@ class _NotificationListState extends State<NotificationList> {
                                               ? ImageWithDynamicBackgroundColorusersList(
                                                   imageUrl:
                                                       "https://images.unsplash.com/photo-1575936123452-b67c3203c357?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000",
-                                                  isCirculair: true,color: true,
+                                                  isCirculair: true,
+                                                  color: true,
                                                 )
                                               : ImageWithDynamicBackgroundColorusersList(
                                                   imageUrl:
                                                       "${baseUrls}${notification.title}",
-                                                  isCirculair: true,color: true,
+                                                  isCirculair: true,
+                                                  color: true,
                                                 ),
                                           Row(
                                             children: [
@@ -531,7 +534,7 @@ class _NotificationListState extends State<NotificationList> {
                   content: Container(
                     width: 400, // Adjust the width as needed
                     height: 300, // Adjust the height as needed
-                    child:TravellerNotifierGuide(),
+                    child: TravellerNotifierGuide(),
                   ),
                   actions: <Widget>[
                     TextButton(

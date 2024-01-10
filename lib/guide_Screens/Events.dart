@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:http/http.dart' as http;
-import 'package:zenify_app/guide_Screens/Event_Details.dart';
-import 'package:zenify_app/login/Login.dart';
-import 'package:zenify_app/services/constent.dart';
+import 'package:SunShine/guide_Screens/Event_Details.dart';
+import 'package:SunShine/login/Login.dart';
+import 'package:SunShine/services/constent.dart';
 import 'dart:convert';
-import 'package:zenify_app/modele/activitsmodel/activitesmodel.dart';
-import 'package:zenify_app/modele/tasks/taskModel.dart';
-import 'package:zenify_app/modele/transportmodel/transportModel.dart';
+import 'package:SunShine/modele/activitsmodel/activitesmodel.dart';
+import 'package:SunShine/modele/tasks/taskModel.dart';
+import 'package:SunShine/modele/transportmodel/transportModel.dart';
 
 enum FilterType {
   All, // Show all appointments
@@ -73,7 +73,6 @@ class _EventCalendarState extends State<EventCalendar> {
       setState(() {});
     } else {
       print("Error fetching tourist groups: ${response.statusCode}");
-     
     }
   }
 
@@ -124,11 +123,10 @@ class _EventCalendarState extends State<EventCalendar> {
       final List<dynamic> results = data["results"];
       transfers =
           results.map((groupData) => Transport.fromJson(groupData)).toList();
-     
+
       setState(() {});
     } else {
       print("Error fetching tourist groups: ${response.statusCode}");
-    
     }
   }
 
@@ -256,7 +254,7 @@ class _EventCalendarState extends State<EventCalendar> {
                       "todoDate": newTaskTodoDate,
                     }),
                   );
-                  
+
                   if (response.statusCode == 201) {
                     // Task added successfully, update the calendar
                     fetchTasks();
@@ -272,8 +270,7 @@ class _EventCalendarState extends State<EventCalendar> {
       },
     );
 
-    if (result == true) {
-    }
+    if (result == true) {}
   }
 
   Future<void> _deleteTask(Tasks task) async {

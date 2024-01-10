@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:intro_views_flutter/intro_views_flutter.dart';
-import 'package:zenify_app/login/Login.dart';
+import 'package:SunShine/login/Login.dart';
 
 void main() => runApp(MyApp());
 

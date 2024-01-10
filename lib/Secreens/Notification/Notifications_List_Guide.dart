@@ -2,14 +2,14 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:zenify_app/Secreens/Notification/GuidPushnotification.dart';
-import 'package:zenify_app/Secreens/Notification/NotificationDetails.dart';
-import 'package:zenify_app/Secreens/Notification/PushNotificationScreen.dart';
-import 'package:zenify_app/Secreens/Notification/transferdetailsfromnotification.dart';
-import 'package:zenify_app/modele/TouristGuide.dart';
-import 'package:zenify_app/services/ServiceWedget/ImageWithDynamicBackgrounListusers%20copy.dart';
+import 'package:SunShine/Secreens/Notification/GuidPushnotification.dart';
+import 'package:SunShine/Secreens/Notification/NotificationDetails.dart';
+import 'package:SunShine/Secreens/Notification/PushNotificationScreen.dart';
+import 'package:SunShine/Secreens/Notification/transferdetailsfromnotification.dart';
+import 'package:SunShine/modele/TouristGuide.dart';
+import 'package:SunShine/services/ServiceWedget/ImageWithDynamicBackgrounListusers%20copy.dart';
 
-import 'package:zenify_app/services/constent.dart';
+import 'package:SunShine/services/constent.dart';
 import '../../modele/HttpPushNotification.dart';
 import '../../modele/activitsmodel/httpActivites.dart';
 import '../../modele/activitsmodel/pushnotificationmodel.dart';
@@ -18,6 +18,7 @@ import 'package:get/get.dart';
 import 'package:badges/badges.dart' as badges;
 
 import 'NotificationCountNotifierProvider.dart';
+
 class NotificationScreen extends StatelessWidget {
   String? groupsid;
   TouristGuide? guid; // Add guid here
@@ -67,61 +68,60 @@ class _NotificationListState extends State<NotificationList> {
 
   @override
   Widget build(BuildContext context) {
-    return 
-    Column(
-      children: [  SizedBox(
+    return Column(
+      children: [
+        SizedBox(
           height: 20,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               badges.Badge(
-  badgeAnimation: BadgeAnimation.rotation(),
-  position: BadgePosition.topStart(top: 1.5, start: 1),
-  badgeContent: Consumer<NotificationCountNotifier>(
-    builder: (context, notifier, child) {
-      final combinedCount = notifier.count;
-      return Text(
-        '$combinedCount',
-        style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-        ),
-      );
-    },
-  ),
-  child: IconButton(
-    color: Color.fromARGB(178, 105, 103, 103),
-    iconSize: 20,
-    icon: const FaIcon(FontAwesomeIcons.bell),
-    onPressed: () async {
-    final notificationCountNotifier =
-        Provider.of<NotificationCountNotifier>(context, listen: false);
+                badgeAnimation: BadgeAnimation.rotation(),
+                position: BadgePosition.topStart(top: 1.5, start: 1),
+                badgeContent: Consumer<NotificationCountNotifier>(
+                  builder: (context, notifier, child) {
+                    final combinedCount = notifier.count;
+                    return Text(
+                      '$combinedCount',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+                  },
+                ),
+                child: IconButton(
+                  color: Color.fromARGB(178, 105, 103, 103),
+                  iconSize: 20,
+                  icon: const FaIcon(FontAwesomeIcons.bell),
+                  onPressed: () async {
+                    final notificationCountNotifier =
+                        Provider.of<NotificationCountNotifier>(context,
+                            listen: false);
 
-    // Reset the notification count
-    notificationCountNotifier.resetCount();
+                    // Reset the notification count
+                    notificationCountNotifier.resetCount();
 
-    await count
-        .fetchInlineCount(
-            "/api/push-notificationsMobile?filters[tagsGroups]=")
-        .then((result) {
-          setState(() {
-            // inlineCount = result;
-          });
-          print('Inline Count: $result'); // Print the result
-        }).catchError((error) {
-          print('Error: $error'); // Handle errors if any
-        });
-  
-    },
-    // color: Color.fromARGB(219, 39, 38, 40),
-  ),
-)
-
+                    await count
+                        .fetchInlineCount(
+                            "/api/push-notificationsMobile?filters[tagsGroups]=")
+                        .then((result) {
+                      setState(() {
+                        // inlineCount = result;
+                      });
+                      print('Inline Count: $result'); // Print the result
+                    }).catchError((error) {
+                      print('Error: $error'); // Handle errors if any
+                    });
+                  },
+                  // color: Color.fromARGB(219, 39, 38, 40),
+                ),
+              )
             ],
           ),
         ),
-      
+
         Expanded(
           child: RefreshIndicator(
             color: const Color.fromARGB(255, 238, 227, 227),
@@ -143,8 +143,7 @@ class _NotificationListState extends State<NotificationList> {
                 } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
                   return const Center(
                       child: Text('No notifications available.'));
-                }
-                else {
+                } else {
                   final dateFormat = DateFormat('MMMM d, yyyy');
                   final timeFormat = DateFormat('hh:mm a');
                   // Display the list of notifications
@@ -213,15 +212,15 @@ class _NotificationListState extends State<NotificationList> {
                               ),
                             ),
                           GestureDetector(
-                         onTap: () {
-                              // Handle the click event for "See Fewer Notifications"
-                              // setState(() {
-                              // limit = limit + 6;
-                              print(notification.type);
-                              Get.to(TransportDetailSecreen(
-                                  notification.category));
-                              // });
-                            },
+                              onTap: () {
+                                // Handle the click event for "See Fewer Notifications"
+                                // setState(() {
+                                // limit = limit + 6;
+                                print(notification.type);
+                                Get.to(TransportDetailSecreen(
+                                    notification.category));
+                                // });
+                              },
                               child: Container(
                                 child: Padding(
                                   padding: EdgeInsets.only(top: 6),
@@ -246,17 +245,22 @@ class _NotificationListState extends State<NotificationList> {
                                             MainAxisAlignment.start,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
-                                        children: [SizedBox(width:10,),
+                                        children: [
+                                          SizedBox(
+                                            width: 10,
+                                          ),
                                           notification.creatorUserId == null
                                               ? ImageWithDynamicBackgroundColorusersList(
                                                   imageUrl:
                                                       "https://images.unsplash.com/photo-1575936123452-b67c3203c357?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000",
-                                                  isCirculair: true,color: true,
+                                                  isCirculair: true,
+                                                  color: true,
                                                 )
                                               : ImageWithDynamicBackgroundColorusersList(
                                                   imageUrl:
                                                       "${baseUrls}${notification.title}",
-                                                  isCirculair: true,color: true,
+                                                  isCirculair: true,
+                                                  color: true,
                                                 ),
                                           Row(
                                             children: [
@@ -292,7 +296,6 @@ class _NotificationListState extends State<NotificationList> {
                                       SizedBox(
                                         height: 15,
                                       ),
-                                    
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceAround,
@@ -309,7 +312,6 @@ class _NotificationListState extends State<NotificationList> {
                                                         .toLocal() ??
                                                     DateTime.now()),
                                           ),
-                                         
                                         ],
                                       )
                                     ],
@@ -394,7 +396,8 @@ class _NotificationListState extends State<NotificationList> {
               builder: (BuildContext context) {
                 return AlertDialog(
                   title: Row(
-                    children: [ const FaIcon(FontAwesomeIcons.bell),
+                    children: [
+                      const FaIcon(FontAwesomeIcons.bell),
                       Text('  Send Notification'),
                     ],
                   ),
@@ -409,7 +412,8 @@ class _NotificationListState extends State<NotificationList> {
                         Navigator.of(context).pop();
                       },
                       child: Row(
-                        children: [ const FaIcon(FontAwesomeIcons.arrowsTurnRight),
+                        children: [
+                          const FaIcon(FontAwesomeIcons.arrowsTurnRight),
                           Text(' Close'),
                         ],
                       ),

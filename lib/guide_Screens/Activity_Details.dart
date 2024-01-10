@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zenify_app/modele/activitsmodel/activitesmodel.dart';
-import 'package:zenify_app/modele/activitsmodel/activityTempModel.dart';
-import 'package:zenify_app/services/constent.dart';
+import 'package:SunShine/modele/activitsmodel/activitesmodel.dart';
+import 'package:SunShine/modele/activitsmodel/activityTempModel.dart';
+import 'package:SunShine/services/constent.dart';
 
 class ActivityView extends StatelessWidget {
   final Activity activity;
@@ -16,7 +16,7 @@ class ActivityView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const SizedBox(width: 60.0),
-            Text('Activity Details'),
+            Text('Détails de l\'activité'),
           ],
         ),
       ),
@@ -64,7 +64,7 @@ class ActivityView extends StatelessWidget {
                   ),
                   SizedBox(height: 21),
                   Text(
-                    'Departure Note',
+                    'Note de départ :',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -78,7 +78,7 @@ class ActivityView extends StatelessWidget {
                   ),
                   SizedBox(height: 21),
                   Text(
-                    'More Photos',
+                    'Plus de photos',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -87,54 +87,7 @@ class ActivityView extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   buildImageList(activity.activityTemplate?.images),
-
                   SizedBox(height: 70),
-                  // Bookmark Icon
-                  // Row(
-                  //   children: [
-                  //     Padding(
-                  //       padding: const EdgeInsets.all(10.0),
-                  //       child: IconButton(
-                  //         icon: Icon(
-                  //           Icons.bookmark_border,
-                  //           size: 35,
-                  //           color: Color(0xFFFF725E),
-                  //         ),
-                  //         onPressed: () {
-                  //           // Implement bookmark functionality here
-                  //         },
-                  //       ),
-                  //     ),
-                  //     SizedBox(width: 20),
-                  //     // "Book Now" Button
-                  //     Container(
-                  //       width: 212,
-                  //       height: 43,
-                  //       margin: EdgeInsets.all(5),
-                  //       decoration: BoxDecoration(
-                  //         borderRadius: BorderRadius.circular(14),
-                  //       ),
-                  //       child: ElevatedButton(
-                  //         onPressed: () {
-                  //           // Implement book now functionality here
-                  //           // You can navigate to a new screen, show a dialog, or perform any other action
-                  //         },
-                  //         style: ElevatedButton.styleFrom(
-                  //           backgroundColor:
-                  //               Color(0xFFFF725E), // You can change the color
-                  //         ),
-                  //         child: Text(
-                  //           'Book Now',
-                  //           style: TextStyle(
-                  //             fontSize: 18,
-                  //             fontWeight: FontWeight.bold,
-                  //             color: Colors.white,
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
                 ],
               ),
             ),

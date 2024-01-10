@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:zenify_app/modele/activitsmodel/usersmodel.dart';
+import 'package:SunShine/modele/activitsmodel/usersmodel.dart';
 
 part 'creatorUser.g.dart';
 
@@ -12,7 +12,10 @@ class CreatorUser {
   User? user;
   CreatorUser({
     this.id,
-    this.username,this.user, this.picture,this.firstName,
+    this.username,
+    this.user,
+    this.picture,
+    this.firstName,
   });
 
   factory CreatorUser.fromJson(Map<String, dynamic> json) =>

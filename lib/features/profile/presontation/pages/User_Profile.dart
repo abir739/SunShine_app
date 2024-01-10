@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:zenify_app/Secreens/Notification/LoadingWidget.dart';
-import 'package:zenify_app/Secreens/Profile/User_Profil.dart';
+import 'package:SunShine/Secreens/Notification/LoadingWidget.dart';
+import 'package:SunShine/Secreens/Profile/User_Profil.dart';
 import 'package:intl/intl.dart';
-import 'package:zenify_app/Secreens/Upload_Files/FilePickerUploader.dart';
-import 'package:zenify_app/features/notification/presontation/bloc/NotificationsBlocs/notifications_bloc.dart';
-import 'package:zenify_app/features/notification/presontation/pages/notification_add_update_page.dart';
-import 'package:zenify_app/features/notification/presontation/widgets/ListNotification.dart';
-import 'package:zenify_app/features/notification/presontation/widgets/LodingNotificationWidgets.dart';
-import 'package:zenify_app/features/notification/presontation/widgets/MessageDisplay.dart';
-import 'package:zenify_app/features/profile/presontation/bloc/UserProfileBloc/user_profile_bloc.dart';
-import 'package:zenify_app/features/profile/presontation/widgets/form_widget.dart';
-import 'package:zenify_app/login/Login.dart';
-import 'package:zenify_app/services/constent.dart';
-import 'package:zenify_app/services/widget/profile_widget%20_appbar.dart';
+import 'package:SunShine/Secreens/Upload_Files/FilePickerUploader.dart';
+import 'package:SunShine/features/notification/presontation/bloc/NotificationsBlocs/notifications_bloc.dart';
+import 'package:SunShine/features/notification/presontation/pages/notification_add_update_page.dart';
+import 'package:SunShine/features/notification/presontation/widgets/ListNotification.dart';
+import 'package:SunShine/features/notification/presontation/widgets/LodingNotificationWidgets.dart';
+import 'package:SunShine/features/notification/presontation/widgets/MessageDisplay.dart';
+import 'package:SunShine/features/profile/presontation/bloc/UserProfileBloc/user_profile_bloc.dart';
+import 'package:SunShine/features/profile/presontation/widgets/form_widget.dart';
+import 'package:SunShine/login/Login.dart';
+import 'package:SunShine/services/constent.dart';
+import 'package:SunShine/services/widget/profile_widget%20_appbar.dart';
 
 import '../../../../services/widget/profile_widget.dart';
 import '../../domain/entity/user.dart';
@@ -24,12 +24,10 @@ import '../../domain/entity/user.dart';
 class Profile extends StatelessWidget {
   Profile({super.key});
   FilePickerUploader uploader = FilePickerUploader();
- 
+
   @override
   Widget build(BuildContext context) {
- 
-    return 
-     Scaffold(
+    return Scaffold(
       // appBar: _buildAppBar(),
       body: _bodyProfile(context),
       // floatingActionButton: _buildFloatingBtn(context),
@@ -38,45 +36,41 @@ class Profile extends StatelessWidget {
 
   Widget _bodyProfile(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.all(2),
-        child: 
-        
-        BlocBuilder<UserProfileBloc, UserProfileState>(
-          builder: (context, state) {
-            print("$state");
-            if (state is LoadingUserState) {
-              return LoadingWidget();
-            } else if (state is LoadedUserState) {
-       
-              return
-               Scaffold(
-floatingActionButton: _buildFloatingBtn(context,state.user,),
-      body: 
-       RefreshIndicator(
-                  onRefresh: () => _onRefresh(context),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: <Widget>[
-                        Visibility(
-                            visible: true,
-                            child:
-                                _buildHeader(user: state.user, context: context)),
-                        _buildMainInfo(context, user: state.user),
-                        const SizedBox(height: 10.0),
-                        _buildInfo(context,state.user),
-                        
-                      ],
-                    ),
-                  )));
-              // ListNotificationWidget(notifications: state.user));
-            } else if (state is ErrorUserState) {
-              return MessageDisplay(Message: state.Message);
-            }
-            return LoadingWidgets();
-          },
-        ),
-      );
-    
+      padding: EdgeInsets.all(2),
+      child: BlocBuilder<UserProfileBloc, UserProfileState>(
+        builder: (context, state) {
+          print("$state");
+          if (state is LoadingUserState) {
+            return LoadingWidget();
+          } else if (state is LoadedUserState) {
+            return Scaffold(
+                floatingActionButton: _buildFloatingBtn(
+                  context,
+                  state.user,
+                ),
+                body: RefreshIndicator(
+                    onRefresh: () => _onRefresh(context),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: <Widget>[
+                          Visibility(
+                              visible: true,
+                              child: _buildHeader(
+                                  user: state.user, context: context)),
+                          _buildMainInfo(context, user: state.user),
+                          const SizedBox(height: 10.0),
+                          _buildInfo(context, state.user),
+                        ],
+                      ),
+                    )));
+            // ListNotificationWidget(notifications: state.user));
+          } else if (state is ErrorUserState) {
+            return MessageDisplay(Message: state.Message);
+          }
+          return LoadingWidgets();
+        },
+      ),
+    );
   }
 
   AppBar _buildAppBar() => AppBar(title: Text("NotificationPage"));
@@ -181,7 +175,7 @@ floatingActionButton: _buildFloatingBtn(context,state.user,),
     );
   }
 
-  Widget _buildInfo(BuildContext context,  User? user) {
+  Widget _buildInfo(BuildContext context, User? user) {
     return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.all(10),
@@ -223,7 +217,9 @@ floatingActionButton: _buildFloatingBtn(context,state.user,),
                   ),
                   title: const Text("Birth Date"),
                   subtitle: Text(
-                   DateFormat('yyyy-MM-dd').format( user?.birthDate??DateTime.now() )?? 'N/A',
+                    DateFormat('yyyy-MM-dd')
+                            .format(user?.birthDate ?? DateTime.now()) ??
+                        'N/A',
                   ),
                 ),
                 const Divider(),
@@ -295,48 +291,47 @@ Future<void> logout() async {
   Get.offNamed('login');
 }
 
-Widget _buildFloatingBtn(BuildContext context,user) {
-
+Widget _buildFloatingBtn(BuildContext context, user) {
   // return  BlocBuilder<UserProfileBloc, UserProfileState>(
   //       builder: (context, state) {
   //         print("$state");
   //         if (state is LoadingUserState) {
   //           return LoadingWidget();
   //         } else if (state is LoadedUserState) {
-          
-           return SingleChildScrollView(
-              child   :  ProfileWidgetAppBar(
-              imagePath:
-                  '${baseUrls}/assets/uploads/traveller/${user?.picture}',
-              onClicked: () async {
-                Navigator.push(
-         context, MaterialPageRoute(builder: (_) => FromProfileWidget(user: user,)));
-   
-    
-                // String? newData = await uploader.pickAndUploadFile(
-                //   dynamicPath: 'traveller', // Replace with your dynamic path
-                //   id: '${widget.user?.id}', // Replace with your id
-                //   object: 'api/users', // Replace with your object
-                //   field: 'picture', // Replace with your field
-     } ) );
+
+  return SingleChildScrollView(
+      child: ProfileWidgetAppBar(
+          imagePath: '${baseUrls}/assets/uploads/traveller/${user?.picture}',
+          onClicked: () async {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => FromProfileWidget(
+                          user: user,
+                        )));
+
+            // String? newData = await uploader.pickAndUploadFile(
+            //   dynamicPath: 'traveller', // Replace with your dynamic path
+            //   id: '${widget.user?.id}', // Replace with your id
+            //   object: 'api/users', // Replace with your object
+            //   field: 'picture', // Replace with your field
+          }));
   //                FloatingActionButton(backgroundColor: const Color(0xFFEB5F52),
   //   onPressed: () {
-  
+
   //      Navigator.push(
   //          context, MaterialPageRoute(builder: (_) => FromProfileWidget(user: user,)));
-   
+
   //   },
   //   child: Icon(Icons.update),
-  // ) );    
-   }    
-               
-      //       );
-      //       // ListNotificationWidget(notifications: state.user));
-      //     } else if (state is ErrorUserState) {
-      //       return MessageDisplay(Message: state.Message);
-      //     }
-      //     return LoadingWidgets();
-      //   },
-      // );
-    
+  // ) );
+}
 
+//       );
+//       // ListNotificationWidget(notifications: state.user));
+//     } else if (state is ErrorUserState) {
+//       return MessageDisplay(Message: state.Message);
+//     }
+//     return LoadingWidgets();
+//   },
+// );

@@ -3,13 +3,14 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zenify_app/core/error/exceptions.dart';
-import 'package:zenify_app/features/notification/data/model/pushnotificationmodel.dart';
+import 'package:SunShine/core/error/exceptions.dart';
+import 'package:SunShine/features/notification/data/model/pushnotificationmodel.dart';
 
 abstract class NotificationLocalDataSours {
   Future<List<NotificationModel>> getCachedNotification();
   Future<Unit> cachedNotification(List<NotificationModel> notificationModels);
 }
+
 // const Cachec
 class NotificationLocalDataSoursImpl implements NotificationLocalDataSours {
   final SharedPreferences sharedPreferences;

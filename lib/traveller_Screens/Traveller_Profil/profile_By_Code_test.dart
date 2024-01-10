@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zenify_app/modele/activitsmodel/usersmodel.dart';
-import 'package:zenify_app/modele/traveller/TravellerModel.dart';
+import 'package:SunShine/modele/activitsmodel/usersmodel.dart';
+import 'package:SunShine/modele/traveller/TravellerModel.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ProfilePage extends StatelessWidget {

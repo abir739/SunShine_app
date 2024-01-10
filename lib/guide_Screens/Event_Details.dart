@@ -6,11 +6,11 @@ import 'package:multi_select_flutter/chip_display/multi_select_chip_display.dart
 import 'package:multi_select_flutter/dialog/multi_select_dialog_field.dart';
 import 'package:multi_select_flutter/util/multi_select_item.dart';
 import 'package:multi_select_flutter/util/multi_select_list_type.dart';
-import 'package:zenify_app/login/Login.dart';
-import 'package:zenify_app/services/constent.dart';
-import 'package:zenify_app/modele/TouristGuide.dart';
-import 'package:zenify_app/modele/touristGroup.dart';
-import 'package:zenify_app/modele/transportmodel/transportModel.dart';
+import 'package:SunShine/login/Login.dart';
+import 'package:SunShine/services/constent.dart';
+import 'package:SunShine/modele/TouristGuide.dart';
+import 'package:SunShine/modele/touristGroup.dart';
+import 'package:SunShine/modele/transportmodel/transportModel.dart';
 
 class EventView extends StatefulWidget {
   final Transport transport;
@@ -150,8 +150,8 @@ class _EventViewState extends State<EventView> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox(width: 60.0),
-            Text('Transport Details'),
+            const SizedBox(width: 50.0),
+            Text('Transport'),
           ],
         ),
       ),
@@ -161,58 +161,37 @@ class _EventViewState extends State<EventView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 26),
-              Text(
-                'Description: 🚌',
+              const SizedBox(height: 14),
+              const Text(
+                'Détails du transport',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFFFF725E),
                 ),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 26),
               Text(
-                ' ${widget.transport.from ?? 'N/A'} to ${widget.transport.to ?? 'N/A'}',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 6, 6, 6),
-                ),
+                'Description: 🚌 From ${widget.transport.from ?? 'N/A'} to ${widget.transport.to ?? 'N/A'}',
               ), // Update with your field
               const SizedBox(height: 14),
               Text(
-                'Date:',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFFFF725E),
-                ),
-              ),
-              SizedBox(height: 5),
-              Text(
-                ' ${widget.transport.date != null ? formatDateTimeInTimeZone(widget.transport.date!).toString() : 'N/A'}',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: Color.fromARGB(255, 6, 6, 6),
-                ),
+                'Date: ${widget.transport.date != null ? formatDateTimeInTimeZone(widget.transport.date!).toString() : 'N/A'}', // Update with your field
               ),
               const SizedBox(height: 14),
               TextFormField(
                 controller: _noteController,
-                decoration: const InputDecoration(labelText: 'Title'),
+                decoration: const InputDecoration(labelText: 'Titre'),
               ),
 
               const SizedBox(height: 14),
               TextFormField(
                 controller: _durationController,
                 keyboardType: TextInputType.number,
-                decoration:
-                    const InputDecoration(labelText: 'Duration (hours)'),
+                decoration: const InputDecoration(labelText: 'Durée (heures)'),
               ),
               const SizedBox(height: 16),
               const Text(
-                'Tourist Groups:',
+                'Groupes touristiques :',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -251,18 +230,18 @@ class _EventViewState extends State<EventView> {
                       decoration: const InputDecoration(
                           labelText: 'Notification Title'),
                     ),
-                    // const SizedBox(height: 14),
-                    // TextFormField(
-                    //   controller: _typeController,
-                    //   decoration:
-                    //       const InputDecoration(labelText: 'Notification Type'),
-                    // ),
-                    // const SizedBox(height: 14),
-                    // TextFormField(
-                    //   controller: _typeController,
-                    //   decoration: const InputDecoration(
-                    //       labelText: 'Notification Screen'),
-                    // ),
+                    const SizedBox(height: 14),
+                    TextFormField(
+                      controller: _typeController,
+                      decoration:
+                          const InputDecoration(labelText: 'Notification Type'),
+                    ),
+                    const SizedBox(height: 14),
+                    TextFormField(
+                      controller: _typeController,
+                      decoration: const InputDecoration(
+                          labelText: 'Notification Screen'),
+                    ),
                   ],
                 ),
               ),
@@ -275,7 +254,7 @@ class _EventViewState extends State<EventView> {
                       color: Colors.amber,
                     ),
                     const Text(
-                      'Send notification',
+                      'Envoyer une notification',
                       style: TextStyle(
                         color: Colors.black12,
                         fontWeight: FontWeight.w600,
@@ -310,7 +289,7 @@ class _EventViewState extends State<EventView> {
                 },
                 child: const Center(
                   child: Text(
-                    'Save Changes',
+                    'Sauvegarder',
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w700,

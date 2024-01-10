@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'dart:convert';
 import 'dart:math';
 import 'package:http/http.dart' as http;
-import 'package:zenify_app/Secreens/Activities-Category/Activity-Template-List.dart';
-import 'package:zenify_app/login/Login.dart';
-import 'package:zenify_app/modele/activitsmodel/activitiesCategoryModel.dart';
-import 'package:zenify_app/services/constent.dart';
+import 'package:SunShine/Secreens/Activities-Category/Activity-Template-List.dart';
+import 'package:SunShine/login/Login.dart';
+import 'package:SunShine/modele/activitsmodel/activitiesCategoryModel.dart';
+import 'package:SunShine/services/constent.dart';
 
 class ActivityCategoryPage extends StatefulWidget {
   @override
@@ -103,7 +102,7 @@ class _ActivityCategoryPageState extends State<ActivityCategoryPage> {
                           Icons.arrow_back_ios_new_sharp,
                           color: Colors.black,
                         ),
-                        hintText: "Search",
+                        hintText: "Recherche",
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),
@@ -115,46 +114,8 @@ class _ActivityCategoryPageState extends State<ActivityCategoryPage> {
                     ),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    // Icon for favorite
-                    IconButton(
-                      icon: Icon(
-                        Icons.favorite_border,
-                        size: 33,
-                        color: Color(0xFFFF725E),
-                      ),
-                      onPressed: () {
-                        // Add your favorite icon onPressed logic here
-                      },
-                    ),
-                    // Icon for bookmark
-                    IconButton(
-                      icon: Icon(
-                        Icons.bookmark_border,
-                        size: 33,
-                        color: Color(0xFFFF725E),
-                      ),
-                      onPressed: () {
-                        // Add your bookmark icon onPressed logic here
-                      },
-                    ),
-                    // Icon for events
-                    IconButton(
-                      icon: SvgPicture.asset(
-                        'assets/party.svg', // Replace with the path to your SVG file
-                        height: 40,
-                        width: 45,
-                      ),
-                      onPressed: () {
-                        // Add your events icon onPressed logic here
-                      },
-                    ),
-                  ],
-                ),
                 Text(
-                  'Categories',
+                  'Catégories',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

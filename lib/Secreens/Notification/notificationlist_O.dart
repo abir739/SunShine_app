@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:multi_select_flutter/util/multi_select_item.dart';
 import 'package:provider/provider.dart';
-import 'package:zenify_app/Secreens/Notification/GuidPushnotification.dart';
-import 'package:zenify_app/Secreens/Notification/ImageViewScreen.dart';
-import 'package:zenify_app/login/Login.dart';
-import 'package:zenify_app/modele/HttpUserHandler.dart';
-import 'package:zenify_app/modele/TouristGuide.dart';
-import 'package:zenify_app/modele/activitsmodel/httpToristGroup.dart';
-import 'package:zenify_app/modele/activitsmodel/usersmodel.dart';
-import 'package:zenify_app/modele/touristGroup.dart';
-import 'package:zenify_app/routes/ScrollControllerProvider.dart';
-import 'package:zenify_app/services/ServiceWedget/ImageWithDynamicBackgrounListusers%20copy.dart';
-import 'package:zenify_app/services/ServiceWedget/NOtificationUserImage.dart';
-import 'package:zenify_app/services/constent.dart';
+import 'package:SunShine/Secreens/Notification/GuidPushnotification.dart';
+import 'package:SunShine/Secreens/Notification/ImageViewScreen.dart';
+import 'package:SunShine/login/Login.dart';
+import 'package:SunShine/modele/HttpUserHandler.dart';
+import 'package:SunShine/modele/TouristGuide.dart';
+import 'package:SunShine/modele/activitsmodel/httpToristGroup.dart';
+import 'package:SunShine/modele/activitsmodel/usersmodel.dart';
+import 'package:SunShine/modele/touristGroup.dart';
+import 'package:SunShine/routes/ScrollControllerProvider.dart';
+import 'package:SunShine/services/ServiceWedget/ImageWithDynamicBackgrounListusers%20copy.dart';
+import 'package:SunShine/services/ServiceWedget/NOtificationUserImage.dart';
+import 'package:SunShine/services/constent.dart';
 import '../../modele/HttpPushNotification.dart';
 import '../../modele/activitsmodel/httpActivites.dart';
 import '../../modele/activitsmodel/pushnotificationmodel.dart';
@@ -239,7 +239,7 @@ class _NotificationListState extends State<NotificationList> {
                           title: Row(
                             children: [
                               const FaIcon(FontAwesomeIcons.bell),
-                              Text('  Send Notification'),
+                              Text('Envoyer'),
                             ],
                           ),
                           content: Container(
@@ -255,7 +255,7 @@ class _NotificationListState extends State<NotificationList> {
                               child: Row(
                                 children: [
                                   const FaIcon(FontAwesomeIcons.close),
-                                  Text(' Close'),
+                                  Text(' Fermer'),
                                 ],
                               ),
                             ),
@@ -281,8 +281,8 @@ class _NotificationListState extends State<NotificationList> {
                   ),
                 ),
               ),
-              titleText: 'Create New Notification',
-              subTitleText: 'Notifier your groups N°:${group?.length}',
+              titleText: 'Créer une nouvelle notification',
+              subTitleText: 'Notifiez vos groupes N°:${group?.length}',
             ),
           ),
           contentBody: Container(
@@ -294,7 +294,7 @@ class _NotificationListState extends State<NotificationList> {
               children: [
                 Column(
                   children: [
-                    Text("Those all of Your Groups"),
+                    Text("C'est tous vos groupes"),
                     ListView.builder(
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
@@ -329,7 +329,7 @@ class _NotificationListState extends State<NotificationList> {
                           title: Row(
                             children: [
                               const FaIcon(FontAwesomeIcons.bell),
-                              Text('  Send Notification'),
+                              Text('  Envoyer '),
                             ],
                           ),
                           content: Container(
@@ -345,7 +345,7 @@ class _NotificationListState extends State<NotificationList> {
                               child: Row(
                                 children: [
                                   const FaIcon(FontAwesomeIcons.close),
-                                  Text(' Close'),
+                                  Text(' Fermer'),
                                 ],
                               ),
                             ),
@@ -363,7 +363,7 @@ class _NotificationListState extends State<NotificationList> {
                     ),
                   ),
                   child: const Text(
-                    'Notifiy your Guide ',
+                    'Informez vos Clients ',
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
@@ -401,7 +401,7 @@ class _NotificationListState extends State<NotificationList> {
                       padding: const EdgeInsets.all(20.0),
                       child: Text(
                         textAlign: TextAlign.center,
-                        "See Fewer Notifications",
+                        "Voir moins de notifications",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
@@ -491,7 +491,7 @@ class _NotificationListState extends State<NotificationList> {
                                           child: Row(
                                             children: [
                                               Text(
-                                                "From ",
+                                                "Depuis ",
                                                 style: TextStyle(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w500,

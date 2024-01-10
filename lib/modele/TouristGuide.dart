@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:zenify_app/modele/activitsmodel/usersmodel.dart';
+import 'package:SunShine/modele/activitsmodel/usersmodel.dart';
 import '../modele/agance.dart';
 
 part 'TouristGuide.g.dart';

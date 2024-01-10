@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zenify_app/modele/tasks/taskModel.dart';
-import 'package:zenify_app/services/constent.dart';
+import 'package:SunShine/modele/tasks/taskModel.dart';
+import 'package:SunShine/services/constent.dart';
 
 class TaskView extends StatelessWidget {
   final Tasks task;
@@ -14,8 +14,8 @@ class TaskView extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox(width: 60.0),
-            Text('Task Details'),
+            const SizedBox(width: 50.0),
+            Text('Détails de la tâche'),
           ],
         ),
       ),
@@ -49,7 +49,7 @@ class TaskView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Created At:',
+                    'Créé à:',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -67,7 +67,7 @@ class TaskView extends StatelessWidget {
                   ),
                   SizedBox(height: 16),
                   Text(
-                    'To-do Date:',
+                    'Date à faire :',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -85,7 +85,7 @@ class TaskView extends StatelessWidget {
                   ),
                   SizedBox(height: 24),
                   Text(
-                    'Task Note',
+                    'Remarque sur la tâche :',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,

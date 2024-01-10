@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-// import 'package:zenify_app_mobile/modele/activity_model.dart';
+// import 'package:SunShine_mobile/modele/activity_model.dart';
 import '../modele/activitsmodel/activitesmodel.dart';
 import '../modele/plannings.dart';
 

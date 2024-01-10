@@ -1,8 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:zenify_app/modele/activitsmodel/usersmodel.dart';
-import 'package:zenify_app/modele/agance.dart';
-import 'package:zenify_app/modele/traveller/TravellerModel.dart';
-
+import 'package:SunShine/modele/activitsmodel/usersmodel.dart';
+import 'package:SunShine/modele/agance.dart';
+import 'package:SunShine/modele/traveller/TravellerModel.dart';
 
 import '../TouristGuide.dart';
 import '../bus/busModel.dart';
@@ -65,7 +64,8 @@ class Transport {
       this.bus,
       this.driver,
       this.touristGuide,
-      this.user,this.agency,
+      this.user,
+      this.agency,
       this.travellers});
 
   factory Transport.fromJson(Map<String, dynamic> json) =>

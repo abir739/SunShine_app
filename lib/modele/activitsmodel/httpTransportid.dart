@@ -2,13 +2,13 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:zenify_app/modele/activitsmodel/activitesmodel.dart';
-import 'package:zenify_app/modele/planning_model.dart';
-import 'package:zenify_app/modele/planningmainModel.dart';
-import 'package:zenify_app/modele/plannings.dart';
+import 'package:SunShine/modele/activitsmodel/activitesmodel.dart';
+import 'package:SunShine/modele/planning_model.dart';
+import 'package:SunShine/modele/planningmainModel.dart';
+import 'package:SunShine/modele/plannings.dart';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:zenify_app/modele/transportmodel/transportModel.dart';
+import 'package:SunShine/modele/transportmodel/transportModel.dart';
 
 import '../../services/constent.dart';
 import 'activityTempModel.dart';

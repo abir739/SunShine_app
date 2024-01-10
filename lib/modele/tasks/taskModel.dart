@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:zenify_app/modele/agance.dart';
+import 'package:SunShine/modele/agance.dart';
 
 part 'taskModel.g.dart';
 
@@ -8,7 +8,7 @@ class Tasks {
   String? id;
   String? agencyId;
   String? touristGuideId;
-  DateTime?todoDate;
+  DateTime? todoDate;
   String? description;
   String? creatorUserId;
   String? createdAt;

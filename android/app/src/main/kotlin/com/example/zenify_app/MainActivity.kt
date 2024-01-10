@@ -1,4 +1,4 @@
-package com.example.zenify_app
+package com.example.SunShine
 
 import io.flutter.embedding.android.FlutterActivity
 

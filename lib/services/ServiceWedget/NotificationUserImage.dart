@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:palette_generator/palette_generator.dart';
-import 'package:zenify_app/Secreens/Profile/User_FromNotif.dart';
-import 'package:zenify_app/modele/creatorUser.dart';
-import 'package:zenify_app/services/widget/profile_widget.dart';
+import 'package:SunShine/Secreens/Profile/User_FromNotif.dart';
+import 'package:SunShine/modele/creatorUser.dart';
+import 'package:SunShine/services/widget/profile_widget.dart';
 
 import 'package:get/get.dart';
 

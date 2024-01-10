@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:zenify_app/Secreens/Activities-Category/ActivityDetailPage.dart';
-import 'package:zenify_app/login/Login.dart';
-import 'package:zenify_app/modele/activitsmodel/activitiesCategoryModel.dart';
-import 'package:zenify_app/modele/activitsmodel/activityTempModel.dart';
+import 'package:SunShine/Secreens/Activities-Category/ActivityDetailPage.dart';
+import 'package:SunShine/login/Login.dart';
+import 'package:SunShine/modele/activitsmodel/activitiesCategoryModel.dart';
+import 'package:SunShine/modele/activitsmodel/activityTempModel.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:zenify_app/services/constent.dart';
+import 'package:SunShine/services/constent.dart';
 
 enum ActivitySort { priceLowToHigh, country, nameAZ }
 
@@ -61,7 +61,7 @@ class _ActivityTemplatePageState extends State<ActivityTemplatePage> {
         _updateSorting();
       });
     } else {
-      print('Failed to load activity Templates');
+      // print('Failed to load activity Templates');
     }
   }
 
@@ -70,14 +70,14 @@ class _ActivityTemplatePageState extends State<ActivityTemplatePage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Sort By'),
+          title: Text('Trier par'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               _buildSortOptionTile(
-                  'Price (Low to High)', ActivitySort.priceLowToHigh),
-              _buildSortOptionTile('Country', ActivitySort.country),
-              _buildSortOptionTile('Name (A-Z)', ActivitySort.nameAZ),
+                  'Prix (croissant)', ActivitySort.priceLowToHigh),
+              _buildSortOptionTile('Pays', ActivitySort.country),
+              _buildSortOptionTile('Nom (A-Z)', ActivitySort.nameAZ),
             ],
           ),
         );
@@ -122,6 +122,7 @@ class _ActivityTemplatePageState extends State<ActivityTemplatePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.category.name ?? ''),
+        backgroundColor: const Color(0xFFEB5F52),
       ),
       body: isLoading
           ? Center(child: CircularProgressIndicator())
@@ -144,7 +145,7 @@ class _ActivityTemplatePageState extends State<ActivityTemplatePage> {
                           ),
                           SizedBox(width: 8),
                           Text(
-                            'Sort By',
+                            'Trier par',
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
                           ),
@@ -212,12 +213,12 @@ class _ActivityTemplatePageState extends State<ActivityTemplatePage> {
                                         ),
                                         SizedBox(height: 4),
                                         Text(
-                                          'Country: ${template.country?.name ?? ''}',
+                                          'Pays: ${template.location ?? ''}',
                                           style: TextStyle(fontSize: 14),
                                         ),
                                         SizedBox(height: 4),
                                         Text(
-                                          'Price: \$${template.adultPrice ?? ''}',
+                                          'Prix: \$${template.adultPrice ?? ''}',
                                           style: TextStyle(fontSize: 14),
                                         ),
                                       ],
@@ -235,19 +236,19 @@ class _ActivityTemplatePageState extends State<ActivityTemplatePage> {
                                   onTap: () {
                                     setState(() {
                                       // Toggle the favorite status
-                                      template.isFavorite =
-                                          !template.isFavorite;
+                                      // template.isFavorite =
+                                      //     !template.isFavorite??true;
                                     });
                                   },
-                                  child: Icon(
-                                    template.isFavorite
-                                        ? Icons.favorite
-                                        : Icons.favorite_border,
-                                    color: template.isFavorite
-                                        ? Colors.red
-                                        : Colors.grey,
-                                    size: 30,
-                                  ),
+                                  // child: Icon(
+                                  //   template.isFavorite
+                                  //       ? Icons.favorite
+                                  //       : Icons.favorite_border,
+                                  //   color: template.isFavorite
+                                  //       ? Colors.red
+                                  //       : Colors.grey,
+                                  //   size: 30,
+                                  // ),
                                 ),
                               ),
                             ],

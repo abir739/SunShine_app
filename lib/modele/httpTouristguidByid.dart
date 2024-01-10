@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:zenify_app/services/constent.dart';
+import 'package:SunShine/services/constent.dart';
 
 import 'TouristGuide.dart';
 import 'activitsmodel/activityTempModel.dart';

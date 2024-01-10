@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zenify_app/modele/activitsmodel/httpActivites.dart';
+import 'package:SunShine/modele/activitsmodel/httpActivites.dart';
+
 class NotificationCountNotifier with ChangeNotifier {
   int _count = 0;
   SharedPreferences? _prefs;

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:zenify_app/HTTPHandlerObject.dart';
-import 'package:zenify_app/Secreens/Profile/traveller_Profil.dart';
-import 'package:zenify_app/modele/httpTravellerbyid.dart';
-import 'package:zenify_app/modele/traveller/TravellerModel.dart';
-import 'package:zenify_app/traveller_Screens/Notifications.dart';
-import 'package:zenify_app/traveller_Screens/call_Guide.dart';
-import 'package:zenify_app/traveller_Screens/transfers_ByVoyMail.dart';
+import 'package:SunShine/HTTPHandlerObject.dart';
+import 'package:SunShine/Secreens/Profile/traveller_Profil.dart';
+import 'package:SunShine/modele/httpTravellerbyid.dart';
+import 'package:SunShine/modele/traveller/TravellerModel.dart';
+import 'package:SunShine/traveller_Screens/Notifications.dart';
+import 'package:SunShine/traveller_Screens/call_Guide.dart';
+import 'package:SunShine/traveller_Screens/transfers_ByVoyMail.dart';
 
 class BottomNavBarDemo extends StatefulWidget {
   String? group;

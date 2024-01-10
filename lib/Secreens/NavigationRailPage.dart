@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zenify_app/ConcentricAnimationOnboarding.dart';
-import 'package:zenify_app/Secreens/Profile/User_Profil.dart';
-import 'package:zenify_app/guide_Screens/Guide_First_Page.dart';
+import 'package:SunShine/ConcentricAnimationOnboarding.dart';
+import 'package:SunShine/Secreens/Profile/User_Profil.dart';
+import 'package:SunShine/guide_Screens/Guide_First_Page.dart';
 import 'PushNotificationScreen.dart';
 
 class NavigationRailPage extends StatefulWidget {

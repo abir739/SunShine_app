@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:zenify_app/core/error/Strings/Failure.dart';
-import 'package:zenify_app/core/error/failures.dart';
-import 'package:zenify_app/features/Activites/domain/entites/activite.dart';
-import 'package:zenify_app/features/Activites/domain/usecases/getAll_activites_useCase%20.dart';
+import 'package:SunShine/core/error/Strings/Failure.dart';
+import 'package:SunShine/core/error/failures.dart';
+import 'package:SunShine/features/Activites/domain/entites/activite.dart';
+import 'package:SunShine/features/Activites/domain/usecases/getAll_activites_useCase%20.dart';
 
 part 'activites_event.dart';
 part 'activites_state.dart';
@@ -13,10 +13,8 @@ class ActivitesBloc extends Bloc<ActivitesEvent, ActivitesState> {
   final GetAllActiviteUseCase getAllActiviteUseCase;
   ActivitesBloc({required this.getAllActiviteUseCase})
       : super(ActivitesInitial()) {
-    on<ActivitesEvent>((event, emit) async{
-
-     if (event is GetAlActivitesEvent ||
-          event is RefreshActivitesEvent) {
+    on<ActivitesEvent>((event, emit) async {
+      if (event is GetAlActivitesEvent || event is RefreshActivitesEvent) {
         emit(LoadingactivitesState());
         final notificationsOrFailur = await getAllActiviteUseCase();
         // final Notification = await getAllNotificationUsease.call();
@@ -38,13 +36,11 @@ class ActivitesBloc extends Bloc<ActivitesEvent, ActivitesState> {
       }
     });
   }
-    ActivitesState _mapFailureOrNotificationStaet(
+  ActivitesState _mapFailureOrNotificationStaet(
       Either<Failure, List<Activite>> either) {
-    return either.fold((failure)=>
-      ErrorActivitesState(Message: _mapfailureMassege(failure)),
-    (activites)=>
-      LoadedActivitesState(activite: activites)
-    );
+    return either.fold(
+        (failure) => ErrorActivitesState(Message: _mapfailureMassege(failure)),
+        (activites) => LoadedActivitesState(activite: activites));
   }
 
   String _mapfailureMassege(Failure failure) {

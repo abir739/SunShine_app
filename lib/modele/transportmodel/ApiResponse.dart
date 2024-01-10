@@ -1,5 +1,4 @@
-import 'package:zenify_app/modele/transportmodel/transportModel.dart';
-
+import 'package:SunShine/modele/transportmodel/transportModel.dart';
 
 class ApiResponse {
   final int inlineCount;
@@ -18,9 +17,8 @@ class ApiResponse {
     final results = (json['results'] as List)
         .map((result) => Transport.fromJson(result))
         .toList();
-    final touristGroupIds = (json['touristGroupIds'] as List)
-        .map((id) => id as String)
-        .toList();
+    final touristGroupIds =
+        (json['touristGroupIds'] as List).map((id) => id as String).toList();
 
     return ApiResponse(
       inlineCount: inlineCount,

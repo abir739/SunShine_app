@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:zenify_app/Secreens/Notification/GuidPushnotification.dart';
-import 'package:zenify_app/Secreens/Notification/NotificationDetails.dart';
-import 'package:zenify_app/login/Login.dart';
-import 'package:zenify_app/login/Login.dart';
+import 'package:SunShine/Secreens/Notification/GuidPushnotification.dart';
+import 'package:SunShine/Secreens/Notification/NotificationDetails.dart';
+import 'package:SunShine/login/Login.dart';
+import 'package:SunShine/login/Login.dart';
 import '../../modele/HttpPushNotification.dart';
 import '../../modele/activitsmodel/httpActivites.dart';
 import '../../modele/activitsmodel/pushnotificationmodel.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
-
 
 class NotificationScreen extends StatelessWidget {
   String? groupsid;
@@ -90,7 +89,9 @@ class _NotificationListState extends State<NotificationList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(actions: [Icon(Icons.border_left_outlined),]) ,
+      appBar: AppBar(actions: [
+        Icon(Icons.border_left_outlined),
+      ]),
       body: Column(
         children: [
           Expanded(
@@ -103,8 +104,7 @@ class _NotificationListState extends State<NotificationList> {
                     Duration(microseconds: 200)); // Simulate a delay
                 setState(() {}); // Trigger a rebuild of the widget
               },
-              child: 
-              FutureBuilder<List<PushNotification>>(
+              child: FutureBuilder<List<PushNotification>>(
                 future: httpHandler.fetchData(
                     '/api/push-notificationsMobile?filters[tagsGroups]=${widget.groupsid}&limit=$limit'),
                 builder: (context, snapshot) {
@@ -151,24 +151,24 @@ class _NotificationListState extends State<NotificationList> {
                             ],
                           );
                         }
-    
+
                         final notification = snapshot.data![index];
-    
+
                         // Format the notification's createdAt date
                         final formattedDate = dateFormat
                             .format(notification.createdAt ?? DateTime.now());
-    
+
                         // Format the notification's createdAt time
                         final formattedTime = timeFormat
                             .format(notification.createdAt ?? DateTime.now());
-    
+
                         // Check if the current notification's date is different from the previous one
                         final bool isDifferentDate = index == 0 ||
                             formattedDate !=
                                 dateFormat.format(
                                     snapshot.data![index - 1].createdAt ??
                                         DateTime.now());
-    
+
                         return Column(
                           children: [
                             if (isDifferentDate)
@@ -177,7 +177,8 @@ class _NotificationListState extends State<NotificationList> {
                                 child: Text(
                                   formattedDate, // Use the formatted date
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize: 24),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 24),
                                 ),
                               ),
                             GestureDetector(
@@ -214,7 +215,8 @@ class _NotificationListState extends State<NotificationList> {
                                           ],
                                         )
                                       : Text(
-                                          formatTimestamp(notification.createdAt),
+                                          formatTimestamp(
+                                              notification.createdAt),
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 20),
@@ -248,62 +250,65 @@ class _NotificationListState extends State<NotificationList> {
                         );
                       },
                     );
-    
+
                     return notificationsList;
                   }
                 },
               ),
             ),
-          )
-            , SizedBox(height: 16)  , ElevatedButton(
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: Row(
-                    children: [ const FaIcon(FontAwesomeIcons.bell),
-                      Text('  Send Notification'),
-                    ],
-                  ),
-                  content: Container(
-                    width: 400, // Adjust the width as needed
-                    height: 300, // Adjust the height as needed
-                    child: PushNotificationGuideScreen(""),
-                  ),
-                  actions: <Widget>[
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Row(
-                        children: [ const FaIcon(FontAwesomeIcons.arrowsTurnRight),
-                          Text(' Close'),
-                        ],
-                      ),
+          ),
+          SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Row(
+                      children: [
+                        const FaIcon(FontAwesomeIcons.bell),
+                        Text('  Send Notification'),
+                      ],
                     ),
-                  ],
-                );
-              },
-            );
-            // Pass the guid to PushNotificationScreen when the button is pressed
-            // Get.to(PushNotificationScreen(widget.guid));
-            // Get.to(PushNotificationGuideScreen(widget.guid?.id));
-          },
-          style: ElevatedButton.styleFrom(
-            primary:
-                const Color(0xFFEB5F52), // Change the button's background color
-            fixedSize: const Size(321, 43),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(14),
+                    content: Container(
+                      width: 400, // Adjust the width as needed
+                      height: 300, // Adjust the height as needed
+                      child: PushNotificationGuideScreen(""),
+                    ),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Row(
+                          children: [
+                            const FaIcon(FontAwesomeIcons.arrowsTurnRight),
+                            Text(' Close'),
+                          ],
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
+              // Pass the guid to PushNotificationScreen when the button is pressed
+              // Get.to(PushNotificationScreen(widget.guid));
+              // Get.to(PushNotificationGuideScreen(widget.guid?.id));
+            },
+            style: ElevatedButton.styleFrom(
+              primary: const Color(
+                  0xFFEB5F52), // Change the button's background color
+              fixedSize: const Size(321, 43),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(14),
+              ),
+            ),
+            child: const Text(
+              'Create New Notification',
+              style: TextStyle(fontSize: 16),
             ),
           ),
-          child: const Text(
-            'Create New Notification',
-            style: TextStyle(fontSize: 16),
-          ),
-        ),
-   ],
+        ],
       ),
     );
   }

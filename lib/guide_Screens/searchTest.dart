@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:zenify_app/guide_Screens/Book_Travelers.dart';
+import 'package:SunShine/guide_Screens/Book_Travelers.dart';
 
-import 'package:zenify_app/login/Login.dart';
-import 'package:zenify_app/services/constent.dart';
+import 'package:SunShine/login/Login.dart';
+import 'package:SunShine/services/constent.dart';
 import 'dart:convert';
-import 'package:zenify_app/modele/touristGroup.dart';
+import 'package:SunShine/modele/touristGroup.dart';
 import 'package:flutter_svg/svg.dart';
 
 class GroupsList extends StatefulWidget {

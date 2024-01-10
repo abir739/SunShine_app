@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zenify_app/Secreens/Notification/NotificationDetails_test.dart';
-import 'package:zenify_app/login/Login.dart';
-import 'package:zenify_app/traveller_Screens/Traveller-First-Screen.dart';
+import 'package:SunShine/Secreens/Notification/NotificationDetails_test.dart';
+import 'package:SunShine/login/Login.dart';
+import 'package:SunShine/traveller_Screens/Traveller-First-Screen.dart';
 import '../main.dart';
 
 class AppRoutes {

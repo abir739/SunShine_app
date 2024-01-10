@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:zenify_app/Secreens/Notification/ImageViewScreen.dart';
-import 'package:zenify_app/Secreens/Upload_Files/FilePickerUploader.dart';
-import 'package:zenify_app/login/Login.dart';
-import 'package:zenify_app/modele/creatorUser.dart';
-import 'package:zenify_app/services/widget/profile_widget.dart';
+import 'package:SunShine/Secreens/Notification/ImageViewScreen.dart';
+import 'package:SunShine/Secreens/Upload_Files/FilePickerUploader.dart';
+import 'package:SunShine/login/Login.dart';
+import 'package:SunShine/modele/creatorUser.dart';
+import 'package:SunShine/services/widget/profile_widget.dart';
 import '../../NetworkHandler.dart';
 import '../../services/constent.dart';
 import '../../modele/HttpUserHandler.dart';
@@ -21,7 +21,7 @@ String? baseUrl = "";
 
 class UserfromNotification extends StatefulWidget {
   CreatorUser? creatorUser;
-   UserfromNotification(this.creatorUser,{Key? key}) : super(key: key);
+  UserfromNotification(this.creatorUser, {Key? key}) : super(key: key);
 
   @override
   _UserfromNotificationState createState() => _UserfromNotificationState();
@@ -77,7 +77,6 @@ class _UserfromNotificationState extends State<UserfromNotification> {
         }
       });
     });
-
   }
 
   Future<void> _onRefresh() async {
@@ -87,7 +86,6 @@ class _UserfromNotificationState extends State<UserfromNotification> {
   }
 
   Future<void> logout() async {
-
     await storage.deleteAll();
 
     Get.offNamed('login');
@@ -102,7 +100,8 @@ class _UserfromNotificationState extends State<UserfromNotification> {
     print("token, $token");
     userId = await storage.read(key: "id");
     try {
-      user = await httpUserHandler.fetchUser('/api/users/${widget.creatorUser?.id}');
+      user = await httpUserHandler
+          .fetchUser('/api/users/${widget.creatorUser?.id}');
 
       setState(() {
         selectedUser = user;
@@ -217,10 +216,9 @@ class _UserfromNotificationState extends State<UserfromNotification> {
             imagePath:
                 'https://4kwallpapers.com/images/walls/thumbs_2t/2167.jpg',
             onClicked: () async {
-          
-                Get.to(ImageViewScreen(
-                    "${baseUrls}/assets/uploads/traveller/${ user?.picture}",
-                  ));
+              Get.to(ImageViewScreen(
+                "${baseUrls}/assets/uploads/traveller/${user?.picture}",
+              ));
             },
           )
         : Column(children: [
@@ -229,17 +227,13 @@ class _UserfromNotificationState extends State<UserfromNotification> {
               imagePath:
                   '${baseUrls}/assets/uploads/traveller/${user?.picture}',
               onClicked: () async {
-               Get.to(ImageViewScreen(
-                    "${baseUrls}/assets/uploads/traveller/${ user?.picture}",
-                  ));
-             
+                Get.to(ImageViewScreen(
+                  "${baseUrls}/assets/uploads/traveller/${user?.picture}",
+                ));
               },
             ),
-         
           ]);
   }
-
-
 
   Widget _buildMainInfo(BuildContext context, double width) {
     return Container(
@@ -288,18 +282,19 @@ class _UserfromNotificationState extends State<UserfromNotification> {
           child: Column(
             children: <Widget>[
               GestureDetector(
-                onTap: ()async {
-                final email = Uri(
-                      scheme: 'mailto',
-                      path: '${selectedUser?.email??""}'
-                    ,  query: 'subject=To ${selectedUser?.username??""}&body=Zenify trip',
-                    );
-                    if (await canLaunchUrl(email)) {
-                      launchUrl(email);
-                    } else {
-                      throw 'Could not launch $email';
-                    }
-              },
+                onTap: () async {
+                  final email = Uri(
+                    scheme: 'mailto',
+                    path: '${selectedUser?.email ?? ""}',
+                    query:
+                        'subject=To ${selectedUser?.username ?? ""}&body=Zenify trip',
+                  );
+                  if (await canLaunchUrl(email)) {
+                    launchUrl(email);
+                  } else {
+                    throw 'Could not launch $email';
+                  }
+                },
                 child: ListTile(
                   leading: const Icon(
                     Icons.email,
@@ -310,14 +305,16 @@ class _UserfromNotificationState extends State<UserfromNotification> {
                 ),
               ),
               const Divider(),
-              GestureDetector(     onTap: () async {
-                    final call = Uri.parse('tel: ${selectedUser?.phone ?? 'N/A'}');
-                    if (await canLaunchUrl(call)) {
-                      launchUrl(call);
-                    } else {
-                      throw 'Could not launch $call';
-                    }
-                  },
+              GestureDetector(
+                onTap: () async {
+                  final call =
+                      Uri.parse('tel: ${selectedUser?.phone ?? 'N/A'}');
+                  if (await canLaunchUrl(call)) {
+                    launchUrl(call);
+                  } else {
+                    throw 'Could not launch $call';
+                  }
+                },
                 child: ListTile(
                   leading: const Icon(
                     Icons.phone,
@@ -386,7 +383,6 @@ class _UserfromNotificationState extends State<UserfromNotification> {
               //     logout();
               //   },
               // ),
-          
             ],
           ),
         ),

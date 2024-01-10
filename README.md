@@ -1,4 +1,4 @@
-# zenify_app
+# SunShine
 
 A new Flutter project.
 

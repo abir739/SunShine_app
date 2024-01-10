@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:zenify_app/Secreens/Notification/NotificationDetails.dart';
-import 'package:zenify_app/Secreens/Notification/PushNotificationScreen.dart';
-import 'package:zenify_app/Secreens/Notification/transferdetailsfromnotification.dart';
-import 'package:zenify_app/modele/TouristGuide.dart';
-import 'package:zenify_app/services/ServiceWedget/ImageWithDynamicBackgrounListusers%20copy.dart';
+import 'package:SunShine/Secreens/Notification/NotificationDetails.dart';
+import 'package:SunShine/Secreens/Notification/PushNotificationScreen.dart';
+import 'package:SunShine/Secreens/Notification/transferdetailsfromnotification.dart';
+import 'package:SunShine/modele/TouristGuide.dart';
+import 'package:SunShine/services/ServiceWedget/ImageWithDynamicBackgrounListusers%20copy.dart';
 
-import 'package:zenify_app/services/constent.dart';
+import 'package:SunShine/services/constent.dart';
 import '../../modele/HttpPushNotification.dart';
 import '../../modele/activitsmodel/httpActivites.dart';
 import '../../modele/activitsmodel/pushnotificationmodel.dart';
@@ -315,12 +315,14 @@ class _NotificationListState extends State<NotificationList> {
                                               ? ImageWithDynamicBackgroundColorusersList(
                                                   imageUrl:
                                                       "https://images.unsplash.com/photo-1575936123452-b67c3203c357?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000",
-                                                  isCirculair: true,color: true,
+                                                  isCirculair: true,
+                                                  color: true,
                                                 )
                                               : ImageWithDynamicBackgroundColorusersList(
                                                   imageUrl:
                                                       "${baseUrls}${notification.title}",
-                                                  isCirculair: true,color: true,
+                                                  isCirculair: true,
+                                                  color: true,
                                                 ),
                                           Row(
                                             children: [

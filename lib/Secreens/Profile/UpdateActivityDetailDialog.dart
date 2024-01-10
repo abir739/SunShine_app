@@ -2,7 +2,7 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 // import 'package:intl/intl.dart';
-// import 'package:zenify_app_mobile/modele/activitsmodel/activitesmodel.dart';
+// import 'package:SunShine_mobile/modele/activitsmodel/activitesmodel.dart';
 // import '../../NetworkHandler.dart';
 // import '../../modele/HttpUserHandler.dart';
 // import '../../modele/activitsmodel/usersmodel.dart';

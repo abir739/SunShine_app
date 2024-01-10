@@ -1,13 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:zenify_app/core/error/Strings/Failure.dart';
-import 'package:zenify_app/core/error/failures.dart';
-import 'package:zenify_app/features/notification/domain/entites/notification.dart';
-import 'package:zenify_app/features/notification/domain/usecases/add_notification_useCase.dart';
-import 'package:zenify_app/features/notification/domain/usecases/delet_notification_useCase.dart';
-import 'package:zenify_app/features/notification/domain/usecases/update_notification_useCase.dart';
-import 'package:zenify_app/features/notification/presontation/bloc/NotificationsBlocs/notifications_bloc.dart';
+import 'package:SunShine/core/error/Strings/Failure.dart';
+import 'package:SunShine/core/error/failures.dart';
+import 'package:SunShine/features/notification/domain/entites/notification.dart';
+import 'package:SunShine/features/notification/domain/usecases/add_notification_useCase.dart';
+import 'package:SunShine/features/notification/domain/usecases/delet_notification_useCase.dart';
+import 'package:SunShine/features/notification/domain/usecases/update_notification_useCase.dart';
+import 'package:SunShine/features/notification/presontation/bloc/NotificationsBlocs/notifications_bloc.dart';
 
 part 'add_delet_update_notification_event.dart';
 part 'add_delet_update_notification_state.dart';

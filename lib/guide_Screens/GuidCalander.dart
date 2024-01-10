@@ -8,27 +8,25 @@ import 'package:getwidget/components/bottom_sheet/gf_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:get/get.dart';
-import 'package:zenify_app/Secreens/CustomCalendarDataSource.dart';
-import 'package:zenify_app/Secreens/widgetCard/cardClass.dart';
-import 'package:zenify_app/Settings/AppSettings.dart';
-import 'package:zenify_app/guide_Screens/Activity_Details.dart';
-import 'package:zenify_app/guide_Screens/Event_Details.dart';
-import 'package:zenify_app/guide_Screens/task_Details.dart';
-
-import 'package:zenify_app/modele/Event/Event.dart';
-import 'package:zenify_app/modele/HttpTravellerssHandel.dart';
-import 'package:zenify_app/modele/activitsmodel/activitesmodel.dart';
-import 'package:zenify_app/modele/activitsmodel/httpActivites.dart';
-import 'package:zenify_app/modele/activitsmodel/usersmodel.dart';
-import 'package:zenify_app/modele/httpTasks.dart';
-import 'package:zenify_app/modele/tasks/taskModel.dart';
-import 'package:zenify_app/modele/transportmodel/ApiResponse.dart';
-import 'package:zenify_app/modele/traveller/TravellerModel.dart';
-import 'package:zenify_app/routes/SettingsProvider.dart';
-import 'package:zenify_app/services/GuideProvider.dart';
-import 'package:zenify_app/services/constent.dart';
-import 'package:zenify_app/services/widget/LoadingScreen.dart';
-import 'package:zenify_app/theme.dart';
+import 'package:SunShine/Secreens/CustomCalendarDataSource.dart';
+import 'package:SunShine/Secreens/widgetCard/cardClass.dart';
+import 'package:SunShine/Settings/AppSettings.dart';
+import 'package:SunShine/guide_Screens/Activity_Details.dart';
+import 'package:SunShine/guide_Screens/Event_Details.dart';
+import 'package:SunShine/guide_Screens/task_Details.dart';
+import 'package:SunShine/modele/Event/Event.dart';
+import 'package:SunShine/modele/HttpTravellerssHandel.dart';
+import 'package:SunShine/modele/activitsmodel/activitesmodel.dart';
+import 'package:SunShine/modele/activitsmodel/httpActivites.dart';
+import 'package:SunShine/modele/activitsmodel/usersmodel.dart';
+import 'package:SunShine/modele/httpTasks.dart';
+import 'package:SunShine/modele/tasks/taskModel.dart';
+import 'package:SunShine/modele/transportmodel/ApiResponse.dart';
+import 'package:SunShine/modele/traveller/TravellerModel.dart';
+import 'package:SunShine/routes/SettingsProvider.dart';
+import 'package:SunShine/services/GuideProvider.dart';
+import 'package:SunShine/services/constent.dart';
+import 'package:SunShine/theme.dart';
 import '../modele/accommodationsModel/accommodationModel.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -525,7 +523,7 @@ class _GuidCalanderSecreenState extends State<GuidCalanderSecreen> {
           subject: '🚍 from ${transfer.from} to ${transfer.to}',
           endTime: (transfer.date ?? DateTime.now())
               .add(Duration(hours: transfer.durationHours ?? 0)),
-          color: Color.fromARGB(255, 235, 235, 202),
+          color: Color.fromARGB(255, 208, 145, 237),
         ));
       }
     }
@@ -724,11 +722,7 @@ class _GuidCalanderSecreenState extends State<GuidCalanderSecreen> {
 
     if (taskslist!.isEmpty == true &&
         activityList!.isEmpty == true &&
-        transferList.isEmpty == true) {
-      return LoadingScreen(
-        loadingText: "Loading...",
-      );
-    }
+        transferList.isEmpty == true) {}
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(

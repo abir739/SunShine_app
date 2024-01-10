@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:zenify_app/features/notification/domain/entites/notification.dart' as no;
-import 'package:zenify_app/features/notification/presontation/widgets/Notification_detail.dart';
+import 'package:SunShine/features/notification/domain/entites/notification.dart'
+    as no;
+import 'package:SunShine/features/notification/presontation/widgets/Notification_detail.dart';
 
 class NotificationDetailPage extends StatelessWidget {
   final no.Notification notification;

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zenify_app/features/Activites/presontation/widgets/LodingNotificationWidget.dart';
-import 'package:zenify_app/features/notification/presontation/bloc/NotificationsBlocs/notifications_bloc.dart';
-import 'package:zenify_app/features/notification/presontation/bloc/add_delet_update_notification/add_delet_update_notification_bloc.dart';
-import 'package:zenify_app/features/notification/presontation/pages/Notification_page.dart';
-import 'package:zenify_app/features/notification/presontation/widgets/Notification_detail_page/form_widget.dart';
+import 'package:SunShine/features/Activites/presontation/widgets/LodingNotificationWidget.dart';
+import 'package:SunShine/features/notification/presontation/bloc/NotificationsBlocs/notifications_bloc.dart';
+import 'package:SunShine/features/notification/presontation/bloc/add_delet_update_notification/add_delet_update_notification_bloc.dart';
+import 'package:SunShine/features/notification/presontation/pages/Notification_page.dart';
+import 'package:SunShine/features/notification/presontation/widgets/Notification_detail_page/form_widget.dart';
 
 import '../../../../core/util/snackbar_message.dart';
-import 'package:zenify_app/features/notification/domain/entites/notification.dart'
+import 'package:SunShine/features/notification/domain/entites/notification.dart'
     as no;
 
 class NotificationAddUpdatePage extends StatelessWidget {
@@ -36,14 +36,14 @@ class NotificationAddUpdatePage extends StatelessWidget {
     return Center(
       child: Padding(
           padding: EdgeInsets.all(10),
-          child:
-           BlocConsumer<AddDeletUpdateNotificationBloc,
+          child: BlocConsumer<AddDeletUpdateNotificationBloc,
               AddDeletUpdateNotificationState>(
             listener: (context, state) {
               if (state is MessageAddDeletUpdateNotificationState) {
                 SnackBarMessage().showSuccessSnackBar(
                     message: state.message, context: context);
-                     BlocProvider.of<NotificationsBloc>(context).add(RefreshNotificationsEvent());
+                BlocProvider.of<NotificationsBloc>(context)
+                    .add(RefreshNotificationsEvent());
                 // Navigator.of(context).pushAndRemoveUntil(
                 //     MaterialPageRoute(builder: (_) => NotificationPage()),
                 //     (route) => false);
@@ -65,8 +65,7 @@ class NotificationAddUpdatePage extends StatelessWidget {
                   isUpdatePost: isUpdateNotifification,
                   post: isUpdateNotifification ? notification : null);
             },
-          )
-          ),
+          )),
     );
   }
 }

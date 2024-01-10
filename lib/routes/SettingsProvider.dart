@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:zenify_app/Settings/AppSettings.dart';
-import 'package:zenify_app/Settings/SettingModel.dart';
+import 'package:SunShine/Settings/AppSettings.dart';
+import 'package:SunShine/Settings/SettingModel.dart';
 
 class SettingsProvider extends ChangeNotifier {
   late AppSettings _settings;

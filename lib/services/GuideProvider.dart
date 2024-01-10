@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zenify_app/login/Login.dart';
-import 'package:zenify_app/modele/TouristGuide.dart';
-import 'package:zenify_app/modele/httpTouristguidByid.dart';
-import 'package:zenify_app/modele/httpTravellerbyid.dart';
-import 'package:zenify_app/modele/traveller/TravellerModel.dart';
+import 'package:SunShine/login/Login.dart';
+import 'package:SunShine/modele/TouristGuide.dart';
+import 'package:SunShine/modele/httpTouristguidByid.dart';
+import 'package:SunShine/modele/httpTravellerbyid.dart';
+import 'package:SunShine/modele/traveller/TravellerModel.dart';
 
 class guidProvider with ChangeNotifier {
   int notificationCount = 0;

@@ -1,14 +1,17 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:zenify_app/Secreens/Activities-Category/Categories-Icons.dart';
-import 'package:zenify_app/Secreens/Notification/notificationlist_O.dart';
-import 'package:zenify_app/Secreens/Profile/User_Profil.dart';
-import 'package:zenify_app/guide_Screens/GuidCalander.dart';
-import 'package:zenify_app/guide_Screens/travellers_list_screen.dart';
-import 'package:zenify_app/modele/TouristGuide.dart';
+import 'package:provider/provider.dart';
+import 'package:SunShine/Controller/dependency_injection.dart';
+import 'package:SunShine/Secreens/Activities-Category/Categories-Icons.dart';
+import 'package:SunShine/Secreens/Notification/notificationlist_O.dart';
+import 'package:SunShine/Secreens/Profile/User_Profil.dart';
+import 'package:SunShine/guide_Screens/GuidCalander.dart';
+import 'package:SunShine/guide_Screens/travellers_list_screen.dart';
+import 'package:SunShine/modele/TouristGuide.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
+import 'package:SunShine/routes/ScrollControllerProvider.dart';
 
 class BottomNavBarDemo extends StatefulWidget {
   TouristGuide? guid;
@@ -20,19 +23,25 @@ class BottomNavBarDemo extends StatefulWidget {
 }
 
 class _BottomNavBarDemoState extends State<BottomNavBarDemo> {
-
-   final Connectivity _connectivity = Connectivity();
-   StreamSubscription? streamSubscription;
+  final Connectivity _connectivity = Connectivity();
+  StreamSubscription? streamSubscription;
   String? travellergroupId = "";
   int _currentIndex = 0;
   final PageController _pageController = PageController();
   final List<String> _pageTitles = [
-    'Home',
+    'Accueille',
     'Notification',
-    'Groups',
+    'Groupes',
     'Profile',
-    'Calendar',
+    'Calendrier'
   ];
+  final Map<String, IconData> _pageTitleIcons = {
+    'Accueille': Icons.home,
+    'Notification': Icons.notifications,
+    'Groupes': Icons.group,
+    'Profile': Icons.person,
+    'Calendrier': Icons.calendar_today,
+  };
 
   @override
   void dispose() {
@@ -40,15 +49,15 @@ class _BottomNavBarDemoState extends State<BottomNavBarDemo> {
     super.dispose();
   }
 
-@override
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
-       streamSubscription =
+    streamSubscription =
         _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
- 
   }
-void _updateConnectionStatus(ConnectivityResult connectivityResult) {
+
+  void _updateConnectionStatus(ConnectivityResult connectivityResult) {
     if (connectivityResult == ConnectivityResult.none) {
       Get.rawSnackbar(
           messageText: const Text('PLEASE CONNECT TO THE INTERNET',
@@ -64,11 +73,9 @@ void _updateConnectionStatus(ConnectivityResult connectivityResult) {
           margin: EdgeInsets.zero,
           snackStyle: SnackStyle.GROUNDED);
     } else {
-      if (Get.isSnackbarOpen) {
-        
-      }
-     
-       streamSubscription!.cancel();
+      if (Get.isSnackbarOpen) {}
+
+      streamSubscription!.cancel();
     }
   }
 
@@ -84,15 +91,29 @@ void _updateConnectionStatus(ConnectivityResult connectivityResult) {
 
   @override
   Widget build(BuildContext context) {
+    DependencyInjection.init();
+    final scrollControllerProvider =
+        Provider.of<ScrollControllerProvider>(context);
+    final closeTopContainer = scrollControllerProvider.closeTopContainer;
+    // if (hideitem == true) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        backgroundColor: const Color(0xFFEB5F52), // centerTitle: true,
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            Icon(
+              _pageTitleIcons[_pageTitles[_currentIndex]],
+              color: Color.fromARGB(255, 243, 234, 233),
+            ),
+            const SizedBox(
+              width: 120,
+            ),
             Text(
               _pageTitles[_currentIndex],
-              style: const TextStyle(color: Colors.black, fontSize: 22),
+              style: const TextStyle(
+                  color: Color.fromARGB(255, 238, 231, 231), fontSize: 20),
             ),
           ],
         ),
@@ -102,7 +123,8 @@ void _updateConnectionStatus(ConnectivityResult connectivityResult) {
             icon: Icon(
               Icons.notifications,
               size: 26,
-            ), 
+              color: Color.fromARGB(255, 243, 234, 233),
+            ),
             onPressed: () {
               // Navigate to the notification page when the icon is pressed
               Navigator.push(
@@ -123,7 +145,7 @@ void _updateConnectionStatus(ConnectivityResult connectivityResult) {
           //EventCalendar(guideId: widget.guid!.id),
           ActivityCategoryPage(),
           NotificationScreen(groupsid: travellergroupId, guid: widget.guid),
-          TravellersListScreen(guideId: widget.guid!.id),
+          TravellersListScreen(),
           const MainProfile(),
           GuidCalanderSecreen(),
         ],
@@ -135,8 +157,8 @@ void _updateConnectionStatus(ConnectivityResult connectivityResult) {
         onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today),
-            label: 'Calendar',
+            icon: Icon(Icons.home),
+            label: 'Accueille',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
@@ -144,7 +166,7 @@ void _updateConnectionStatus(ConnectivityResult connectivityResult) {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.group),
-            label: 'Groups',
+            label: 'Groupes',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
@@ -152,11 +174,10 @@ void _updateConnectionStatus(ConnectivityResult connectivityResult) {
           ),
           BottomNavigationBarItem(
             icon: FaIcon(FontAwesomeIcons.calendarCheck),
-            label: 'Calander',
+            label: 'Calendrier',
           ),
         ],
       ),
     );
-    
   }
 }

@@ -1,16 +1,14 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zenify_app/features/notification/domain/entites/notification.dart' as no;
-import 'package:zenify_app/features/notification/presontation/bloc/add_delet_update_notification/add_delet_update_notification_bloc.dart';
-import 'package:zenify_app/features/notification/presontation/widgets/Notification_detail_page/form_submit_btn.dart';
-import 'package:zenify_app/features/notification/presontation/widgets/Notification_detail_page/text_form_field_widget.dart';
-
-
+import 'package:SunShine/features/notification/domain/entites/notification.dart'
+    as no;
+import 'package:SunShine/features/notification/presontation/bloc/add_delet_update_notification/add_delet_update_notification_bloc.dart';
+import 'package:SunShine/features/notification/presontation/widgets/Notification_detail_page/form_submit_btn.dart';
+import 'package:SunShine/features/notification/presontation/widgets/Notification_detail_page/text_form_field_widget.dart';
 
 class FormWidget extends StatefulWidget {
   final bool isUpdatePost;
-  final no.Notification ? post;
+  final no.Notification? post;
   const FormWidget({
     Key? key,
     required this.isUpdatePost,
@@ -29,8 +27,8 @@ class _FormWidgetState extends State<FormWidget> {
   @override
   void initState() {
     if (widget.isUpdatePost) {
-      _titleController.text = widget.post!.title??"";
-      _bodyController.text = widget.post!.message??"";
+      _titleController.text = widget.post!.title ?? "";
+      _bodyController.text = widget.post!.message ?? "";
     }
     super.initState();
   }
@@ -46,7 +44,9 @@ class _FormWidgetState extends State<FormWidget> {
             TextFormFieldWidget(
                 name: "Title", multiLines: false, controller: _titleController),
             TextFormFieldWidget(
-                name: "Messagge", multiLines: true, controller: _bodyController),
+                name: "Messagge",
+                multiLines: true,
+                controller: _bodyController),
             FormSubmitBtn(
                 isUpdatePost: widget.isUpdatePost,
                 onPressed: validateFormThenUpdateOrAddPost),
@@ -58,18 +58,18 @@ class _FormWidgetState extends State<FormWidget> {
     final isValid = _formKey.currentState!.validate();
 
     // if (isValid) {
-      final post = no.Notification(
-          id: widget.isUpdatePost ? widget.post!.id : null,
-          title: _titleController.text,
-          message: _bodyController.text);
+    final post = no.Notification(
+        id: widget.isUpdatePost ? widget.post!.id : null,
+        title: _titleController.text,
+        message: _bodyController.text);
 
-      if (widget.isUpdatePost) {
-        BlocProvider.of<AddDeletUpdateNotificationBloc>(context)
-            .add(UpdateNotificationEvent(notification: post));
-      } else {
-        BlocProvider.of<AddDeletUpdateNotificationBloc>(context)
-            .add(AddNotificationEvent(notification: post));
-      }
+    if (widget.isUpdatePost) {
+      BlocProvider.of<AddDeletUpdateNotificationBloc>(context)
+          .add(UpdateNotificationEvent(notification: post));
+    } else {
+      BlocProvider.of<AddDeletUpdateNotificationBloc>(context)
+          .add(AddNotificationEvent(notification: post));
+    }
     // }
   }
 }

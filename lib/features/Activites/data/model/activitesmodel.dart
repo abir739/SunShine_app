@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:zenify_app/features/Activites/domain/entites/activite.dart';
-import 'package:zenify_app/modele/activitsmodel/activityTempModel.dart';
-import 'package:zenify_app/modele/agance.dart';
+import 'package:SunShine/features/Activites/domain/entites/activite.dart';
+import 'package:SunShine/modele/activitsmodel/activityTempModel.dart';
+import 'package:SunShine/modele/agance.dart';
 
 part 'activitesmodel.g.dart';
 

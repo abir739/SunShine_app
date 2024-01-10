@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_svg/svg.dart';
-import 'package:zenify_app/login/Login.dart';
-import 'package:zenify_app/traveller_Screens/transfers_ByCode.dart';
+import 'package:SunShine/login/Login.dart';
+import 'package:SunShine/traveller_Screens/transfers_ByCode.dart';
 import '../services/constent.dart';
 import '../modele/traveller/TravellerModel.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
@@ -46,17 +46,18 @@ class _TravellerLoginPageState extends State<TravellerLoginPage> {
           errorMessage = ''; // Clear error message if successful
           loading = false;
         });
-      if( responseData["inlineCount"]==0){Get.snackbar('Warning', " Check Your Code...",
-            backgroundGradient: const LinearGradient(
-              colors: [Color(0xff979090), Color(0x31858489)],
-            ),
-            colorText: Colors.white,
-            backgroundColor: const Color.fromARGB(255, 185, 4, 4));
-             setState(() {
-          loading = false;
-        });
-            }
-      } else{
+        if (responseData["inlineCount"] == 0) {
+          Get.snackbar('Warning', " Check Your Code...",
+              backgroundGradient: const LinearGradient(
+                colors: [Color(0xff979090), Color(0x31858489)],
+              ),
+              colorText: Colors.white,
+              backgroundColor: const Color.fromARGB(255, 185, 4, 4));
+          setState(() {
+            loading = false;
+          });
+        }
+      } else {
         Get.snackbar('Warning', " Check Your Code...",
             backgroundGradient: const LinearGradient(
               colors: [Color(0xff979090), Color(0x31858489)],

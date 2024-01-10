@@ -1,10 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
 import '../services/constent.dart';
 import 'activitsmodel/activityTempModel.dart';
 
@@ -13,14 +10,6 @@ class HTTPHandlerActivitestempId {
   Future<ActivityTemplate> fetchData(String url) async {
     String? baseUrl = await storage.read(key: "baseurl");
     String? token = await storage.read(key: 'access_token');
-
-    // String formater(String baseurl, String url) {
-    //   print(baseurl + url);
-    //   print(" urllllllllllllllllllllllllllll");
-    //   return baseurl + url;
-    // }
-
-    // url = formater(baseUrl, url);
     String formater(String url) {
       return baseUrls + url;
     }
@@ -35,8 +24,4 @@ class HTTPHandlerActivitestempId {
       throw Exception('${respond.statusCode}');
     }
   }
-
-  // String formater(String url) {
-  //   return baseurlA + url;
-  // }
 }

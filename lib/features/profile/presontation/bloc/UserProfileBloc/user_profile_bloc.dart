@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:zenify_app/core/error/Strings/Failure.dart';
-import 'package:zenify_app/core/error/failures.dart';
-import 'package:zenify_app/features/profile/domain/entity/user.dart';
+import 'package:SunShine/core/error/Strings/Failure.dart';
+import 'package:SunShine/core/error/failures.dart';
+import 'package:SunShine/features/profile/domain/entity/user.dart';
 
 import '../../../domain/usecases/getuserusecase.dart';
 
@@ -17,12 +17,13 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
       if (event is GetUserEvent) {
         emit(LoadingUserState());
         final userFailur = await getuserusescase(event.index ?? "");
-     userFailur.fold((failure) {
+        userFailur.fold((failure) {
           emit(ErrorUserState(Message: _mapfailureMassege(failure)));
         }, (user) {
           emit(LoadedUserState(user: user));
-        }); }else if(event is RefreshUserEvent){
- final notificationsOrFailur = await getuserusescase("");
+        });
+      } else if (event is RefreshUserEvent) {
+        final notificationsOrFailur = await getuserusescase("");
         // final Notification = await getAllNotificationUsease.call();
         // emit(_mapFailureOrNotificationStaet(notificationsOrFailur));
         notificationsOrFailur.fold((failure) {
@@ -30,11 +31,10 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
         }, (user) {
           emit(LoadedUserState(user: user));
         });
-
-        }
+      }
     });
   }
-    String _mapfailureMassege(Failure failure) {
+  String _mapfailureMassege(Failure failure) {
     switch (failure.runtimeType) {
       case ServerFailure:
         return Server_FAILLURE_ExECPTION;

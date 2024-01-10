@@ -1,6 +1,6 @@
 {
-    "name": "zenify_app",
-    "short_name": "zenify_app",
+    "name": "SunShine",
+    "short_name": "SunShine",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

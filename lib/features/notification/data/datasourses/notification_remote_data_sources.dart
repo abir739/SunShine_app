@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
-import 'package:zenify_app/core/error/exceptions.dart';
-import 'package:zenify_app/features/notification/data/model/pushnotificationmodel.dart';
-import 'package:zenify_app/login/Login.dart';
+import 'package:SunShine/core/error/exceptions.dart';
+import 'package:SunShine/features/notification/data/model/pushnotificationmodel.dart';
+import 'package:SunShine/login/Login.dart';
 
 abstract class NotificationRemoteDataSours {
   Future<List<NotificationModel>> getAllNotification(int? index);
@@ -22,9 +22,8 @@ class NotificationRemoteImplementwithHttp
   NotificationRemoteImplementwithHttp({required this.client});
   @override
   Future<List<NotificationModel>> getAllNotification(int? index) async {
-      
     String? token = await storage.read(key: 'access_token');
-      print("Bearer $token");
+    print("Bearer $token");
     final response = await client.get(
         Uri.parse(BASE_URL + "/api/push-notifications?limit=$index"),
         headers: {
@@ -33,7 +32,7 @@ class NotificationRemoteImplementwithHttp
           "Accept-Encoding": "gzip, deflate, br",
           "Accept-Language": "en-US,en;q=0.9",
         });
-     
+
     if (response.statusCode == 200) {
       print(response.statusCode);
 
@@ -57,11 +56,12 @@ class NotificationRemoteImplementwithHttp
       // "picture": notificationModel.picture,
       "title": notificationModel.title,
       // "type": notificationModel.type,
-    };   print("Bearer");
+    };
+    print("Bearer");
     String? token = await storage.read(key: 'access_token');
-       print("Bearer $token");
+    print("Bearer $token");
     final response = await client.post(
-        Uri.parse(BASE_URL +"/api/push-notifications"),
+        Uri.parse(BASE_URL + "/api/push-notifications"),
         body: body,
         headers: {
           "Authorization": "Bearer $token",
@@ -95,7 +95,7 @@ class NotificationRemoteImplementwithHttp
       // "type": notificationModel.type,
     };
     String? token = await storage.read(key: 'access_token');
-        print("Bearer $token");
+    print("Bearer $token");
     final response = await client.patch(
         Uri.parse(BASE_URL + "/api/push-notifications/$notificationid"),
         body: body,

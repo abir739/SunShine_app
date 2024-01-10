@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zenify_app/features/Activites/domain/entites/activite.dart';
-import 'package:zenify_app/features/notification/domain/entites/notification.dart'
+import 'package:SunShine/features/Activites/domain/entites/activite.dart';
+import 'package:SunShine/features/notification/domain/entites/notification.dart'
     as not;
 
 class ListActivitesWidget extends StatelessWidget {

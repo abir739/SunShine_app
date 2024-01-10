@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zenify_app/Secreens/Bottom_navigation_Guide.dart';
-import 'package:zenify_app/core/util/snackbar_message.dart';
-import 'package:zenify_app/features/Activites/presontation/widgets/LodingNotificationWidget.dart';
-import 'package:zenify_app/features/notification/presontation/bloc/NotificationsBlocs/notifications_bloc.dart';
-import 'package:zenify_app/features/notification/presontation/bloc/add_delet_update_notification/add_delet_update_notification_bloc.dart';
-import 'package:zenify_app/features/notification/presontation/pages/Notification_page.dart';
-import 'package:zenify_app/features/notification/presontation/widgets/Notification_detail_page/DeleteDialogWidget.dart';
-import 'package:zenify_app/guide_Screens/GuidCalander.dart';
-import 'package:zenify_app/modele/TouristGuide.dart';
+import 'package:SunShine/Secreens/Bottom_navigation_Guide.dart';
+import 'package:SunShine/core/util/snackbar_message.dart';
+import 'package:SunShine/features/Activites/presontation/widgets/LodingNotificationWidget.dart';
+import 'package:SunShine/features/notification/presontation/bloc/NotificationsBlocs/notifications_bloc.dart';
+import 'package:SunShine/features/notification/presontation/bloc/add_delet_update_notification/add_delet_update_notification_bloc.dart';
+import 'package:SunShine/features/notification/presontation/pages/Notification_page.dart';
+import 'package:SunShine/features/notification/presontation/widgets/Notification_detail_page/DeleteDialogWidget.dart';
+import 'package:SunShine/guide_Screens/GuidCalander.dart';
+import 'package:SunShine/modele/TouristGuide.dart';
 
 class DeletePostBtnWidget extends StatelessWidget {
   final String Notificationid;
@@ -26,16 +26,16 @@ class DeletePostBtnWidget extends StatelessWidget {
         ),
       ),
       onPressed: () async {
-        deleteDialog(context, Notificationid).then((value) =>  Navigator.pop(context));
-        
+        deleteDialog(context, Notificationid)
+            .then((value) => Navigator.pop(context));
       },
       icon: Icon(Icons.delete_outline),
       label: Text("Delete"),
     );
   }
 
-  Future<void >deleteDialog(BuildContext context, String Notificationid) async {
- await   showDialog(
+  Future<void> deleteDialog(BuildContext context, String Notificationid) async {
+    await showDialog(
         context: context,
         builder: (context) {
           return BlocConsumer<AddDeletUpdateNotificationBloc,

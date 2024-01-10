@@ -7,19 +7,19 @@ import 'package:get/get.dart';
 import 'package:getwidget/components/bottom_sheet/gf_bottom_sheet.dart';
 import 'package:getwidget/components/list_tile/gf_list_tile.dart';
 import 'package:provider/provider.dart';
-import 'package:zenify_app/Secreens/Notification/GuidPushnotification.dart';
-import 'package:zenify_app/Secreens/Notification/ImageViewScreen.dart';
-import 'package:zenify_app/features/notification/domain/entites/notification.dart'
+import 'package:SunShine/Secreens/Notification/GuidPushnotification.dart';
+import 'package:SunShine/Secreens/Notification/ImageViewScreen.dart';
+import 'package:SunShine/features/notification/domain/entites/notification.dart'
     as not;
-import 'package:zenify_app/features/notification/presontation/bloc/NotificationsBlocs/notifications_bloc.dart';
-import 'package:zenify_app/features/notification/presontation/pages/Notification_detail_page.dart';
-import 'package:zenify_app/login/Login.dart';
-import 'package:zenify_app/modele/HttpUserHandler.dart';
-import 'package:zenify_app/modele/activitsmodel/usersmodel.dart';
-import 'package:zenify_app/routes/ScrollControllerProvider.dart';
-import 'package:zenify_app/services/ServiceWedget/ImageWithDynamicBackgrounListusers%20copy.dart';
-import 'package:zenify_app/services/ServiceWedget/NotificationUserImage.dart';
-import 'package:zenify_app/services/constent.dart';
+import 'package:SunShine/features/notification/presontation/bloc/NotificationsBlocs/notifications_bloc.dart';
+import 'package:SunShine/features/notification/presontation/pages/Notification_detail_page.dart';
+import 'package:SunShine/login/Login.dart';
+import 'package:SunShine/modele/HttpUserHandler.dart';
+import 'package:SunShine/modele/activitsmodel/usersmodel.dart';
+import 'package:SunShine/routes/ScrollControllerProvider.dart';
+import 'package:SunShine/services/ServiceWedget/ImageWithDynamicBackgrounListusers%20copy.dart';
+import 'package:SunShine/services/ServiceWedget/NotificationUserImage.dart';
+import 'package:SunShine/services/constent.dart';
 import 'package:intl/intl.dart';
 
 class ListNotificationWidget extends StatefulWidget {
@@ -36,17 +36,17 @@ class _ListNotificationWidgetState extends State<ListNotificationWidget> {
   late ScrollController controller;
   bool closeTopContainer = false;
   double topContainer = 0;
-   String? token;
+  String? token;
   String? Url;
   late List<DateTime> _currentViewVisibleDates;
   String? travellergroupId = "";
-    User? selectedUser = User();
-      final httpUserHandler = HttpUserHandler();
- final GFBottomSheetController _controller = GFBottomSheetController();
+  User? selectedUser = User();
+  final httpUserHandler = HttpUserHandler();
+  final GFBottomSheetController _controller = GFBottomSheetController();
   @override
   void initState() {
     super.initState();
-        _loadUser();
+    _loadUser();
     controller = ScrollController();
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
       controller.addListener(() {
@@ -78,6 +78,7 @@ class _ListNotificationWidgetState extends State<ListNotificationWidget> {
       });
     });
   }
+
   void _loadUser() async {
     token = (await storage.read(key: "access_token"))!;
     Url = await storage.read(key: "baseurl");
@@ -105,7 +106,7 @@ class _ListNotificationWidgetState extends State<ListNotificationWidget> {
       print('Error loading user: $error');
     }
   }
- 
+
   String formatTimestamp(DateTime? dateTime) {
     final now = DateTime.now();
     final difference = now.difference(dateTime!);
@@ -129,9 +130,10 @@ class _ListNotificationWidgetState extends State<ListNotificationWidget> {
 
   @override
   Widget build(BuildContext context) {
-     final scrollControllerProvider = Provider.of<ScrollControllerProvider>(context);
+    final scrollControllerProvider =
+        Provider.of<ScrollControllerProvider>(context);
     final scrollController = scrollControllerProvider.controller;
-      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       controller.addListener(() {
         print('scrolling');
         setState(() {
@@ -160,15 +162,14 @@ class _ListNotificationWidgetState extends State<ListNotificationWidget> {
         }
       });
     });
-  
-    return
-     Scaffold(
-          bottomSheet:
+
+    return Scaffold(
+      bottomSheet:
           //  closeTopContainer
           //     ? SizedBox()
           //     :
           Visibility(
-        visible:closeTopContainer,
+        visible: closeTopContainer,
         child: GFBottomSheet(
           controller: _controller,
           maxContentHeight: 100,
@@ -261,7 +262,6 @@ class _ListNotificationWidgetState extends State<ListNotificationWidget> {
                     //     );
                     //   },
                     // ),
-             
                   ],
                 ),
               ],
@@ -287,7 +287,8 @@ class _ListNotificationWidgetState extends State<ListNotificationWidget> {
                           content: Container(
                             width: 400, // Adjust the width as needed
                             height: 300, // Adjust the height as needed
-                            child: PushNotificationGuideScreen("widget.guid?.id"),
+                            child:
+                                PushNotificationGuideScreen("widget.guid?.id"),
                           ),
                           actions: <Widget>[
                             TextButton(
@@ -332,8 +333,8 @@ class _ListNotificationWidgetState extends State<ListNotificationWidget> {
           stickyFooterHeight: 50,
         ),
       ),
-
-       body: ListView.builder(controller: controller,
+      body: ListView.builder(
+        controller: controller,
         itemCount: widget.notifications.length + 1,
         itemBuilder: (context, index) {
           if (index == widget.notifications.length) {
@@ -343,7 +344,7 @@ class _ListNotificationWidgetState extends State<ListNotificationWidget> {
                 child: GestureDetector(
                   onTap: () {
                     BlocProvider.of<NotificationsBloc>(context)
-                        .add(GetAllNotificationsEvent(index:  index+5));
+                        .add(GetAllNotificationsEvent(index: index + 5));
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
@@ -360,21 +361,21 @@ class _ListNotificationWidgetState extends State<ListNotificationWidget> {
               ),
             );
           }
-     
+
           final notification = widget.notifications[index];
-     
+
           final dateFormat = DateFormat('MMMM d, yyyy');
           final timeFormat = DateFormat('hh:mm a');
           final formattedDate =
               dateFormat.format(notification.createdAt ?? DateTime.now());
           final formattedTime =
               timeFormat.format(notification.createdAt ?? DateTime.now());
-     
+
           final bool isDifferentDate = index == 0 ||
               formattedDate !=
-                  dateFormat.format(
-                      widget.notifications[index - 1].createdAt ?? DateTime.now());
-     
+                  dateFormat.format(widget.notifications[index - 1].createdAt ??
+                      DateTime.now());
+
           return Column(
             children: [
               if (isDifferentDate)
@@ -394,14 +395,14 @@ class _ListNotificationWidgetState extends State<ListNotificationWidget> {
                 //   print(notification.type);
                 //   // Replace with your navigation logic to 'TransportDetailSecreen'
                 //   // Get.to(TransportDetailSecreen(notification.category));
-                            onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => NotificationDetailPage(notification:widget.notifications[index]),
-              ),
-            );
-
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => NotificationDetailPage(
+                          notification: widget.notifications[index]),
+                    ),
+                  );
                 },
                 child: Container(
                   child: Padding(
@@ -434,13 +435,12 @@ class _ListNotificationWidgetState extends State<ListNotificationWidget> {
                             ClipOval(
                               child: CachedNetworkImage(
                                 height: 40,
-                                width: 40,cacheManager: CacheManager(
-                            Config(
-                              "fluttercampus",
-                              stalePeriod: const Duration(days: 7),
-                              //one week cache period
-                            )
-                        ),
+                                width: 40,
+                                cacheManager: CacheManager(Config(
+                                  "fluttercampus",
+                                  stalePeriod: const Duration(days: 7),
+                                  //one week cache period
+                                )),
                                 imageUrl:
                                     "${baseUrls}/assets/uploads/traveller/${notification.creatorUser?.picture}",
                                 fadeInCurve: Curves.fastOutSlowIn,
@@ -460,7 +460,6 @@ class _ListNotificationWidgetState extends State<ListNotificationWidget> {
                                     Icons.face,
                                     color: Colors.white30,
                                   ),
-                                  
                                 ),
                               ),
                             )
@@ -572,8 +571,8 @@ class _ListNotificationWidgetState extends State<ListNotificationWidget> {
             ],
           );
         },
-         ),
-     );
+      ),
+    );
 
     //  ListView.separated(
     //   separatorBuilder: (context, index) => Divider(height: 5),

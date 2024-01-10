@@ -1,13 +1,11 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:zenify_app/guide_Screens/GroupsList.dart';
-import 'package:zenify_app/login/Login.dart';
-import 'package:zenify_app/modele/Media-files.dart';
-import 'package:zenify_app/modele/activitsmodel/activityTempModel.dart';
-import 'package:zenify_app/services/constent.dart';
+import 'package:SunShine/guide_Screens/GroupsList.dart';
+import 'package:SunShine/login/Login.dart';
+import 'package:SunShine/modele/Media-files.dart';
+import 'package:SunShine/modele/activitsmodel/activityTempModel.dart';
+import 'package:SunShine/services/constent.dart';
 import 'package:http/http.dart' as http;
-
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
@@ -60,132 +58,136 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Activity Details'),
+        title: Text('                 Détails'),
+        backgroundColor: const Color(0xFFEB5F52),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: 554,
-              height: 314,
-              margin: EdgeInsets.fromLTRB(9, 0, 7, 0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(21),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                    "${baseUrls}${widget.activityTemplate.picture}",
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 10),
+              Container(
+                width: 554,
+                height: 314,
+                margin: EdgeInsets.fromLTRB(9, 0, 7, 0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(21),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                      "${baseUrls}${widget.activityTemplate.picture}",
+                    ),
                   ),
                 ),
               ),
-            ),
-            Container(
-              width: double.infinity,
-              margin: EdgeInsets.all(18),
-              padding: EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.activityTemplate.name ?? '',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFFFF725E),
-                    ),
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    'Country: ${widget.activityTemplate.country?.name ?? ''}',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  SizedBox(height: 21),
-                  Text(
-                    'About the Place',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 1, 1, 1),
-                    ),
-                  ),
-                  SizedBox(height: 12),
-                  Text(
-                    widget.activityTemplate.shortDescription ?? '',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  SizedBox(height: 21),
-                  Text(
-                    'More Photos',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 1, 1, 1),
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  buildImageList(widget.activityTemplate.id ?? ""),
-
-                  SizedBox(height: 55),
-                  // Bookmark Icon
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.bookmark_border,
-                            size: 35,
-                            color: Color(0xFFFF725E),
-                          ),
-                          onPressed: () {
-                            // Implement bookmark functionality here
-                          },
-                        ),
+              Container(
+                width: double.infinity,
+                margin: EdgeInsets.all(18),
+                padding: EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.activityTemplate.name ?? '',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFFFF725E),
                       ),
-                      SizedBox(width: 20),
-                      // "Book Now" Button
-                      Container(
-                        width: 212,
-                        height: 43,
-                        margin: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            // Navigate to TravellersListScreen
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => GroupsList(),
-                              ),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                Color(0xFFFF725E), // You can change the color
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      'Pays: ${widget.activityTemplate.location ?? ''}',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    SizedBox(height: 21),
+                    Text(
+                      'À propos du lieu',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 1, 1, 1),
+                      ),
+                    ),
+                    SizedBox(height: 12),
+                    Text(
+                      widget.activityTemplate.shortDescription ?? '',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    SizedBox(height: 21),
+                    Text(
+                      'Plus de photos',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 1, 1, 1),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    buildImageList(widget.activityTemplate.id ?? ""),
+
+                    SizedBox(height: 55),
+                    // Bookmark Icon
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.bookmark_border,
+                              size: 35,
+                              color: Color(0xFFFF725E),
+                            ),
+                            onPressed: () {
+                              // Implement bookmark functionality here
+                            },
                           ),
-                          child: Text(
-                            'Book Now',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                        ),
+                        SizedBox(width: 20),
+                        // "Book Now" Button
+                        Container(
+                          width: 212,
+                          height: 43,
+                          margin: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              // Navigate to TravellersListScreen
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => GroupsList(),
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  Color(0xFFFF725E), // You can change the color
+                            ),
+                            child: Text(
+                              'Reserve maintenant',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

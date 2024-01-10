@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zenify_app/features/notification/domain/entites/notification.dart' as no;
-import 'package:zenify_app/features/notification/presontation/pages/notification_add_update_page.dart';
+import 'package:SunShine/features/notification/domain/entites/notification.dart'
+    as no;
+import 'package:SunShine/features/notification/presontation/pages/notification_add_update_page.dart';
 
 class UpdateNotificationBtnWidget extends StatelessWidget {
   final no.Notification post;

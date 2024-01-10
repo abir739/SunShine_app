@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:zenify_app/modele/activitsmodel/activityTempModel.dart';
-import 'package:zenify_app/modele/agance.dart';
+import 'package:SunShine/modele/activitsmodel/activityTempModel.dart';
+import 'package:SunShine/modele/agance.dart';
 
 class Activite extends Equatable {
   final String? id;
@@ -38,35 +38,56 @@ class Activite extends Equatable {
   String? secondaryColor;
 
   Activite(
-      { this.id,
-       this.name,
-       this.agencyId,
-       this.logo,
-       this.activityTemplateId,
-       this.touristGuideId,
-       this.departureDate,
-       this.departureNote,
-       this.returnDate,
-       this.returnNote,
-       this.reference,
-       this.confirmed,
-       this.adultPrice,
-       this.childPrice,
-       this.babyPrice,
-       this.currency,
-       this.placesCount,
-       this.parentActivityId,
-       this.creatorUserId,
-       this.createdAt,
-       this.updaterUserId,
-       this.updatedAt,
-       this.deletedAt,
-       this.agency,
-       this.activityTemplate});
+      {this.id,
+      this.name,
+      this.agencyId,
+      this.logo,
+      this.activityTemplateId,
+      this.touristGuideId,
+      this.departureDate,
+      this.departureNote,
+      this.returnDate,
+      this.returnNote,
+      this.reference,
+      this.confirmed,
+      this.adultPrice,
+      this.childPrice,
+      this.babyPrice,
+      this.currency,
+      this.placesCount,
+      this.parentActivityId,
+      this.creatorUserId,
+      this.createdAt,
+      this.updaterUserId,
+      this.updatedAt,
+      this.deletedAt,
+      this.agency,
+      this.activityTemplate});
   @override
   // TODO: implement props
-  List<Object?> get props => [id, name,activityTemplate,agency,deletedAt
-  ,updaterUserId,createdAt,creatorUserId,parentActivityId,placesCount,
- currency,babyPrice,childPrice,confirmed,reference,returnNote,
-  returnDate,departureNote,departureDate,touristGuideId,activityTemplateId,logo,agencyId];
+  List<Object?> get props => [
+        id,
+        name,
+        activityTemplate,
+        agency,
+        deletedAt,
+        updaterUserId,
+        createdAt,
+        creatorUserId,
+        parentActivityId,
+        placesCount,
+        currency,
+        babyPrice,
+        childPrice,
+        confirmed,
+        reference,
+        returnNote,
+        returnDate,
+        departureNote,
+        departureDate,
+        touristGuideId,
+        activityTemplateId,
+        logo,
+        agencyId
+      ];
 }

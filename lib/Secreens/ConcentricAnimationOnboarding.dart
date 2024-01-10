@@ -1,7 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:concentric_transition/concentric_transition.dart';
 import 'package:flutter/material.dart';
-import 'package:zenify_app/guide_Screens/Guide_First_Page.dart';
+import 'package:SunShine/guide_Screens/Guide_First_Page.dart';
 
 final pages = [
   const PageData(

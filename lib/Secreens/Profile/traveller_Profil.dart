@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:zenify_app/Secreens/Upload_Files/FilePickerUploader.dart';
-import 'package:zenify_app/login/Login.dart';
+import 'package:SunShine/Secreens/Upload_Files/FilePickerUploader.dart';
+import 'package:SunShine/login/Login.dart';
 
 import '../../NetworkHandler.dart';
 import '../../services/constent.dart';

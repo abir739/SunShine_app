@@ -1,12 +1,13 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:zenify_app/modele/activitsmodel/activitiesCategoryModel.dart';
-import 'package:zenify_app/modele/country/countryModel.dart';
+import 'package:SunShine/modele/activitsmodel/activitiesCategoryModel.dart';
+import 'package:SunShine/modele/country/countryModel.dart';
 part 'activityTempModel.g.dart';
 
 @JsonSerializable()
 class ActivityTemplate {
   String? id;
   String? name;
+  String? location;
   int? durationHours;
   String? shortDescription;
   String? picture;
@@ -41,6 +42,7 @@ class ActivityTemplate {
   ActivityTemplate(
       {this.id,
       this.name,
+      this.location,
       this.images,
       this.activitiesCategoryModelmplate,
       this.durationHours,
@@ -72,5 +74,4 @@ class ActivityTemplate {
   factory ActivityTemplate.fromJson(Map<String, dynamic> json) =>
       _$ActivityTemplateFromJson(json);
   Map<String, dynamic> toJson() => _$ActivityTemplateToJson(this);
-  
 }

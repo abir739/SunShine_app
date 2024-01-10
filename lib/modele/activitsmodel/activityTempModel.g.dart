@@ -10,6 +10,7 @@ ActivityTemplate _$ActivityTemplateFromJson(Map<String, dynamic> json) =>
     ActivityTemplate(
       id: json['id'] as String?,
       name: json['name'] as String?,
+      location: json['location'] as String?,
       images:
           (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
       // activitiesCategoryModelmplate: json['activitiesCategoryModelmplate'] ==
@@ -63,6 +64,7 @@ Map<String, dynamic> _$ActivityTemplateToJson(ActivityTemplate instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'location': instance.location,
       'durationHours': instance.durationHours,
       'shortDescription': instance.shortDescription,
       'picture': instance.picture,

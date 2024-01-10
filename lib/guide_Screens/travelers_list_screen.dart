@@ -2,13 +2,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:http/http.dart' as http;
-import 'package:zenify_app/guide_Screens/TravelerProfileScreen.dart';
-import 'package:zenify_app/login/Login.dart';
-import 'package:zenify_app/services/constent.dart';
+import 'package:SunShine/guide_Screens/TravelerProfileScreen.dart';
+import 'package:SunShine/login/Login.dart';
+import 'package:SunShine/services/constent.dart';
 
-import 'package:zenify_app/modele/traveller/TravellerModel.dart';
+import 'package:SunShine/modele/traveller/TravellerModel.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 
 class TravelersListScreen extends StatefulWidget {
   final String? selectedtouristGroupId;
@@ -75,51 +74,51 @@ class _TravelersListScreenState extends State<TravelersListScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const SizedBox(width: 60.0),
-            Text('Travelers List'),
+            Text('Liste des clients'),
           ],
         ),
       ),
       body: Column(
         children: [
-          const SizedBox(height: 10.0),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              const SizedBox(width: 5.0),
-              const SizedBox(width: 4.0),
-              Container(
-                height: 40.0,
-                width: 300,
-                decoration: BoxDecoration(
-                  color: const Color(0xFFEB5F52),
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: const Color(0xFFEB5F52),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  onPressed: () {
-                    // Add user screen navigation logic here
-                  },
-                  child: const Center(
-                    child: Text(
-                      '     Add User     ',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+          // const SizedBox(height: 10.0),
+          // Row(
+          //   mainAxisSize: MainAxisSize.min,
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: <Widget>[
+          //     const SizedBox(width: 5.0),
+          //     const SizedBox(width: 4.0),
+          //     Container(
+          //       height: 40.0,
+          //       width: 300,
+          //       decoration: BoxDecoration(
+          //         color: const Color(0xFFEB5F52),
+          //         borderRadius: BorderRadius.circular(30),
+          //       ),
+          //       child: ElevatedButton(
+          //         style: ElevatedButton.styleFrom(
+          //           foregroundColor: Colors.white,
+          //           backgroundColor: const Color(0xFFEB5F52),
+          //           shape: RoundedRectangleBorder(
+          //             borderRadius: BorderRadius.circular(30),
+          //           ),
+          //         ),
+          //         onPressed: () {
+          //           // Add user screen navigation logic here
+          //         },
+          //         child: const Center(
+          //           child: Text(
+          //             '     Ajouter un utilisateur    ',
+          //             style: TextStyle(
+          //               color: Colors.white,
+          //               fontWeight: FontWeight.w700,
+          //               fontSize: 16,
+          //             ),
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //   ],
+          // ),
           const SizedBox(height: 17.0),
           Expanded(
             child: ListView.builder(
@@ -199,7 +198,7 @@ class _TravelersListScreenState extends State<TravelersListScreen> {
                                 fontSize: 18), // Increase the font size
                           ),
                           subtitle: Text(
-                            'ID: ${traveler.id}\n Code: ${traveler.code}',
+                            'Code: ${traveler.code}',
                             style: const TextStyle(
                               fontSize: 14, // Increase the font size
                             ),

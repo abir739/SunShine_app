@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:zenify_app/Secreens/Upload_Files/FilePickerUploader.dart';
-import 'package:zenify_app/core/util/snackbar_message.dart';
-import 'package:zenify_app/features/Activites/presontation/widgets/LodingNotificationWidgets.dart';
-import 'package:zenify_app/features/notification/domain/entites/notification.dart'
+import 'package:SunShine/Secreens/Upload_Files/FilePickerUploader.dart';
+import 'package:SunShine/core/util/snackbar_message.dart';
+import 'package:SunShine/features/Activites/presontation/widgets/LodingNotificationWidgets.dart';
+import 'package:SunShine/features/notification/domain/entites/notification.dart'
     as no;
-import 'package:zenify_app/features/notification/presontation/bloc/add_delet_update_notification/add_delet_update_notification_bloc.dart';
-import 'package:zenify_app/features/notification/presontation/widgets/Notification_detail_page/form_submit_btn.dart';
-import 'package:zenify_app/features/notification/presontation/widgets/Notification_detail_page/text_form_field_widget.dart';
-import 'package:zenify_app/features/profile/presontation/bloc/UpdateProfileBloc/update_profle_bloc_bloc.dart';
-import 'package:zenify_app/features/profile/presontation/bloc/UserProfileBloc/user_profile_bloc.dart';
-import 'package:zenify_app/services/constent.dart';
-import 'package:zenify_app/services/widget/profile_widget%20_appbar.dart';
-import 'package:zenify_app/services/widget/profile_widget.dart';
+import 'package:SunShine/features/notification/presontation/bloc/add_delet_update_notification/add_delet_update_notification_bloc.dart';
+import 'package:SunShine/features/notification/presontation/widgets/Notification_detail_page/form_submit_btn.dart';
+import 'package:SunShine/features/notification/presontation/widgets/Notification_detail_page/text_form_field_widget.dart';
+import 'package:SunShine/features/profile/presontation/bloc/UpdateProfileBloc/update_profle_bloc_bloc.dart';
+import 'package:SunShine/features/profile/presontation/bloc/UserProfileBloc/user_profile_bloc.dart';
+import 'package:SunShine/services/constent.dart';
+import 'package:SunShine/services/widget/profile_widget%20_appbar.dart';
+import 'package:SunShine/services/widget/profile_widget.dart';
 
 import '../../domain/entity/user.dart';
 import 'package:intl/intl.dart';
+
 class FromProfileWidget extends StatefulWidget {
   final User? user;
-   FromProfileWidget({
+  FromProfileWidget({
     Key? key,
     this.user,
   }) : super(key: key);
@@ -35,16 +36,18 @@ class _FromProfileWidgetState extends State<FromProfileWidget> {
   TextEditingController _bodyController = TextEditingController();
   TextEditingController _birthdayController = TextEditingController();
   TextEditingController _LocationController = TextEditingController();
-  DateTime? _selectedDate;FilePickerUploader uploader = FilePickerUploader();
+  DateTime? _selectedDate;
+  FilePickerUploader uploader = FilePickerUploader();
   @override
   void initState() {
     _emailController.text = widget.user?.email ?? "";
     _LocationController.text = widget.user?.address ?? "";
     _LastNameController.text = widget.user?.lastName ?? "";
     _bodyController.text = widget.user?.firstName ?? "";
-  _birthdayController.text = widget.user?.birthDate != null
-    ? DateFormat('yyyy-MM-dd').format(widget.user!.birthDate??DateTime.now())
-    : "";
+    _birthdayController.text = widget.user?.birthDate != null
+        ? DateFormat('yyyy-MM-dd')
+            .format(widget.user!.birthDate ?? DateTime.now())
+        : "";
 
     super.initState();
   }
@@ -52,36 +55,39 @@ class _FromProfileWidgetState extends State<FromProfileWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(automaticallyImplyLeading :false,
-    //       actions: [
-    //         ProfileWidgetAppBar(
-    //           imagePath:
-    //               '${baseUrls}/assets/uploads/traveller/${widget.user?.picture}',
-    //           onClicked: () async {
-    //             // String? newData = await uploader.pickAndUploadFile(
-    //             //   dynamicPath: 'traveller', // Replace with your dynamic path
-    //             //   id: '${widget.user?.id}', // Replace with your id
-    //             //   object: 'api/users', // Replace with your object
-    //             //   field: 'picture', // Replace with your field
-    //  }  )//
-    //       ],
-          title: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [ ProfileWidgetAppBar(
-              imagePath:
-                  '${baseUrls}/assets/uploads/traveller/${widget.user?.picture}',
-              onClicked: () async {
-                // String? newData = await uploader.pickAndUploadFile(
-                //   dynamicPath: 'traveller', // Replace with your dynamic path
-                //   id: '${widget.user?.id}', // Replace with your id
-                //   object: 'api/users', // Replace with your object
-                //   field: 'picture', // Replace with your field
-     }  ),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          //       actions: [
+          //         ProfileWidgetAppBar(
+          //           imagePath:
+          //               '${baseUrls}/assets/uploads/traveller/${widget.user?.picture}',
+          //           onClicked: () async {
+          //             // String? newData = await uploader.pickAndUploadFile(
+          //             //   dynamicPath: 'traveller', // Replace with your dynamic path
+          //             //   id: '${widget.user?.id}', // Replace with your id
+          //             //   object: 'api/users', // Replace with your object
+          //             //   field: 'picture', // Replace with your field
+          //  }  )//
+          //       ],
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ProfileWidgetAppBar(
+                  imagePath:
+                      '${baseUrls}/assets/uploads/traveller/${widget.user?.picture}',
+                  onClicked: () async {
+                    // String? newData = await uploader.pickAndUploadFile(
+                    //   dynamicPath: 'traveller', // Replace with your dynamic path
+                    //   id: '${widget.user?.id}', // Replace with your id
+                    //   object: 'api/users', // Replace with your object
+                    //   field: 'picture', // Replace with your field
+                  }),
               Row(
                 children: [
-                  Text("${widget.user?.firstName}   "), Text("${widget.user?.lastName}"),
+                  Text("${widget.user?.firstName}   "),
+                  Text("${widget.user?.lastName}"),
                 ],
               ),
-             
             ],
           ),
           backgroundColor: Color(0xFFEB5F52),
@@ -130,16 +136,15 @@ class _FromProfileWidgetState extends State<FromProfileWidget> {
                     onTap: () {
                       _selectDate(context);
                     },
-                  child: TextFormField(
-                        controller: _birthdayController,
-                        decoration: InputDecoration(
-                          labelText: 'Birthday',
-                          // Add any other decoration properties as needed
-                          suffixIcon:
-                              Icon(Icons.calendar_today), // Add a calendar icon
-                        ),
+                    child: TextFormField(
+                      controller: _birthdayController,
+                      decoration: InputDecoration(
+                        labelText: 'Birthday',
+                        // Add any other decoration properties as needed
+                        suffixIcon:
+                            Icon(Icons.calendar_today), // Add a calendar icon
                       ),
-                    
+                    ),
                   ),
                   FormSubmitBtn(
                       isUpdatePost: true,
@@ -154,8 +159,8 @@ class _FromProfileWidgetState extends State<FromProfileWidget> {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [  
-                        // _buildHeader(context: context,user:widget.user),
+                    children: [
+                      // _buildHeader(context: context,user:widget.user),
                       TextFormFieldWidget(
                           name: "email",
                           multiLines: false,
@@ -177,19 +182,18 @@ class _FromProfileWidgetState extends State<FromProfileWidget> {
                           _selectDate(context);
                         },
                         child: AbsorbPointer(
-                          child:
-                           Padding(
-                             padding: const EdgeInsets.all(12.0),
-                             child: TextFormField(
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: TextFormField(
                               controller: _birthdayController,
                               decoration: InputDecoration(
                                 labelText: 'Birthday',
                                 // Add any other decoration properties as needed
-                                suffixIcon: Icon(
-                                    Icons.calendar_today), // Add a calendar icon
+                                suffixIcon: Icon(Icons
+                                    .calendar_today), // Add a calendar icon
                               ),
-                                                     ),
-                           ),
+                            ),
+                          ),
                         ),
                       ),
                       FormSubmitBtn(
@@ -205,6 +209,7 @@ class _FromProfileWidgetState extends State<FromProfileWidget> {
           },
         ));
   }
+
 // Widget _buildHeader({ User? user, required BuildContext context}) {
 //     return user?.picture == null
 //         ? ProfileWidget(
@@ -281,23 +286,25 @@ class _FromProfileWidgetState extends State<FromProfileWidget> {
       initialDate: _selectedDate ?? DateTime.now(),
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
-       builder: (BuildContext context, Widget? child) {
-      return Theme(
-        data: ThemeData.light().copyWith(
-          primaryColor: Colors.red, // Set your desired color for selected date
-          // bottomSheetTheme: Colors.blue, // Set your desired color for the buttons
-           colorScheme: ColorScheme.light(primary: Colors.red),
-          // buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.values),
-        ),
-        child: child!,
-      );
-    },
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            primaryColor:
+                Colors.red, // Set your desired color for selected date
+            // bottomSheetTheme: Colors.blue, // Set your desired color for the buttons
+            colorScheme: ColorScheme.light(primary: Colors.red),
+            // buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.values),
+          ),
+          child: child!,
+        );
+      },
     );
 
     if (picked != null && picked != _selectedDate) {
       setState(() {
         _selectedDate = picked;
-        _birthdayController.text =DateFormat('yyyy-MM-dd').format( _selectedDate!.toLocal());
+        _birthdayController.text =
+            DateFormat('yyyy-MM-dd').format(_selectedDate!.toLocal());
       });
     }
   }

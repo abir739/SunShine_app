@@ -1,4 +1,4 @@
-name: zenify_app
+name: SunShine
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -82,6 +82,9 @@ dependencies:
   internet_connection_checker: ^1.0.0+1
   cached_network_image: ^3.3.0
   flutter_cache_manager: ^3.3.1
+  device_info: ^2.0.3
+  firebase_core: ^2.24.2
+  firebase_messaging: ^14.7.10
   
  
   
@@ -94,8 +97,9 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/Logo.png"
+  image_path: "assets/sunshineLogo.png"
   adaptive_icon_background: "#ffffff"
+
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -118,7 +122,7 @@ flutter:
   assets:
     - assets/
     - assets/images/
-    - assets/Logo.svg
+    - assets/sunshineLogo.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

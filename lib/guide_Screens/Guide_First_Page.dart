@@ -3,10 +3,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:zenify_app/NetworkHandler.dart';
-import 'package:zenify_app/Secreens/Bottom_navigation_Guide.dart';
-import 'package:zenify_app/modele/touristGroup.dart';
-import 'package:zenify_app/services/widget/LoadingScreen.dart';
+import 'package:SunShine/NetworkHandler.dart';
+import 'package:SunShine/Secreens/Bottom_navigation_Guide.dart';
+import 'package:SunShine/modele/touristGroup.dart';
+import 'package:SunShine/services/widget/LoadingScreen.dart';
 import '../modele/HttpPlaning.dart';
 import '../modele/TouristGuide.dart';
 import '../modele/activitsmodel/httpActivites.dart';
@@ -224,7 +224,10 @@ class _PlaningSecreenState extends State<PlaningSecreen> {
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   // Show a loading indicator or any other widget while waiting
-                  return LoadingScreen(loadingText: "Loading...");
+                  return LoadingScreen(
+                    loadingText: "Loading....",
+                    cursor: "😊",
+                  );
                 } else {
                   // After the delay, show the "Submit" button
                   return Center(

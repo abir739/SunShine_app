@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
-import 'package:zenify_app/core/error/exceptions.dart';
-import 'package:zenify_app/features/notification/data/model/pushnotificationmodel.dart';
-import 'package:zenify_app/features/profile/data/model/usersmodel.dart';
-import 'package:zenify_app/login/Login.dart';
+import 'package:SunShine/core/error/exceptions.dart';
+import 'package:SunShine/features/notification/data/model/pushnotificationmodel.dart';
+import 'package:SunShine/features/profile/data/model/usersmodel.dart';
+import 'package:SunShine/login/Login.dart';
 
 abstract class UserRemoteDataSours {
   Future<UserModel> getUser(String? index);
@@ -61,7 +61,7 @@ class UserRemoteImplementwithHttp implements UserRemoteDataSours {
     };
     print("Bearer");
     String? token = await storage.read(key: 'access_token');
-    
+
     print("Bearer $token");
     final response = await client
         .post(Uri.parse(BASE_URL + "/api/users"), body: body, headers: {
@@ -86,7 +86,8 @@ class UserRemoteImplementwithHttp implements UserRemoteDataSours {
   }
 
   @override
-  Future<Unit> UpdateUser(UserModel userModel) async {  print("cannots updated");
+  Future<Unit> UpdateUser(UserModel userModel) async {
+    print("cannots updated");
     final userid = userModel.id.toString();
     final body = {
       "firstName": userModel.firstName,
@@ -100,7 +101,7 @@ class UserRemoteImplementwithHttp implements UserRemoteDataSours {
     };
     String? token = await storage.read(key: 'access_token');
     print("Bearer $token");
-        final userId = await storage.read(key: "id");
+    final userId = await storage.read(key: "id");
     final response = await client.patch(
         Uri.parse(BASE_URL + "/api/users/$userid"),
         body: body,

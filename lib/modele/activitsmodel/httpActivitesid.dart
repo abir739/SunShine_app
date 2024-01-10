@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import 'package:zenify_app/modele/activitsmodel/activitesmodel.dart';
+import 'package:SunShine/modele/activitsmodel/activitesmodel.dart';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 

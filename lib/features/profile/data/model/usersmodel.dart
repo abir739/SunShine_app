@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:zenify_app/features/profile/domain/entity/user.dart';
+import 'package:SunShine/features/profile/domain/entity/user.dart';
 
 part 'usersmodel.g.dart';
 
@@ -114,6 +114,7 @@ class UserModel extends User {
     // this.language,
     // this.secondLanguage,
   });
-  factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
 }

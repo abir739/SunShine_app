@@ -1,9 +1,8 @@
-
-
 import 'package:flutter/material.dart';
-import 'package:zenify_app/features/notification/domain/entites/notification.dart' as no;
-import 'package:zenify_app/features/notification/presontation/widgets/Notification_detail_page/delete_notification_btn_widget.dart';
-import 'package:zenify_app/features/notification/presontation/widgets/Notification_detail_page/update_notification_btn_widget.dart';
+import 'package:SunShine/features/notification/domain/entites/notification.dart'
+    as no;
+import 'package:SunShine/features/notification/presontation/widgets/Notification_detail_page/delete_notification_btn_widget.dart';
+import 'package:SunShine/features/notification/presontation/widgets/Notification_detail_page/update_notification_btn_widget.dart';
 
 class NotificationDetailWidget extends StatelessWidget {
   final no.Notification notification;
@@ -49,4 +48,3 @@ class NotificationDetailWidget extends StatelessWidget {
     );
   }
 }
-

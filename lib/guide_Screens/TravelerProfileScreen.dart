@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zenify_app/modele/traveller/TravellerModel.dart';
+import 'package:SunShine/modele/traveller/TravellerModel.dart';
 import 'package:flutter_svg/svg.dart';
 
 class TravelerProfileScreen extends StatelessWidget {
@@ -16,7 +16,7 @@ class TravelerProfileScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const SizedBox(width: 60.0),
-            Text('Traveler Profil'),
+            Text('Profil du voyageur'),
           ],
         ),
       ),
@@ -156,7 +156,7 @@ class TravelerProfileScreen extends StatelessWidget {
                   Icons.phone,
                   color: Color(0xFFEB5F52),
                 ),
-                title: const Text("Phone Number"),
+                title: const Text("Numéro de téléphone"),
                 subtitle: Text(traveler.user!.phone ?? 'N/A'),
               ),
               const Divider(),
@@ -165,7 +165,7 @@ class TravelerProfileScreen extends StatelessWidget {
                   Icons.cake,
                   color: Color(0xFFEB5F52),
                 ),
-                title: const Text("Birth Date"),
+                title: const Text("Date de naissance"),
                 subtitle: Text(
                   traveler.user!.birthDate?.toString() ?? 'N/A',
                 ),
@@ -178,7 +178,7 @@ class TravelerProfileScreen extends StatelessWidget {
                   Icons.my_location,
                   color: Color(0xFFEB5F52),
                 ),
-                title: const Text("Location"),
+                title: const Text("Emplacement"),
                 subtitle: Text(traveler.user!.address ?? 'N/A'),
               ),
             ],

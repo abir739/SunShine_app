@@ -3,19 +3,20 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zenify_app/core/error/exceptions.dart';
-import 'package:zenify_app/features/Activites/data/model/activitesmodel.dart';
-import 'package:zenify_app/features/notification/data/model/pushnotificationmodel.dart';
+import 'package:SunShine/core/error/exceptions.dart';
+import 'package:SunShine/features/Activites/data/model/activitesmodel.dart';
+import 'package:SunShine/features/notification/data/model/pushnotificationmodel.dart';
 
 abstract class ActiviteRLocalDataSours {
   Future<List<ActivityModel>> getCachedActivity();
   Future<Unit> cachedActivity(List<ActivityModel> activitymodel);
 }
+
 // const Cachec
 class ActiviteLocalDataSoursImpl implements ActiviteRLocalDataSours {
   final SharedPreferences sharedPreferences;
 
-ActiviteLocalDataSoursImpl({required this.sharedPreferences});
+  ActiviteLocalDataSoursImpl({required this.sharedPreferences});
   @override
   Future<Unit> cachedActivity(List<ActivityModel> activitesModels) {
     //List notificationModelsTojson=notificationModels.map<Map<String,dynamic>>((notificationModelse))=>notificationModels.).toList();
@@ -35,8 +36,7 @@ ActiviteLocalDataSoursImpl({required this.sharedPreferences});
     if (jsonString != null) {
       List decodeJsonData = json.decode(jsonString);
       List<ActivityModel> jsonToActivites = decodeJsonData
-          .map((jsonToActivites) =>
-              ActivityModel.fromJson(jsonToActivites))
+          .map((jsonToActivites) => ActivityModel.fromJson(jsonToActivites))
           .toList();
       return Future.value(jsonToActivites);
     } else {

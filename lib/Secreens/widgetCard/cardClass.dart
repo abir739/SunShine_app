@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
-import 'package:zenify_app/modele/activitsmodel/activitesmodel.dart';
-import 'package:zenify_app/modele/tasks/taskModel.dart';
-import 'package:zenify_app/modele/transportmodel/transportModel.dart';
-import 'package:zenify_app/services/ServiceWedget/NotificationUserImages.dart';
-import 'package:zenify_app/services/constent.dart';
+import 'package:SunShine/modele/activitsmodel/activitesmodel.dart';
+import 'package:SunShine/modele/tasks/taskModel.dart';
+import 'package:SunShine/modele/transportmodel/transportModel.dart';
+import 'package:SunShine/services/ServiceWedget/NotificationUserImages.dart';
+import 'package:SunShine/services/constent.dart';
 
 final customFormat = DateFormat('dd MMMM yyyy hh:mm a');
 
@@ -40,7 +40,7 @@ class TransferCard extends StatelessWidget {
 
     if (minutesDifference <= 0) {
       return Text(
-        'Passed',
+        'Expiré',
         style: TextStyle(fontWeight: FontWeight.w600, fontSize: 40),
       );
     } else if (minutesDifference < 60) {
@@ -75,7 +75,7 @@ class TransferCard extends StatelessWidget {
         height: 400,
         width: 900,
         child: Card(
-          color: Color.fromARGB(255, 250, 250, 235),
+          color: Color.fromARGB(255, 208, 145, 237),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -186,8 +186,7 @@ class TransferCard extends StatelessWidget {
                                   SizedBox(width: 18),
                                   Text(
                                     "Ar: " +
-                                        (transfer != null &&
-                                                transfer.date != null &&
+                                        (transfer.date != null &&
                                                 transfer.durationHours != null
                                             ? (transfer.durationHours! > 23
                                                 ? DateFormat('EEEE, h:mm a')
@@ -262,22 +261,22 @@ class ActivityCard extends StatelessWidget {
 
     if (minutesDifference <= 0) {
       return Text(
-        'Passed',
+        'Expiré',
         style: TextStyle(fontWeight: FontWeight.w600, fontSize: 40),
       );
     } else if (minutesDifference < 60) {
       return Text(
-        'In $minutesDifference min',
+        'Dans $minutesDifference min',
         style: TextStyle(fontWeight: FontWeight.w600, fontSize: 40),
       );
     } else if (hoursDifference < 24) {
       return Text(
-        'In $hoursDifference hours',
+        'Dans $hoursDifference heurs',
         style: TextStyle(fontWeight: FontWeight.w600, fontSize: 40),
       );
     } else {
       return Text(
-        'In $daysDifference days',
+        'Dans $daysDifference Jours',
         style: TextStyle(fontWeight: FontWeight.w600, fontSize: 40),
       );
     }
@@ -304,7 +303,7 @@ class ActivityCard extends StatelessWidget {
                           SizedBox(
                             width: 30,
                           ),
-                          activity.agency?.logo == null
+                          activity.activityTemplate?.picture == null
                               ? Container(
                                   width: 140, // Set your desired width
                                   height: 140, // Set your desired height
@@ -319,7 +318,7 @@ class ActivityCard extends StatelessWidget {
                                   height: 140, // Set your desired height
                                   child: ImageWithDynamicBackgroundColorusers(
                                     imageUrl:
-                                        "${baseUrls}${activity.agency?.logo}",
+                                        "${baseUrls}${activity.activityTemplate?.picture}",
                                     isCirculair: true,
                                   ),
                                 ),
@@ -334,12 +333,12 @@ class ActivityCard extends StatelessWidget {
                                       fontWeight: FontWeight.w600,
                                       fontSize: 30)),
                               SizedBox(
-                                height: 10,
+                                height: 15,
                               ),
                               Text(
-                                "${activity.agency?.fullName ?? "A/N"}",
+                                "${activity.activityTemplate?.name ?? "A/N"}",
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w600, fontSize: 30),
+                                    fontWeight: FontWeight.w700, fontSize: 32),
                               ),
                             ],
                           ),
@@ -525,7 +524,7 @@ class TaskCard extends StatelessWidget {
 
     if (minutesDifference <= 0) {
       return Text(
-        'Passed',
+        'Expiré',
         style: TextStyle(fontWeight: FontWeight.w600, fontSize: 40),
       );
     } else if (minutesDifference < 60) {

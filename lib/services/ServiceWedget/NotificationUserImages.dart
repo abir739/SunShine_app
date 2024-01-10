@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:palette_generator/palette_generator.dart';
-import 'package:zenify_app/services/widget/profile_widget.dart';
+import 'package:SunShine/services/widget/profile_widget.dart';
 
 class ImageWithDynamicBackgroundColorusers extends StatefulWidget {
   final String imageUrl;

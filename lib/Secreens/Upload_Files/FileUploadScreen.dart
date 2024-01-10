@@ -6,7 +6,7 @@ import 'package:path/path.dart' as path;
 import 'dart:convert';
 import 'dart:async';
 import 'package:async/async.dart';
-import 'package:zenify_app/login/Login.dart';
+import 'package:SunShine/login/Login.dart';
 import '../../services/constent.dart';
 
 import 'package:get/get.dart';

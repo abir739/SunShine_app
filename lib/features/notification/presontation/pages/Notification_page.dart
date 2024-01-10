@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zenify_app/Secreens/Notification/LoadingWidget.dart';
-import 'package:zenify_app/features/notification/presontation/bloc/NotificationsBlocs/notifications_bloc.dart';
-import 'package:zenify_app/features/notification/presontation/pages/notification_add_update_page.dart';
-import 'package:zenify_app/features/notification/presontation/widgets/ListNotification.dart';
-import 'package:zenify_app/features/notification/presontation/widgets/LodingNotificationWidgets.dart';
-import 'package:zenify_app/features/notification/presontation/widgets/MessageDisplay.dart';
+import 'package:SunShine/Secreens/Notification/LoadingWidget.dart';
+import 'package:SunShine/features/notification/presontation/bloc/NotificationsBlocs/notifications_bloc.dart';
+import 'package:SunShine/features/notification/presontation/pages/notification_add_update_page.dart';
+import 'package:SunShine/features/notification/presontation/widgets/ListNotification.dart';
+import 'package:SunShine/features/notification/presontation/widgets/LodingNotificationWidgets.dart';
+import 'package:SunShine/features/notification/presontation/widgets/MessageDisplay.dart';
 
 class NotificationPage extends StatelessWidget {
   const NotificationPage({super.key});
@@ -22,7 +22,7 @@ class NotificationPage extends StatelessWidget {
 
   Widget _bodyNotification() {
     return Padding(
-      padding:  EdgeInsets.all(2),
+      padding: EdgeInsets.all(2),
       child: BlocBuilder<NotificationsBloc, NotificationsState>(
         builder: (context, state) {
           print("$state");
@@ -31,7 +31,8 @@ class NotificationPage extends StatelessWidget {
           } else if (state is LoadedNotificationsState) {
             return RefreshIndicator(
                 onRefresh: () => _onRefresh(context),
-                child:ListNotificationWidget(notifications: state.notifications));
+                child:
+                    ListNotificationWidget(notifications: state.notifications));
           } else if (state is ErrorNotificationsState) {
             return MessageDisplay(Message: state.Message);
           }
@@ -42,9 +43,11 @@ class NotificationPage extends StatelessWidget {
   }
 
   AppBar _buildAppBar() => AppBar(title: Text("NotificationPage"));
-   Future<void> _onRefresh(BuildContext context) async {
-    BlocProvider.of<NotificationsBloc>(context).add(RefreshNotificationsEvent());
+  Future<void> _onRefresh(BuildContext context) async {
+    BlocProvider.of<NotificationsBloc>(context)
+        .add(RefreshNotificationsEvent());
   }
+
   Widget _buildFloatingBtn(BuildContext context) {
     return FloatingActionButton(
       onPressed: () {

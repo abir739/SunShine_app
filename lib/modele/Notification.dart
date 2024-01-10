@@ -1,4 +1,4 @@
-import 'package:zenify_app/modele/activitsmodel/usersmodel.dart';
+import 'package:SunShine/modele/activitsmodel/usersmodel.dart';
 
 class Notificationde {
   String? location;
