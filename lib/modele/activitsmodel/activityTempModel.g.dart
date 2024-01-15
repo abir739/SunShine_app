@@ -2,10 +2,6 @@
 
 part of 'activityTempModel.dart';
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
 ActivityTemplate _$ActivityTemplateFromJson(Map<String, dynamic> json) =>
     ActivityTemplate(
       id: json['id'] as String?,
@@ -13,11 +9,6 @@ ActivityTemplate _$ActivityTemplateFromJson(Map<String, dynamic> json) =>
       location: json['location'] as String?,
       images:
           (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      // activitiesCategoryModelmplate: json['activitiesCategoryModelmplate'] ==
-      //         null
-      //     ? null
-      //     : ActivitiesCategoryModel.fromJson(
-      //         json['activitiesCategoryModelmplate'] as Map<String, dynamic>),
       durationHours: json['durationHours'] as int?,
       shortDescription: json['shortDescription'] as String?,
       picture: json['picture'] as String?,

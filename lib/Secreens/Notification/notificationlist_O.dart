@@ -106,7 +106,6 @@ class _NotificationListState extends State<NotificationList> {
         notifications = fetchedNotifications;
       });
     } catch (e) {
-      // Handle any potential exceptions here, e.g., network errors.
       print('Error: $e');
     }
   }
@@ -220,7 +219,6 @@ class _NotificationListState extends State<NotificationList> {
 
     return Scaffold(
       bottomSheet: Visibility(
-        // visible: closeTopContainer,
         child: GFBottomSheet(
           controller: _controller,
           maxContentHeight: 100,
@@ -243,8 +241,8 @@ class _NotificationListState extends State<NotificationList> {
                             ],
                           ),
                           content: Container(
-                            width: 400, // Adjust the width as needed
-                            height: 300, // Adjust the height as needed
+                            width: 400, 
+                            height: 300,
                             child: PushNotificationGuideScreen(widget.guid?.id),
                           ),
                           actions: <Widget>[
@@ -333,8 +331,8 @@ class _NotificationListState extends State<NotificationList> {
                             ],
                           ),
                           content: Container(
-                            width: 400, // Adjust the width as needed
-                            height: 300, // Adjust the height as needed
+                            width: 400, 
+                            height: 300, 
                             child: PushNotificationGuideScreen(widget.guid?.id),
                           ),
                           actions: <Widget>[
