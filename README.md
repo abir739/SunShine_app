@@ -13,8 +13,8 @@ You can found all the ScreenShots in a Folder named Interfaces
   </tr>
    <tr>
    <td style="margin-left: 10px;"><img src="https://github.com/abir739/SunShine_app/blob/main/Interfaces/Screenshot_20240115_085446.jpg" alt="Screenshot 2"></td>
-    <td style="margin-right: 10px;"><img src="https://github.com/abir739/SunShine_app/blob/main/Interfaces/Screenshot_20240115_085536.jpg" alt="Screenshot 1"></td>
-    <td style="margin-left: 10px;"><img src="https://github.com/abir739/SunShine_app/blob/main/Interfaces/Screenshot_20240115_085643.jpg" alt="Screenshot 2"></td>
+   <td style="margin-left: 10px;"><img src="https://github.com/abir739/SunShine_app/blob/main/Interfaces/Screenshot_20240115_093456.jpg" alt="Screenshot 2"></td>
+    <td style="margin-right: 10px;"><img src="https://github.com/abir739/SunShine_app/blob/main/Interfaces/Screenshot_20240115_093520.jpg" alt="Screenshot 1"></td>
   </tr>
    <tr>
    <td style="margin-left: 10px;"><img src="https://github.com/abir739/SunShine_app/blob/main/Interfaces/Screenshot_20240115_085854.jpg" alt="Screenshot 2"></td>
@@ -29,8 +29,8 @@ You can found all the ScreenShots in a Folder named Interfaces
    
   </tr>
    <tr>
-   <td style="margin-left: 10px;"><img src="https://github.com/abir739/SunShine_app/blob/main/Interfaces/Screenshot_20240115_093456.jpg" alt="Screenshot 2"></td>
-    <td style="margin-right: 10px;"><img src="https://github.com/abir739/SunShine_app/blob/main/Interfaces/Screenshot_20240115_093520.jpg" alt="Screenshot 1"></td>
+ <td style="margin-right: 10px;"><img src="https://github.com/abir739/SunShine_app/blob/main/Interfaces/Screenshot_20240115_085536.jpg" alt="Screenshot 1"></td>
+    <td style="margin-left: 10px;"><img src="https://github.com/abir739/SunShine_app/blob/main/Interfaces/Screenshot_20240115_085643.jpg" alt="Screenshot 2"></td>
   
    
   </tr>
